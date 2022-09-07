@@ -14,7 +14,7 @@ class BookCategoryController extends Controller
     }
 
     public function index(Request $request){
-        $categories = app(BookCategoryRepository::class)->query()->get();
+        $categories = app(BookCategoryRepository::class)->query()->withCount('books')->get();
         return view('books.categories.index',compact('categories'));
     }
 

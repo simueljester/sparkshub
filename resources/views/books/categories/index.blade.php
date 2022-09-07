@@ -9,11 +9,8 @@
         </ol>
     </nav>
     
-    <div class="p-2 bg-white">
-        <a href="{{route('books.categories.create')}}" class="btn btn-warning"> <i class="fas fa-plus-circle"></i> Add Category </a>
-    </div>
-    
-    <div class="card bg-secondary shadow mt-3">
+    <a href="{{route('books.categories.create')}}" class="btn btn-warning"> <i class="fas fa-plus-circle"></i> Add Category </a>
+    <div class="card bg-secondary shadow mt-2">
         <div class="card-header bg-white border-0">
             <strong> Category List </strong>
         </div>
@@ -31,12 +28,17 @@
                             <td> {{$category->name}} </td>
                             <td> 
                                 <a href="{{route('books.categories.edit',$category)}}" class="text-primary"> <i class="fas fa-edit"></i> Edit </a>
-                                <a style="cursor: pointer;" onclick="showRemoveConfirmation({{$category->id}})" class="text-danger ml-3"> <i class="fas fa-minus-circle"></i> Remove </a>
+                                @if ($category->books_count == 0)
+                                    <a style="cursor: pointer;" onclick="showRemoveConfirmation({{$category->id}})" class="text-danger ml-3"> <i class="fas fa-minus-circle"></i> Remove </a>
+                                @else
+                                    <small class="ml-3 text-muted"> Remove unable due to books assigned to this category </small>
+                                @endif
+                                
                             </td>
                         </tr>
                     @empty
                         <tr>
-                            <td></td>
+                            <td colspan="2"> No category found. </td>
                         </tr>
                     @endforelse
                 </tbody>
@@ -44,7 +46,7 @@
         </div>
     </div>
 
-    <!-- Modal -->
+    <!-- Modal remove category -->
     <form action="{{route('books.categories.remove')}}" method="post">
         @method('POST')
         @csrf

@@ -14,7 +14,7 @@ class Book extends Model
     protected $fillable = [ 
         'isbn',
         'title',
-        'category',
+        'category_id',
         'publication_date',
         'copies',
         'cover',
@@ -22,7 +22,7 @@ class Book extends Model
     ];
     public function category(): BelongsTo
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(BookCategory::class);
     }
 
 }

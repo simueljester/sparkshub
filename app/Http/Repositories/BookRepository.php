@@ -13,4 +13,15 @@ class BookRepository extends BaseRepository
     {
         $this->model = $model;
     }
+
+    public function archive($book_id){
+        $book = Book::find($book_id);
+        $book->archived_at = now();
+        $book->save();
+    }
+    public function archiveRemove($book_id){
+        $book = Book::find($book_id);
+        $book->archived_at = null;
+        $book->save();
+    }
 }

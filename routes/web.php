@@ -32,6 +32,11 @@ Route::group(['middleware' => 'auth'], function () {
 Route::group(['prefix'=>'books','as'=>'books.'], function(){
     Route::get('/', ['as' => 'index', 'uses' => 'BookController@index']);
 	Route::get('/add-book', ['as' => 'create', 'uses' => 'BookController@create']);
+	Route::post('/save-book', ['as' => 'save', 'uses' => 'BookController@save']);
+	Route::get('/edit-book/{book}', ['as' => 'edit', 'uses' => 'BookController@edit']);
+	Route::post('/update-book', ['as' => 'update', 'uses' => 'BookController@update']);
+	Route::post('/remove-book', ['as' => 'remove', 'uses' => 'BookController@remove']);
+	Route::get('/active-book/{book_id}', ['as' => 'set-active', 'uses' => 'BookController@setToActive']);
 
 	Route::group(['prefix'=>'categories','as'=>'categories.'], function(){
     	Route::get('/', ['as' => 'index', 'uses' => 'BookCategoryController@index']);
