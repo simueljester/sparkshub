@@ -19,7 +19,9 @@
         <link type="text/css" href="{{ asset('argon') }}/css/argon.css?v=1.0.0" rel="stylesheet">
         
         <style>
-            
+            .border-custom{
+                border-radius: 14px;
+            }
         </style>
     </head>
     <body class="{{ $class ?? '' }}">
@@ -32,7 +34,7 @@
         
 
         <div class="main-content">
-            <div class="card m-2 shadow bg-gradient-primary text-right text-white">
+            <div class="card m-2 shadow bg-gradient-warning text-right text-white">
                 <div class="card-body">
                     @auth
                         <a href="{{ route('profile.edit') }}" class="text-white"> <i class="fas fa-user"></i> {{ auth()->user()->name }} </a>
@@ -49,9 +51,24 @@
                             <span class="nav-link-inner--text">{{ __('Login') }}</span>
                         </a>
                     @endguest
+                   
                 </div>
             </div>
             <div class="p-2">
+                @if(session()->has('success'))
+                    <div class="alert alert-success alert-dismissible fade show w-25" role="alert">
+                        <span class="alert-icon"><i class="ni ni-like-2"></i></span>
+                        <span class="alert-text"><strong>Success!</strong> {{ session()->get('success') }}</span>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
+                @if(session()->has('error'))
+                    <div class="alert alert-danger w-25" role="alert">
+                        <i class="fas fa-exclamation-triangle"></i> <strong>Notice!</strong>  There are some errors in your request
+                    </div>
+                 @endif
                 @yield('content')
             </div>
                     
@@ -65,7 +82,7 @@
 
         <script src="{{ asset('argon') }}/vendor/jquery/dist/jquery.min.js"></script>
         <script src="{{ asset('argon') }}/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        
+     
         @stack('js')
         
         <!-- Argon JS -->
