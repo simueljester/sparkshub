@@ -39,8 +39,9 @@ class BookController extends Controller
             'title'             => 'required',
             'isbn'              => 'required|unique:books,isbn',
             'publication_date'  => 'required|date',
-            'category'       => 'required',
-            'copies'            =>'required|integer'
+            'category'          => 'required',
+            'copies'            => 'required|integer',
+            'author'            => 'required'
         ]);
         
         $data = [
@@ -48,7 +49,8 @@ class BookController extends Controller
             'title'             => $request->title,
             'publication_date'  => $request->publication_date,
             'category_id'       => $request->category,
-            'copies'            => $request->copies
+            'copies'            => $request->copies,
+            'author'            => $request->author
         ];
 
         app(BookRepository::class)->save($data);
@@ -65,7 +67,8 @@ class BookController extends Controller
             'title'             => 'required',
             'publication_date'  => 'required|date',
             'category'          => 'required',
-            'copies'            =>'required|integer'
+            'copies'            =>'required|integer',
+            'author'            => 'required'
         ]);
         
         $data = [
@@ -73,7 +76,8 @@ class BookController extends Controller
             'title'             => $request->title,
             'publication_date'  => $request->publication_date,
             'category_id'       => $request->category,
-            'copies'            => $request->copies
+            'copies'            => $request->copies,
+            'author'            => $request->author
         ];
        
         app(BookRepository::class)->update($request->book_id,$data);

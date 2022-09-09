@@ -65,7 +65,7 @@
                                     @else
                                         <a style="cursor: pointer;" onclick="showRemoveConfirmation({{$user}})" class="text-warning ml-3"> <i class="fas fa-archive"></i> Archive user </a>
                                     @endif  
-
+                                    
                                     {{-- <a style="cursor: pointer;" class="text-warning ml-3"> <i class="fas fa-archive"></i> Archive User </a> --}}
                                 </td>
                             </tr>

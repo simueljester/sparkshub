@@ -17,6 +17,7 @@ class Book extends Model
         'category_id',
         'publication_date',
         'copies',
+        'author',
         'cover',
         'archived_at'
     ];

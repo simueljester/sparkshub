@@ -60,3 +60,7 @@ Route::group(['prefix'=>'users','as'=>'users.'], function(){
 	Route::get('/active-user/{user}', ['as' => 'set-active', 'uses' => 'UserController@setToActive']);
 });
 
+Route::group(['prefix'=>'library','as'=>'library.'], function(){
+	Route::get('/', ['as' => 'index', 'uses' => 'LibraryController@index']);
+});
+

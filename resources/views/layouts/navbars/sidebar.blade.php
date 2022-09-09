@@ -77,28 +77,29 @@
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('home') }}">
-                        <i class="ni ni-tv-2 text-primary"></i>  {{ __('Dashboard') }}
+                        <i class="ni ni-tv-2 text-muted"></i>  {{ __('Dashboard') }}
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('dashboard') }}">
-                        <i class="fas fa-tachometer-alt text-primary"></i> Dashboard {{Auth::user()->archived_at}}
+                        <i class="fas fa-tachometer-alt text-muted"></i> Dashboard {{Auth::user()->archived_at}}
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('books.index') }}">
-                        <i class="fas fa-book text-primary"></i> Books Management
+                        <i class="fas fa-book text-muted"></i> Books Management
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('library.index') }}">
+                        <i class="fas fa-university text-muted"></i> Library
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('users.index') }}">
-                         <i class="fas fa-users text-primary"></i> Users Management
+                         <i class="fas fa-users text-muted"></i> Users Management
                     </a>
                 </li>
-
-               
-           
-
                
             </ul>
             <!-- Divider -->

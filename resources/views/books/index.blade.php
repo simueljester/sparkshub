@@ -81,7 +81,7 @@
         </div>
     </div>
 
-    <!-- Modal remove category -->
+    <!-- Modal remove book -->
     <form action="{{route('books.remove')}}" method="post">
         @method('POST')
         @csrf

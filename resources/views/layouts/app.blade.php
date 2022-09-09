@@ -22,6 +22,19 @@
             .border-custom{
                 border-radius: 14px;
             }
+            .book-library {
+                 transform: scale(0.9); 
+                transition: transform .2s;
+                margin: 0 auto;
+            }
+
+            .book-library:hover {
+                -ms-transform: scale(1.5); /* IE 9 */
+                -webkit-transform: scale(1.5); /* Safari 3-8 */
+                transform: scale(1.0); 
+                color: rgb(227, 123, 53);
+                cursor:pointer;
+            }
         </style>
     </head>
     <body class="{{ $class ?? '' }}">
