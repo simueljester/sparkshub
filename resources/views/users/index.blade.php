@@ -44,15 +44,24 @@
                     <tbody>
                         @forelse ($users as $user)
                             <tr>
-                                <td> {{$user->name}} </td>
+                                <td> <i class="fas fa-user"></i> {{$user->name}} </td>
                                 <td> {{$user->student_number ?? '--'}} </td>
-                                <td> {{$user->role}} </td>
+                                <td>
+                                    @if ($user->role == 'student')
+                                        <span class="badge badge-pill badge-warning">Student</span>
+                                    @elseif($user->role == 'teacher')
+                                        <span class="badge badge-pill badge-primary">Teacher</span>
+                                    @elseif($user->role == 'librarian')
+                                        <span class="badge badge-pill badge-success">Librarian</span>
+                                    @endif 
+                             
+                                </td>
                                 <td> {{$user->email}} </td>
                                 <td> 
                                     <a href="{{route('users.edit',$user)}}" class="text-primary"> <i class="fas fa-edit"></i> Edit </a>
 
                                     @if ($user->archived_at)
-                                        <a href="{{route('users.set-active',$user)}}" class="text-success ml-3"> <i class="fas fa-check-circle"></i> Set to active books </a>
+                                        <a href="{{route('users.set-active',$user)}}" class="text-success ml-3"> <i class="fas fa-check-circle"></i> Set to active </a>
                                     @else
                                         <a style="cursor: pointer;" onclick="showRemoveConfirmation({{$user}})" class="text-warning ml-3"> <i class="fas fa-archive"></i> Archive user </a>
                                     @endif  
