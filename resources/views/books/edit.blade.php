@@ -57,7 +57,7 @@
                 </div>
                 <hr>
                 <input type="hidden" name="book_id" id="book_id" value="{{$book->id}}">
-                <button class="btn btn-success"> Update Book </button>
+                <button class="btn btn-success border-custom"> Update Book </button>
             </div>
         </div>
     </form>

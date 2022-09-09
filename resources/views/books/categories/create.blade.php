@@ -22,7 +22,7 @@
                     <small class="text-muted"> Category Name </small>
                     <input type="text" name="name" id="name" class="form-control border-custom">
                 </div>
-                <button class="btn btn-success"> Save New Category </button>
+                <button class="btn btn-success border-custom"> Save New Category </button>
             </div>
         </div>
     </form>

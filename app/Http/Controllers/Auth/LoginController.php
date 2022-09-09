@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Auth;
 
 class LoginController extends Controller
 {
@@ -20,6 +22,15 @@ class LoginController extends Controller
     */
 
     use AuthenticatesUsers;
+
+    protected function authenticated(Request $request, $user){
+    if ($user->archived_at) {// do your magic here
+        Auth::logout();
+        return redirect('/login')->with('error', 'Your account is currently inactive. Please contact your administrator');   
+    }
+
+    return redirect('/home');
+    }
 
     /**
      * Where to redirect users after login.
@@ -37,4 +48,5 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+    
 }

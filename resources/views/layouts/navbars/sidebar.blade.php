@@ -22,10 +22,7 @@
                     <div class=" dropdown-header noti-title">
                         <h6 class="text-overflow m-0">{{ __('Welcome!') }}</h6>
                     </div>
-                    <a href="{{ route('profile.edit') }}" class="dropdown-item">
-                        <i class="ni ni-single-02"></i>
-                        <span>{{ __('My profile') }}</span>
-                    </a>
+             
                     <a href="#" class="dropdown-item">
                         <i class="ni ni-settings-gear-65"></i>
                         <span>{{ __('Settings') }}</span>
@@ -85,35 +82,22 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('dashboard') }}">
-                        <i class="fas fa-tachometer-alt text-primary"></i>  New Dashboard
+                        <i class="fas fa-tachometer-alt text-primary"></i> Dashboard {{Auth::user()->archived_at}}
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('books.index') }}">
-                        <i class="fas fa-book text-primary"></i> Books
+                        <i class="fas fa-book text-primary"></i> Books Management
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples">
-                        <i class="fab fa-laravel" style="color: #f4645f;"></i>
-                        <span class="nav-link-text" style="color: #f4645f;">{{ __('Laravel Examples') }}</span>
+                    <a class="nav-link" href="{{ route('users.index') }}">
+                         <i class="fas fa-users text-primary"></i> Users Management
                     </a>
-
-                    <div class="collapse show" id="navbar-examples">
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('profile.edit') }}">
-                                    {{ __('User profile') }}
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('user.index') }}">
-                                    {{ __('User Management') }}
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
                 </li>
+
+               
+           
 
                
             </ul>

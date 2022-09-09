@@ -23,7 +23,7 @@
                     <input type="text" name="name" id="name" class="form-control border-custom" value="{{$book_category->name}}">
                 </div>
                 <input type="hidden" name="category_id" id="category_id" value="{{$book_category->id}}">
-                <button class="btn btn-success"> Update </button>
+                <button class="btn btn-success border-custom"> Update </button>
             </div>
         </div>
     </form>

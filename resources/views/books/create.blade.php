@@ -56,7 +56,7 @@
                     </div>
                 </div>
                 <hr>
-                <button class="btn btn-success"> Save Book </button>
+                <button class="btn btn-success border-custom"> Save Book </button>
             </div>
         </div>
     </form>

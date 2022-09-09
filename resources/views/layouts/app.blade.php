@@ -37,7 +37,7 @@
             <div class="card m-2 shadow bg-gradient-warning text-right text-white">
                 <div class="card-body">
                     @auth
-                        <a href="{{ route('profile.edit') }}" class="text-white"> <i class="fas fa-user"></i> {{ auth()->user()->name }} </a>
+                        {{-- <a href="{{ route('profile.edit') }}" class="text-white"> <i class="fas fa-user"></i> {{ auth()->user()->name }} </a> --}}
                         <a href="{{ route('logout') }}" class="text-white ml-3" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
                             <i class="ni ni-user-run"></i>
@@ -66,7 +66,7 @@
                 @endif
                 @if(session()->has('error'))
                     <div class="alert alert-danger w-25" role="alert">
-                        <i class="fas fa-exclamation-triangle"></i> <strong>Notice!</strong>  There are some errors in your request
+                        <i class="fas fa-exclamation-triangle"></i> <strong>Notice!</strong>  {{session()->get('error') }}
                     </div>
                  @endif
                   @if ($errors->any())
@@ -74,7 +74,9 @@
                          <div class="alert alert-danger w-25" role="alert">{{$error}}</div>
                     @endforeach
                 @endif
-                @yield('content')
+                <div>
+                    @yield('content')
+                </div>
             </div>
                     
             

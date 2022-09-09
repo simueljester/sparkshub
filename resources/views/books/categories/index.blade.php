@@ -9,7 +9,7 @@
         </ol>
     </nav>
     
-    <a href="{{route('books.categories.create')}}" class="btn btn-warning"> <i class="fas fa-plus-circle"></i> Add Category </a>
+    <a href="{{route('books.categories.create')}}" class="btn btn-warning border-custom"> <i class="fas fa-plus-circle"></i> Add Category </a>
     <div class="card bg-secondary shadow mt-2">
         <div class="card-header bg-white border-0">
             <strong> Category List </strong>
@@ -65,8 +65,8 @@
                     </div>
                     <div class="modal-footer">
                         <input type="hidden" name="category_id" id="delete_category_id">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-secondary border-custom" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary border-custom">Save changes</button>
                     </div>
                 </div>
             </div>

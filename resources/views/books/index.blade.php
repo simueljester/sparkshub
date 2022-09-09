@@ -10,14 +10,14 @@
     </nav>
     
     <div class="row p-3">
-        <a href="{{route('books.create')}}" class="btn btn-warning"> <i class="fas fa-plus-circle"></i> Add Book </a>
-        <a href="{{route('books.categories.index')}}" class="btn btn-primary"> <i class="fas fa-cog"></i> Manage Category </a>
+        <a href="{{route('books.create')}}" class="btn btn-warning border-custom"> <i class="fas fa-plus-circle"></i> Add Book </a>
+        <a href="{{route('books.categories.index')}}" class="btn btn-primary border-custom"> <i class="fas fa-cog"></i> Manage Category </a>
        
         <form action="">
             @if ($status == 'active')
-                <button class="btn btn-outline-danger" name="status" value="archive"> <i class="fas fa-archive"></i> Archived Books </button>
+                <button class="btn btn-outline-danger border-custom" name="status" value="archive"> <i class="fas fa-archive"></i> Archived Books </button>
             @else
-                <button class="btn btn-success" name="status" value="active"> <i class="fas fa-book"></i> Active Books </button>
+                <button class="btn btn-success border-custom" name="status" value="active"> <i class="fas fa-book"></i> Active Books </button>
             @endif
 
         </form>
@@ -100,8 +100,8 @@
                     </div>
                     <div class="modal-footer">
                         <input type="hidden" name="book_id" id="delete_book_id">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary"> Proceed </button>
+                        <button type="button" class="btn btn-secondary border-custom" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary border-custom"> Proceed </button>
                     </div>
                 </div>
             </div>
@@ -110,7 +110,6 @@
 
     <script>
         function showRemoveConfirmation(book){
-            console.log(book);
             $('#remove-modal').modal('show'); 
             $('#delete_book_id').val(book.id); 
             $('#remove-title').html(book.title)

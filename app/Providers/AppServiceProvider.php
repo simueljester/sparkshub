@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-
+use Auth;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -24,5 +24,12 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+        if(Auth::check()){
+            if(Auth::user()->archived_at != null) {
+                Auth::logout();
+                return redirect('login')->withErrors(['Your account is inactive']);
+            }
+        }
+     
     }
 }
