@@ -50,12 +50,25 @@
             <div class="card m-2 shadow bg-gradient-warning text-right text-white">
                 <div class="card-body">
                     @auth
-                        <a href="#" class="text-white"> <i class="fas fa-user"></i> {{ auth()->user()->name }} </a>
-                        <a href="{{ route('logout') }}" class="text-white ml-3" onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();">
-                            <i class="ni ni-user-run"></i>
-                            <span>{{ __('Logout') }}</span>
-                        </a>
+                        <ul class="nav nav-pills nav-pills-circle float-right" id="tabs_2" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link rounded-circle" id="home-tab" onclick="openNotification()" href="#" role="tab" aria-controls="home" aria-selected="true">
+                                    <span class="nav-link-icon d-block"><i class="fas fa-bell"></i> <strong class="text-danger"> {{$notifications->count()}} </strong> </span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="profile-tab" href="#tabs_2_2" role="tab" aria-controls="profile" aria-selected="false">
+                                    <span class="nav-link-icon d-block"><i class="fas fa-user"></i> <strong class="text-danger"> </strong></span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                               
+                                <a class="nav-link" id="contact-tab" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                                    <span class="nav-link-icon d-block"><i class="fas fa-sign-out-alt"></i></span>
+                                </a>
+                            </li>
+                        </ul>
                      @endauth
                     @guest
                         <a href="/" class="text-white"> <i class="fas fa-home"></i> <span> Home </span>  </a>
@@ -91,9 +104,37 @@
                     @yield('content')
                 </div>
             </div>
-                    
-            
-         
+        </div>
+
+        <div class="modal fade" id="notification-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"> Notification </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        @forelse ($notifications as $notification)
+                            <a href="{{route('notification.read',$notification)}}">
+                                <div class="card shadow mt-2 border-custom">
+                                    <div class="card-body">
+                                        <span class="{{$notification->read_at ? 'text-muted' : 'text-primary'}}">
+                                            <i class="fas fa-user"></i> {{$notification->notifiedBy->name}} {{$notification->description}}
+                                        </span>
+                                    </div>
+                                </div>                                
+                            </a>
+                        @empty
+                            No unread notification
+                        @endforelse   
+                    </div>
+                    <div class="modal-footer bg-gradient-warning">
+                        <a href="#" class="text-white"> <strong> All notification </strong> </a>
+                    </div>
+                </div>
+            </div>
         </div>
 
         @guest()
@@ -107,5 +148,10 @@
         
         <!-- Argon JS -->
         <script src="{{ asset('argon') }}/js/argon.js?v=1.0.0"></script>
+        <script>
+            function openNotification(){
+                $('#notification-modal').modal('show'); 
+            }
+        </script>
     </body>
 </html>

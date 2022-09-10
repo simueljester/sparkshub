@@ -68,8 +68,13 @@ Route::group(['prefix'=>'request-book','as'=>'request-book.'], function(){
 	Route::get('/', ['as' => 'index', 'uses' => 'RequestedBookController@index']);
 	Route::post('/create', ['as' => 'request', 'uses' => 'RequestedBookController@requestBook']);
 	Route::post('/save-request', ['as' => 'save-request', 'uses' => 'RequestedBookController@save']);
-	Route::get('/show{requested_book}', ['as' => 'show', 'uses' => 'RequestedBookController@show']);
+	Route::get('/show/{requested_book}', ['as' => 'show', 'uses' => 'RequestedBookController@show']);
 	Route::post('/approve', ['as' => 'approve', 'uses' => 'RequestedBookController@approve']);
 	Route::post('/returned', ['as' => 'returned', 'uses' => 'RequestedBookController@returned']);
 });
+
+Route::group(['prefix'=>'notification','as'=>'notification.'], function(){
+	Route::get('/{notification}', ['as' => 'read', 'uses' => 'NotificationController@read']);
+});
+
 

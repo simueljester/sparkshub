@@ -2,8 +2,12 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
+
 use Auth;
+use App\Notification;
+use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\View;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -30,6 +34,19 @@ class AppServiceProvider extends ServiceProvider
                 return redirect('login')->withErrors(['Your account is inactive']);
             }
         }
+
+        View::composer('*', function($view){
+            $notifications = Notification::where('notifiable_id', Auth::id())
+                    ->whereNull('read_at')
+                    ->with('notifiable','notifiedBy')
+                    ->orderBy('created_at','DESC')
+                    ->limit(5)
+                    ->get();
+
+            View::share([
+                'notifications' => $notifications,
+            ]);
+        });
      
     }
 }

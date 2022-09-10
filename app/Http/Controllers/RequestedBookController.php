@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use Auth;
 use Carbon\Carbon;
 use App\RequestedBook;
 use Illuminate\Http\Request;
 use App\Http\Repositories\BookRepository;
+use App\Http\Repositories\UserRepository;
+use App\Http\Repositories\NotificationRepository;
 use App\Http\Repositories\RequestedBookRepository;
 
 class RequestedBookController extends Controller
@@ -34,7 +37,7 @@ class RequestedBookController extends Controller
         ->when(Auth::user()->role != 'librarian', function ($query) {
             $query->whereUserId(Auth::user()->id);
         })
-        ->orderBy('start_date','ASC')
+        ->orderBy('start_date','DESC')
         ->paginate(10);
         return view('requests.index',compact('requests','filter'));
     }
@@ -53,19 +56,41 @@ class RequestedBookController extends Controller
         if($book->copies == 0){
             return redirect()->back()->with('error', 'There are no copies available for this book');
         }
-        $data = [
-            'book_id'       => $request->book_id,
-            'user_id'       => $request->user_id,
-            'message'       => $request->message,
-            'start_date'    => $start_date,
-            'end_date'      => $end_date,
-            'approved_at'   => null,
-            'approver'      => null,
-            'returned_at'   => null,
-            'duration'      => null
-        ];
 
-        app(RequestedBookRepository::class)->save($data);
+        DB::beginTransaction();
+        try {
+            $data = [
+                'book_id'       => $request->book_id,
+                'user_id'       => $request->user_id,
+                'message'       => $request->message,
+                'start_date'    => $start_date,
+                'end_date'      => $end_date,
+                'approved_at'   => null,
+                'approver'      => null,
+                'returned_at'   => null,
+                'duration'      => null
+            ];
+            $requested_book = app(RequestedBookRepository::class)->save($data);
+
+            //notify all librarians
+            $librarians = app(UserRepository::class)->query()->whereRole('librarian')->whereNull('archived_at')->pluck('id');
+            foreach($librarians as $librarian){
+                $notification_data = [
+                    'notifiable_id' => $librarian,
+                    'notified_by'   => $request->user_id,
+                    'description'   => 'has requested to borrow book '. $requested_book->book->title,
+                    'url'           => '/request-book/show/'.$requested_book->id,
+                    'read_at'       => null
+                ];
+                app(NotificationRepository::class)->save($notification_data);
+            }
+            DB::commit();
+
+        } catch (\Exception $e) {
+            DB::rollback();
+            return redirect()->route('library.index')->with('error', 'There are some errors in your requests');
+        }
+  
         return redirect()->route('request-book.index')->with('success', 'Book successfully requested!');
     }
 
@@ -83,9 +108,25 @@ class RequestedBookController extends Controller
         if($book->copies == 0){
             return redirect()->back()->with('error', 'There are no copies available for this book');
         }
-        $requested_book = app(RequestedBookRepository::class)->approve($request->requested_book,$request->approval_date);
-        $book->copies = $book->copies - 1;
-        $book->save();
+        DB::beginTransaction();
+        try {
+            $requested_book = app(RequestedBookRepository::class)->approve($request->requested_book,$request->approval_date);
+            $book->copies = $book->copies - 1;
+            $book->save();
+
+            $notification_data = [
+                'notifiable_id' => $requested_book->user_id,
+                'notified_by'   => Auth::user()->id,
+                'description'   => 'approved your book request '.$requested_book->book->title,
+                'url'           => '/request-book/show/'.$requested_book->id,
+                'read_at'       => null
+            ];
+            app(NotificationRepository::class)->save($notification_data);
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+            return redirect()->route('library.index')->with('error', 'There are some errors in your requests');
+        }
         return redirect()->route('request-book.show',$requested_book)->with('success', 'Request successfully approved!');
     }
 
