@@ -25,16 +25,18 @@
    
     <div class="card bg-secondary shadow mt-1">
         <div class="card-header bg-white border-0">
+            <strong> Book Master List </strong>
             @if ($status == 'active')
-                <strong> Active Book List </strong>
+                <strong class="text-success"> - Active Book List </strong>
             @else
-                <strong> Archived List </strong>
+                <strong class="text-warning"> - Archived List </strong>
             @endif
           
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table align-items-center">
+                <small> Showing {{ $books->firstItem() }} to {{ $books->lastItem() }} of {{ $books->total() }} records </small>
+                <table class="table align-items-center mt-1">
                     <thead>
                         <tr>
                             <th scope="col">Title</th>
@@ -77,6 +79,8 @@
                         @endforelse
                     </tbody>
                 </table>
+                <br>
+                {{$books->links()}}
             </div>
         </div>
     </div>

@@ -50,7 +50,7 @@
             <div class="card m-2 shadow bg-gradient-warning text-right text-white">
                 <div class="card-body">
                     @auth
-                        {{-- <a href="{{ route('profile.edit') }}" class="text-white"> <i class="fas fa-user"></i> {{ auth()->user()->name }} </a> --}}
+                        <a href="#" class="text-white"> <i class="fas fa-user"></i> {{ auth()->user()->name }} </a>
                         <a href="{{ route('logout') }}" class="text-white ml-3" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
                             <i class="ni ni-user-run"></i>

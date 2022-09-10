@@ -55,7 +55,7 @@
                         </div>
                         <div class="form-group">
                             <small class="text-muted"> Copies Available </small>
-                            <input type="number" name="copies" id="copies" class="form-control border-custom" value="1" required>
+                            <input type="number" name="copies" id="copies" class="form-control border-custom" value="1" min="0" required>
                         </div>
                     </div>
                 </div>

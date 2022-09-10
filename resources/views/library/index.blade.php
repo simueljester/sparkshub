@@ -10,9 +10,6 @@
     </nav>
    
     <div class="card bg-secondary shadow m-2">
-         <div class="card-header bg-white border-0">
-            <strong> <i class="fas fa-search"></i> Search Book </strong>
-        </div>
         <div class="card-body">
             <form action="">
                 <div class="row">

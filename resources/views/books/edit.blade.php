@@ -51,7 +51,7 @@
                         </div>
                         <div class="form-group">
                             <small class="text-muted"> Copies Available </small>
-                            <input value="{{$book->copies}}" type="number" name="copies" id="copies" class="form-control border-custom" value="1" required>
+                            <input value="{{$book->copies}}" type="number" name="copies" id="copies" class="form-control border-custom" value="1" min="0" required>
                         </div>
                         <div class="form-group">
                             <small class="text-muted"> Author </small>

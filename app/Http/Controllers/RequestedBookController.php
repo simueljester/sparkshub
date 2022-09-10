@@ -17,8 +17,26 @@ class RequestedBookController extends Controller
     }
 
     public function index(Request $request){
-        $requests = app(RequestedBookRepository::class)->query()->with('book:id,title,category_id','user:id,role,name')->orderBy('created_at','DESC')->get();
-        return view('requests.index',compact('requests'));
+        $three_days = Carbon::now()->addDays(3);
+        $filter = $request->filter ?? null;
+        $requests = app(RequestedBookRepository::class)->query()
+        ->with('book:id,title,category_id','user:id,role,name')
+        ->when($filter == 'due_dates', function ($query) use ($filter,$three_days) {
+            $query->whereBetween('end_date', [Carbon::now(),$three_days])
+            ->whereNull('returned_at');
+        })
+        ->when($filter == 'unreturned', function ($query) use ($filter) {
+            $query->whereNull('returned_at');
+        })
+        ->when($filter == 'pending', function ($query) use ($filter) {
+            $query->whereNull('returned_at')->whereNull('approved_at');
+        })
+        ->when(Auth::user()->role != 'librarian', function ($query) {
+            $query->whereUserId(Auth::user()->id);
+        })
+        ->orderBy('start_date','ASC')
+        ->paginate(10);
+        return view('requests.index',compact('requests','filter'));
     }
 
     //can access this function thru library
@@ -29,7 +47,6 @@ class RequestedBookController extends Controller
     }
 
     public function save(Request $request){
-
         $start_date = Carbon::now()->startOfDay();
         $end_date = Carbon::parse($request->end_date)->endOfDay();
         $book = app(BookRepository::class)->find($request->book_id);

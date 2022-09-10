@@ -25,7 +25,7 @@ class BookController extends Controller
         })
         ->with('category:id,name')
         ->orderBy('title','ASC')
-        ->get();
+        ->paginate(10);
         return view('books.index',compact('books','status'));
     }
 

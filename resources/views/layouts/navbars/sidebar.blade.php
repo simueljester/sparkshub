@@ -85,11 +85,14 @@
                         <i class="fas fa-tachometer-alt text-muted"></i> Dashboard {{Auth::user()->archived_at}}
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('books.index') }}">
-                        <i class="fas fa-book text-muted"></i> Books Management
-                    </a>
-                </li>
+                @if (Auth::user()->role == 'admin' || Auth::user()->role == 'librarian')
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('books.index') }}">
+                            <i class="fas fa-book text-muted"></i> Books Management
+                        </a>
+                    </li>
+                @endif
+           
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('library.index') }}">
                         <i class="fas fa-university text-muted"></i> Library
@@ -100,11 +103,13 @@
                         <i class="fas fa-clipboard-list text-muted"></i> Borrowed Books
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('users.index') }}">
-                         <i class="fas fa-users text-muted"></i> Users Management
-                    </a>
-                </li>
+                @if (Auth::user()->role == 'admin' || Auth::user()->role == 'librarian')
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('users.index') }}">
+                            <i class="fas fa-users text-muted"></i> Users Management
+                        </a>
+                    </li>
+                @endif
                
             </ul>
             <!-- Divider -->
