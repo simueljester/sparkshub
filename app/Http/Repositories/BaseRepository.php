@@ -3,6 +3,9 @@ namespace App\Http\Repositories;
 
 
 use DB;
+use Auth;
+use Carbon\Carbon;
+
 class BaseRepository {
 
     public $model;
@@ -92,6 +95,20 @@ class BaseRepository {
      */
     public function find(int $id) {
         $model = $this->model->find($id);
+        return $model;
+    }
+
+    /**
+     * Approve
+     *
+     * @param integer $id
+     * @return void
+     */
+    public function approve(int $id,$date) {
+        $model = $this->model->find($id);
+        $model->approved_at = Carbon::parse($date);
+        $model->approver = Auth::user()->id;
+        $model->save();
         return $model;
     }
 

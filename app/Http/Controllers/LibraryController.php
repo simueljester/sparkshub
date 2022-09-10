@@ -12,6 +12,7 @@ class LibraryController extends Controller
     public function __construct(){
         $this->middleware('auth');
     }
+    
     public function index(Request $request){
         $keyword = $request->keyword ?? null;
         $category_filter = $request->category_filter ?? null;

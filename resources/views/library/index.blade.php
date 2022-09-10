@@ -8,7 +8,6 @@
             <li class="breadcrumb-item active" aria-current="page"> Library </li>
         </ol>
     </nav>
-
    
     <div class="card bg-secondary shadow m-2">
          <div class="card-header bg-white border-0">
@@ -35,12 +34,10 @@
                         </div>
                     </div>
                 </div>
-            
                 <button class="btn btn-primary border-custom"> Search </button>
-                @if ($keyword && $category_filter != 0 || $category_filter)
+                @if ($keyword || $category_filter != 0 || $category_filter)
                     <a href="{{route('library.index')}}" class="btn btn-outline-secondary border-custom"> Clear Keyword </a>
                 @endif
-               
             </form>
         </div>
     </div>
@@ -67,78 +64,87 @@
 
 
     <!-- Modal view book -->
-  
-    <div class="modal fade" id="remove-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel"> View Book Information </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body text-center">
-                    <div> <i class="fas fa-book fa-5x text-warning"></i> </div>
-                    <br>
-                    <div class="mt-2"> <strong class="text-warning text-capitalize" style="font-size:22px;" id="book-title"></strong> </div>
-                    <div class="mt-1 text-muted"> By <span class="text-muted" id="book-author"></span> </div>
-                    <br>
-                    <small> Additional Information </small>
-                    <hr>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="mt-1 text-muted"> 
-                                <br>
-                                <span id="copies" class="text-dark"> </span> <br>
-                                <small> Copies Available: </small>
+    <form action="{{route('request-book.request')}}" method="post">
+        @csrf
+        @method('POST')
+        <div class="modal fade" id="remove-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"> View Book Information </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <div> <i class="fas fa-book fa-5x text-warning"></i> </div>
+                        <br>
+                        <div class="mt-2"> <strong class="text-warning text-capitalize" style="font-size:22px;" id="book-title"></strong> </div>
+                        <div class="mt-1 text-muted"> By <span class="text-muted" id="book-author"></span> </div>
+                        <br>
+                        <small> Additional Information </small>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="mt-1 text-muted"> 
+                                    <br>
+                                    <span id="copies" class="text-dark"> </span> <br>
+                                    <small> Copies Available: </small>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="mt-1 text-muted"> 
-                                <br>
-                                <span id="category" class="text-dark"> </span> <br>
-                                <small> Category: </small>
+                            <div class="col-sm-6">
+                                <div class="mt-1 text-muted"> 
+                                    <br>
+                                    <span id="category" class="text-dark"> </span> <br>
+                                    <small> Category: </small>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="mt-1 text-muted"> 
-                                <br>
-                                <span id="publication-date" class="text-dark"> </span> <br>
-                                <small> Publication Date: </small>
+                            <div class="col-sm-6">
+                                <div class="mt-1 text-muted"> 
+                                    <br>
+                                    <span id="publication-date" class="text-dark"> </span> <br>
+                                    <small> Publication Date: </small>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="mt-1 text-muted"> 
-                                <br>
-                                <span id="isbn" class="text-dark"> </span> <br>
-                                <small> ISBN: </small>
+                            <div class="col-sm-6">
+                                <div class="mt-1 text-muted"> 
+                                    <br>
+                                    <span id="isbn" class="text-dark"> </span> <br>
+                                    <small> ISBN: </small>
+                                </div>
                             </div>
                         </div>
                     </div>
-
-        
-        
-        
-                </div>
-                <div class="modal-footer">
-                    <input type="hidden" name="book_id" id="view_book_id">
-                    <button type="button" class="btn btn-secondary border-custom" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary border-custom"> I want to borrow this book </button>
+                    <div class="modal-footer">
+                        <input type="hidden" name="book_id" id="view_book_id">
+                        <button type="button" class="btn btn-secondary border-custom" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary border-custom" id="btn-borrow"> I want to borrow this book </button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
 
     <script>
         function viewBook(book){
+            var st = book.publication_date;
+            var pattern = /(\d{2})\.(\d{2})\.(\d{4})/;
+            var dt = new Date(st.replace(pattern,'$3-$2-$1'));
+
             $('#remove-modal').modal('show'); 
             $('#view_book_id').val(book.id); 
             $('#book-title').html(book.title); 
             $('#book-author').html(book.author); 
             $('#copies').html(book.copies); 
-            $('#publication-date').html(book.publication_date); 
+            $('#publication-date').html(dt.toDateString()); 
             $('#category').html(book.category.name); 
             $('#isbn').html(book.isbn); 
+
+            if(book.copies == 0){
+                 $("#btn-borrow").attr("disabled", true);
+            }else{
+                 $("#btn-borrow").attr("disabled", false);
+            }
         }
     </script>
 @endsection

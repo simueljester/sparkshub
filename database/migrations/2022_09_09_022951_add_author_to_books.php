@@ -15,7 +15,7 @@ class AddAuthorToBooks extends Migration
     {
         Schema::table('books', function (Blueprint $table) {
             //
-               $table->string('author')->after('copies')->nullable();
+            $table->string('author')->after('copies')->nullable();
         });
     }
 

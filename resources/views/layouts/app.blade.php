@@ -69,7 +69,7 @@
             </div>
             <div class="p-2">
                 @if(session()->has('success'))
-                    <div class="alert alert-success alert-dismissible fade show w-25" role="alert">
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
                         <span class="alert-icon"><i class="ni ni-like-2"></i></span>
                         <span class="alert-text"><strong>Success!</strong> {{ session()->get('success') }}</span>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -78,13 +78,13 @@
                     </div>
                 @endif
                 @if(session()->has('error'))
-                    <div class="alert alert-danger w-25" role="alert">
+                    <div class="alert alert-danger" role="alert">
                         <i class="fas fa-exclamation-triangle"></i> <strong>Notice!</strong>  {{session()->get('error') }}
                     </div>
                  @endif
                   @if ($errors->any())
                     @foreach ($errors->all() as $error)
-                         <div class="alert alert-danger w-25" role="alert">{{$error}}</div>
+                         <div class="alert alert-danger" role="alert">{{$error}}</div>
                     @endforeach
                 @endif
                 <div>
@@ -102,7 +102,7 @@
 
         <script src="{{ asset('argon') }}/vendor/jquery/dist/jquery.min.js"></script>
         <script src="{{ asset('argon') }}/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-     
+        <script src="{{ asset('argon') }}/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
         @stack('js')
         
         <!-- Argon JS -->

@@ -75,11 +75,11 @@
             </form>
             <!-- Navigation -->
             <ul class="navbar-nav">
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link" href="{{ route('home') }}">
                         <i class="ni ni-tv-2 text-muted"></i>  {{ __('Dashboard') }}
                     </a>
-                </li>
+                </li> --}}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('dashboard') }}">
                         <i class="fas fa-tachometer-alt text-muted"></i> Dashboard {{Auth::user()->archived_at}}
@@ -93,6 +93,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('library.index') }}">
                         <i class="fas fa-university text-muted"></i> Library
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('request-book.index')}}">
+                        <i class="fas fa-clipboard-list text-muted"></i> Borrowed Books
                     </a>
                 </li>
                 <li class="nav-item">
