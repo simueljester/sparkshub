@@ -53,7 +53,11 @@
                         <ul class="nav nav-pills nav-pills-circle float-right" id="tabs_2" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link rounded-circle" id="home-tab" onclick="openNotification()" href="#" role="tab" aria-controls="home" aria-selected="true">
-                                    <span class="nav-link-icon d-block"><i class="fas fa-bell"></i> <strong class="text-danger"> {{$notifications->count()}} </strong> </span>
+                                    <span class="nav-link-icon d-block"><i class="fas fa-bell"></i> 
+                                        @if ($notifications->count() != 0)
+                                            <strong class="text-danger"> {{$notifications->count()}} </strong> 
+                                        @endif 
+                                    </span>
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -77,7 +81,6 @@
                             <span class="nav-link-inner--text">{{ __('Login') }}</span>
                         </a>
                     @endguest
-                   
                 </div>
             </div>
             <div class="p-2">
@@ -109,10 +112,10 @@
         <div class="modal fade" id="notification-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header bg-white">
                         <h5 class="modal-title" id="exampleModalLabel"> Notification </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                            <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
