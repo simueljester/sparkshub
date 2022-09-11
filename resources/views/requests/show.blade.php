@@ -79,9 +79,6 @@
                                 @else
                                     @if ($requested_book->lost_at)
                                         <span class="text-danger ml-3" style="font-size:30px;font-weight:bold"> Lost </span>
-                                        <br>
-                                        <br>
-                                        <a href="{{route('lost-books.show',$requested_book->filedReport)}}" class="btn btn-primary border-custom"> View Incident Report </a>
                                     @else
                                         <span class="text-muted ml-3" style="font-size:30px;font-weight:bold"> Unreturned </span>
                                         <div class="mt-5">

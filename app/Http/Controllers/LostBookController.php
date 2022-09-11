@@ -9,7 +9,9 @@ use Carbon\Carbon;
 use App\RequestedBook;
 use Illuminate\Http\Request;
 use App\Helpers\UploadHelper;
+use App\Http\Repositories\UserRepository;
 use App\Http\Repositories\LostBookRepository;
+use App\Http\Repositories\NotificationRepository;
 
 class LostBookController extends Controller
 {
@@ -55,7 +57,19 @@ class LostBookController extends Controller
         DB::beginTransaction();
         try {
             RequestedBook::whereId($request->requested_book_id)->update(['lost_at'=> now()]);
-            app(LostBookRepository::class)->save($data);
+            $lost_book = app(LostBookRepository::class)->save($data);
+              //notify all librarians
+            $librarians = app(UserRepository::class)->query()->whereRole('librarian')->whereNull('archived_at')->pluck('id');
+            foreach($librarians as $librarian){
+                $notification_data = [
+                    'notifiable_id' => $librarian,
+                    'notified_by'   => Auth::user()->id,
+                    'description'   => 'submitted a lost book report',
+                    'url'           => '/lost-books/show/'.$lost_book->id,
+                    'read_at'       => null
+                ];
+                app(NotificationRepository::class)->save($notification_data);
+            }
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
@@ -75,8 +89,23 @@ class LostBookController extends Controller
         return Response()->download($filepath);
     }
 
-    public function approve($lost_book){
-        $requested_book = app(LostBookRepository::class)->approve($lost_book,Carbon::now()->format('Y-m-d'));
+    public function approve(LostBook $lost_book){
+        DB::beginTransaction();
+        try {
+            $requested_book = app(LostBookRepository::class)->approve($lost_book->id,Carbon::now()->format('Y-m-d'));
+            $notification_data = [
+                'notifiable_id' => $lost_book->user_id,
+                'notified_by'   => Auth::user()->id,
+                'description'   => 'approved your lost book report',
+                'url'           => '/lost-books/show/'.$lost_book->id,
+                'read_at'       => null
+            ];
+            app(NotificationRepository::class)->save($notification_data);
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+            return redirect()->route('request-book.index')->with('error', 'There are some errors in your requests');
+        }
         return redirect()->back()->with('success', 'Report approved');
     }
 }

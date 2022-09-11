@@ -9,7 +9,7 @@
         </ol>
     </nav>
            
-    <a href="#" class="btn btn-primary border-custom ml-2"> <i class="fas fa-cloud"></i> Uploaded Modules </a>
+    <a href="#" class="btn btn-primary border-custom ml-2"> <i class="fas fa-cloud-upload-alt"></i> Uploaded Modules </a>
     
     <div class="card bg-secondary shadow m-2">
         <div class="card-body">

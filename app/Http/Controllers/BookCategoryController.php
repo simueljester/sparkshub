@@ -23,7 +23,6 @@ class BookCategoryController extends Controller
     }
 
     public function save(Request $request){
-
         $request->validate([
             'name'   => 'required'
         ]);

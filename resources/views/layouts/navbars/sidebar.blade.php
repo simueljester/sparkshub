@@ -92,6 +92,14 @@
                         </a>
                     </li>
                 @endif
+
+                @if (Auth::user()->role != 'student')
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('modules.index') }}">
+                            <i class="far fa-newspaper text-muted"></i> Modules Management
+                        </a>
+                    </li>
+                @endif
            
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('library.index') }}">

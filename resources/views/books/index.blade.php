@@ -19,7 +19,6 @@
             @else
                 <button class="btn btn-success border-custom" name="status" value="active"> <i class="fas fa-book"></i> Active Books </button>
             @endif
-
         </form>
     </div>
    
@@ -100,7 +99,7 @@
                     </div>
                     <div class="modal-body text-center">
                         <i class="fas fa-exclamation-triangle"></i> <br>
-                        <span> Warning! Removing <strong id="remove-title"> </strong> will make assigned books unavailable. Are you sure you want to remove this category? </span>
+                        <span> Warning! Removing <strong id="remove-title"> </strong> will make it inaccessible to users. Are you sure you want to remove this book? </span>
                     </div>
                     <div class="modal-footer">
                         <input type="hidden" name="book_id" id="delete_book_id">

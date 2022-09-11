@@ -87,3 +87,31 @@ Route::group(['prefix'=>'lost-books','as'=>'lost-books.'], function(){
 });
 
 
+
+Route::group(['prefix'=>'modules','as'=>'modules.'], function(){
+	Route::get('/', ['as' => 'index', 'uses' => 'ModuleController@index']);
+	Route::get('/create', ['as' => 'create', 'uses' => 'ModuleController@create']);
+	Route::post('/save', ['as' => 'save', 'uses' => 'ModuleController@save']);
+	Route::get('/edit/{module}', ['as' => 'edit', 'uses' => 'ModuleController@edit']);
+	Route::post('/update', ['as' => 'update', 'uses' => 'ModuleController@update']);
+	Route::get('/manage/{module}', ['as' => 'manage', 'uses' => 'ModuleController@manage']);
+	Route::post('/archive-module', ['as' => 'archive', 'uses' => 'ModuleController@archive']);
+	Route::get('/active-module/{module}', ['as' => 'set-active', 'uses' => 'ModuleController@setToActive']);
+	Route::get('/approve/{module}', ['as' => 'approve', 'uses' => 'ModuleController@approve']);
+
+	Route::group(['prefix'=>'file','as'=>'file.'], function(){
+		Route::post('/add-file', ['as' => 'add-file', 'uses' => 'ModuleFileController@addFile']);
+		Route::get('/download-content/{file}', ['as' => 'download-content', 'uses' => 'ModuleFileController@downloadContent']);
+		Route::get('/remove-file/{file}', ['as' => 'remove-file', 'uses' => 'ModuleFileController@removeFile']);
+	});
+
+	Route::group(['prefix'=>'subjects','as'=>'subjects.'], function(){
+		Route::get('/', ['as' => 'index', 'uses' => 'SubjectController@index']);
+		Route::get('/create', ['as' => 'create', 'uses' => 'SubjectController@create']);
+		Route::post('/save', ['as' => 'save', 'uses' => 'SubjectController@save']);
+		Route::get('/edit/{subject}', ['as' => 'edit', 'uses' => 'SubjectController@edit']);
+		Route::post('/update', ['as' => 'update', 'uses' => 'SubjectController@update']);
+	});
+});
+
+
