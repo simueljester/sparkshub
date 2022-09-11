@@ -54,7 +54,7 @@
             }
 
             .library-description-bk {
-                background-image: linear-gradient(0deg , #5872e7, #f86d68);
+                /* background-image: linear-gradient(0deg , #5872e7, #f86d68); */
                 border-radius: 30px;
                 position: absolute;
                 top: 55%;
@@ -65,7 +65,7 @@
             }
 
             .second .library-description-bk {
-                background-image: linear-gradient(-20deg , #bb7413, #e7d25c)
+                /* background-image: linear-gradient(-20deg , #bb7413, #e7d25c) */
             }
 
             .library-logo {
@@ -89,14 +89,14 @@
                 color: #fff;
                 font-weight: 900;
                 left: 180px;
-                bottom: 21%;
+                bottom: 15%;
             }
 
             .library-btn {
                 position: absolute;
                 color: #fff;
                 right: 30px;
-                bottom: 10%;
+                bottom: 4%;
                 padding: 10px 20px;
                 border: 1px solid #fff;
             }
