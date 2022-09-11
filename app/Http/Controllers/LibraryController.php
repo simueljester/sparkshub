@@ -14,6 +14,10 @@ class LibraryController extends Controller
     }
     
     public function index(Request $request){
+        return view('library.index');
+    }
+
+    public function indexBooks(Request $request){
         $keyword = $request->keyword ?? null;
         $category_filter = $request->category_filter ?? null;
         $books = app(BookRepository::class)->query()
@@ -34,6 +38,6 @@ class LibraryController extends Controller
 
         $categories = app(BookCategoryRepository::class)->query()->get();
 
-        return view('library.index',compact('books','keyword','categories','category_filter'));
+        return view('library.index-books',compact('books','keyword','categories','category_filter'));
     }
 }

@@ -17,7 +17,8 @@
         <link href="{{ asset('argon') }}/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
         <!-- Argon CSS -->
         <link type="text/css" href="{{ asset('argon') }}/css/argon.css?v=1.0.0" rel="stylesheet">
-        
+
+             
         <style>
             .border-custom{
                 border-radius: 14px;
@@ -35,6 +36,139 @@
                 color: rgb(227, 123, 53);
                 cursor:pointer;
             }
+
+            .library {
+                display: inline-block;
+                position: relative;
+                width: 90%;
+                min-width: 400px;
+                height: 400px;
+                border-radius: 30px;
+                overflow:hidden;
+                box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.3);
+                margin: 30px;
+            }
+
+            .library-profile-img {
+                height: 80%;
+            }
+
+            .library-description-bk {
+                background-image: linear-gradient(0deg , #5872e7, #f86d68);
+                border-radius: 30px;
+                position: absolute;
+                top: 55%;
+                left: -5px;
+                height: 55%;
+                width: 108%;
+                transform: skew(19deg, -9deg);
+            }
+
+            .second .library-description-bk {
+                background-image: linear-gradient(-20deg , #bb7413, #e7d25c)
+            }
+
+            .library-logo {
+                height: 80px;
+                width: 80px;
+                border-radius: 20px;
+                background-color: #fff;
+                position: absolute;
+                bottom: 30%;
+                left: 30px;
+                overflow:hidden;
+                box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.7);
+            }
+
+            .library-logo img {
+                height: 100%;
+            }
+
+            .library-description {
+                position: absolute;
+                color: #fff;
+                font-weight: 900;
+                left: 180px;
+                bottom: 21%;
+            }
+
+            .library-btn {
+                position: absolute;
+                color: #fff;
+                right: 30px;
+                bottom: 10%;
+                padding: 10px 20px;
+                border: 1px solid #fff;
+            }
+
+            .library-btn a {
+                color: #fff;
+            }
+            /* END CARD DESIGN */
+
+
+            .slideInRight {
+                -webkit-animation-name: slideInRight;
+                animation-name: slideInRight;
+                -webkit-animation-duration: 1s;
+                animation-duration: 1s;
+                -webkit-animation-fill-mode: both;
+                animation-fill-mode: both;
+                }
+                @-webkit-keyframes slideInRight {
+                0% {
+                -webkit-transform: translateX(100%);
+                transform: translateX(100%);
+                visibility: visible;
+                }
+                100% {
+                -webkit-transform: translateX(0);
+                transform: translateX(0);
+                }
+                }
+                @keyframes slideInRight {
+                0% {
+                -webkit-transform: translateX(100%);
+                transform: translateX(100%);
+                visibility: visible;
+                }
+                100% {
+                -webkit-transform: translateX(0);
+                transform: translateX(0);
+                }
+            } 
+
+            .slideInLeft {
+                -webkit-animation-name: slideInLeft;
+                animation-name: slideInLeft;
+                -webkit-animation-duration: 1s;
+                animation-duration: 1s;
+                -webkit-animation-fill-mode: both;
+                animation-fill-mode: both;
+                }
+                @-webkit-keyframes slideInLeft {
+                0% {
+                -webkit-transform: translateX(-100%);
+                transform: translateX(-100%);
+                visibility: visible;
+                }
+                100% {
+                -webkit-transform: translateX(0);
+                transform: translateX(0);
+                }
+                }
+                @keyframes slideInLeft {
+                0% {
+                -webkit-transform: translateX(-100%);
+                transform: translateX(-100%);
+                visibility: visible;
+                }
+                100% {
+                -webkit-transform: translateX(0);
+                transform: translateX(0);
+                }
+            } 
+
         </style>
     </head>
     <body class="{{ $class ?? '' }}">
@@ -147,6 +281,7 @@
         <script src="{{ asset('argon') }}/vendor/jquery/dist/jquery.min.js"></script>
         <script src="{{ asset('argon') }}/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <script src="{{ asset('argon') }}/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+        
         @stack('js')
         
         <!-- Argon JS -->

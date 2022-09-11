@@ -62,6 +62,7 @@ Route::group(['prefix'=>'users','as'=>'users.'], function(){
 
 Route::group(['prefix'=>'library','as'=>'library.'], function(){
 	Route::get('/', ['as' => 'index', 'uses' => 'LibraryController@index']);
+	Route::get('/books', ['as' => 'books', 'uses' => 'LibraryController@indexBooks']);
 });
 
 Route::group(['prefix'=>'request-book','as'=>'request-book.'], function(){
