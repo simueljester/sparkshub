@@ -5,10 +5,12 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
     use Notifiable;
+
 
     /**
      * The attributes that are mass assignable.
@@ -19,6 +21,10 @@ class User extends Authenticatable
         'name', 'fname', 'lname', 'student_number','role','image', 'email', 'password','archived_at'
     ];
 
+    
+    public function filedReports(): HasMany {
+        return $this->hasMany('App\LostBook', 'user_id','id');
+    }
     /**
      * The attributes that should be hidden for arrays.
      *

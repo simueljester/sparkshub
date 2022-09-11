@@ -11,6 +11,7 @@ use App\Http\Repositories\BookRepository;
 use App\Http\Repositories\UserRepository;
 use App\Http\Repositories\NotificationRepository;
 use App\Http\Repositories\RequestedBookRepository;
+use Illuminate\Pagination\Paginator;
 
 class RequestedBookController extends Controller
 {
@@ -20,6 +21,7 @@ class RequestedBookController extends Controller
     }
 
     public function index(Request $request){
+        Paginator::useBootstrap();
         $three_days = Carbon::now()->addDays(3);
         $filter = $request->filter ?? null;
         $requests = app(RequestedBookRepository::class)->query()
@@ -33,6 +35,9 @@ class RequestedBookController extends Controller
         })
         ->when($filter == 'pending', function ($query) use ($filter) {
             $query->whereNull('returned_at')->whereNull('approved_at');
+        })
+        ->when($filter == 'lost', function ($query) use ($filter) {
+            $query->whereNotNull('lost_at');
         })
         ->when(Auth::user()->role != 'librarian', function ($query) {
             $query->whereUserId(Auth::user()->id);
@@ -136,13 +141,23 @@ class RequestedBookController extends Controller
         if($requested_book->approved_at->gt($return_date)){
             return redirect()->back()->with('error', 'Returned date must be greater than approved date '.$requested_book->approved_at);
         }
-        $requested_book->returned_at = $return_date;
-        $requested_book->duration = $return_date->diffInSeconds($requested_book->approved_at);
-        $requested_book->save();
 
-        $book = app(BookRepository::class)->find($requested_book->book_id);
-        $book->copies = $book->copies + 1;
+        DB::beginTransaction();
+        try {
+            $requested_book->returned_at = $return_date;
+            $requested_book->duration = $return_date->diffInSeconds($requested_book->approved_at);
+            $requested_book->lost_at = null;
+            $requested_book->save();
+
+            $book = app(BookRepository::class)->find($requested_book->book_id);
+            $book->copies = $book->copies + 1;
         $book->save();
+
+             DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+            return redirect()->route('library.index')->with('error', 'There are some errors in your requests');
+        }
         return redirect()->route('request-book.show',$requested_book)->with('success', 'Request successfully marked as returned!');
     }
 }

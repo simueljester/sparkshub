@@ -12,6 +12,10 @@
     <div class="card bg-secondary shadow mt-3">
         <div class="card-header bg-white border-0">
             <strong> Show Request </strong>
+            @if ($requested_book->approved_at && $requested_book->returned_at == null && $requested_book->lost_at == null)
+                <a href="{{route('lost-books.create',$requested_book)}}" class="text-warning float-right"> Lost Book <i class="fas fa-question-circle"></i></a>
+            @endif
+            
         </div>
         <div class="card-body">
             <div class="row">
@@ -47,6 +51,16 @@
                     <div class="mt-1"> <strong> Approver: </strong> <span class="{{$requested_book->approver ? 'text-primary' : 'text-danger'}}">  {{$requested_book->approver ? $requested_book->approverAccount->name.' - '.$requested_book->approverAccount->role   : 'pending'}} </span> </div>
                     <div class="mt-1"> <strong> Returned Date: </strong> <span class="{{$requested_book->returned_at ? 'text-primary' : 'text-danger'}}">  {{$requested_book->returned_at ? $requested_book->returned_at->format('F d, Y  h:i A') : 'pending'}} </span> </div>
                     <div class="mt-1"> <strong> Borrowed Duration: </strong> <span class="{{$requested_book->duration ? 'text-primary' : 'text-danger'}}">  {{$requested_book->duration ? Carbon\CarbonInterval::seconds($requested_book->duration)->cascade()->forHumans() : 'pending'}} </span> </div>
+                    <div class="mt-1"> <strong> Is Book Lost: </strong>  
+                        @if ($requested_book->lost_at)
+                            <strong class="text-danger"> Yes </strong>
+                            <br>
+                            <br>
+                            <a href="{{route('lost-books.show',$requested_book->filedReport)}}" class="btn btn-primary border-custom"> View Incident Report </a>
+                        @else
+                            <span class="text-muted"> No </span>
+                        @endif
+                    </div>
                 </div>
                 @if (Auth::user()->role == 'librarian')
                     <div class="col-sm-6">
@@ -63,10 +77,18 @@
                                     @endif
                                    
                                 @else
-                                    <span class="text-muted ml-3" style="font-size:30px;font-weight:bold"> Unreturned </span>
-                                    <div class="mt-5">
-                                        <button type="button" onclick="showReturnedConfirmation()" class="btn btn-success border-custom"> Mark as Returned </button>
-                                    </div>
+                                    @if ($requested_book->lost_at)
+                                        <span class="text-danger ml-3" style="font-size:30px;font-weight:bold"> Lost </span>
+                                        <br>
+                                        <br>
+                                        <a href="{{route('lost-books.show',$requested_book->filedReport)}}" class="btn btn-primary border-custom"> View Incident Report </a>
+                                    @else
+                                        <span class="text-muted ml-3" style="font-size:30px;font-weight:bold"> Unreturned </span>
+                                        <div class="mt-5">
+                                            <button type="button" onclick="showReturnedConfirmation()" class="btn btn-success border-custom"> Mark as Returned </button>
+                                        </div>
+                                    @endif
+                                  
                                 @endif
                             </div>
                         @else

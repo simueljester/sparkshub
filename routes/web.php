@@ -77,4 +77,13 @@ Route::group(['prefix'=>'notification','as'=>'notification.'], function(){
 	Route::get('/{notification}', ['as' => 'read', 'uses' => 'NotificationController@read']);
 });
 
+Route::group(['prefix'=>'lost-books','as'=>'lost-books.'], function(){
+	Route::get('/', ['as' => 'index', 'uses' => 'LostBookController@index']);
+	Route::get('/create/{requested_book}', ['as' => 'create', 'uses' => 'LostBookController@create']);
+	Route::post('/save', ['as' => 'save', 'uses' => 'LostBookController@save']);
+	Route::get('/show/{lost_book}', ['as' => 'show', 'uses' => 'LostBookController@show']);
+	Route::get('/download-attachment/{lost_book}', ['as' => 'download-attachment', 'uses' => 'LostBookController@downloadAttachment']);
+	Route::get('/approve/{lost_book}', ['as' => 'approve', 'uses' => 'LostBookController@approve']);
+});
+
 

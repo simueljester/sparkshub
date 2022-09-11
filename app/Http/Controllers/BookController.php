@@ -6,6 +6,7 @@ use App\Book;
 use Illuminate\Http\Request;
 use App\Http\Repositories\BookRepository;
 use App\Http\Repositories\BookCategoryRepository;
+use Illuminate\Pagination\Paginator;
 
 class BookController extends Controller
 {
@@ -15,6 +16,7 @@ class BookController extends Controller
     }
 
     public function index(Request $request){
+        Paginator::useBootstrap();
         $status = $request->status ?? 'active';
         $books = app(BookRepository::class)->query()
         ->when($status == 'archive', function ($q, $search) {

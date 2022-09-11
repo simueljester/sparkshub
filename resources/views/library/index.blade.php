@@ -8,7 +8,9 @@
             <li class="breadcrumb-item active" aria-current="page"> Library </li>
         </ol>
     </nav>
-   
+           
+    <a href="#" class="btn btn-primary border-custom ml-2"> <i class="fas fa-cloud"></i> Uploaded Modules </a>
+    
     <div class="card bg-secondary shadow m-2">
         <div class="card-body">
             <form action="">

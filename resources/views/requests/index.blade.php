@@ -8,6 +8,10 @@
             <li class="breadcrumb-item active" aria-current="page"> Borrowed Books </li>
         </ol>
     </nav>
+
+    <div class="row p-3">
+        <a href="{{route('lost-books.index')}}" class="btn btn-warning border-custom ml-2"> <i class="fas fa-times-circle"></i> Lost Books </a>
+    </div>
    
     <div class="card bg-secondary shadow m-2">
         <div class="card-body border-0">
@@ -20,6 +24,7 @@
                             <option value="due_dates" {{$filter == 'due_dates' ? 'selected' : null}}> Upcoming Due Dates </option>
                             <option value="unreturned" {{$filter == 'unreturned' ? 'selected' : null}}> Unreturned Books </option>
                             <option value="pending" {{$filter == 'pending' ? 'selected' : null}}> Pending Requests </option>
+                            <option value="lost" {{$filter == 'lost' ? 'selected' : null}}> Lost Book Requests </option>
                         </select>
                     </div>
                     <div class="col-sm-3">
@@ -32,6 +37,7 @@
             </form>
         </div>
     </div>
+    
     <div class="card bg-secondary shadow m-2">
          <div class="card-header bg-white border-0">
             <strong> <i class="fas fa-clipboard-list"></i> Requests to Borrow Books </strong> - 
@@ -44,12 +50,14 @@
             @if ($filter == 'pending')
                 Pending Requests
             @endif
+            @if ($filter == 'lost')
+                Lost Book Requests
+            @endif
             @if ($filter == null)
                 All
             @endif
         </div>
         <div class="card-body">
-            
             <div class="table-responsive">
                 <small> Showing {{ $requests->firstItem() }} to {{ $requests->lastItem() }} of {{ $requests->total() }} records </small>
                 <table class="table align-items-center mt-1">
@@ -87,7 +95,11 @@
                                 <td>
                                     @if ($request->approved_at)
                                         @if ($request->returned_at == null)
-                                            <span class="text-warning"> No </span>
+                                            <span class="text-muted"> No </span>
+                                            @if ($request->lost_at)
+                                                <br>
+                                                <small class="text-warning"> Lost </small>
+                                            @endif
                                         @else
                                             <span class="text-primary"> Yes </span>
                                             @if ($request->returned_at > $request->end_date)
@@ -100,7 +112,7 @@
                                     @endif
                                 </td>
                                 <td>
-                                     <a href="{{route('request-book.show',$request)}}"> <i class="fas fa-eye"></i> View more </a>
+                                    <a href="{{route('request-book.show',$request)}}"> <i class="fas fa-eye"></i> View more </a>
                                 </td>
                             </tr>
                         @empty
