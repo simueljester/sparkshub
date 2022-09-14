@@ -7,9 +7,9 @@
 
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title> Online Library System </title>
+        <title>Balele IHS - Tanauan City Spark Hub</title>
         <!-- Favicon -->
-        <link href="{{ asset('argon') }}/img/brand/favicon.png" rel="icon" type="image/png">
+        <link rel="icon" href="{{ asset('images') }}/274476676_4675508945893908_2973338567599810336_n.png">
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
         <!-- Icons -->
@@ -17,7 +17,7 @@
         <link href="{{ asset('argon') }}/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
         <!-- Argon CSS -->
         <link type="text/css" href="{{ asset('argon') }}/css/argon.css?v=1.0.0" rel="stylesheet">
-
+       
              
         <style>
             .border-custom{
@@ -209,7 +209,7 @@
                         </ul>
                      @endauth
                     @guest
-                        <a href="/" class="text-white"> <i class="fas fa-home"></i> <span> Home </span>  </a>
+                        <a href="/" class="text-white"> <i class="fas fa-home"></i> <span> Homepage </span>  </a>
                         <a class="text-white ml-3" href="{{ route('login') }}">
                             <i class="ni ni-key-25"></i>
                             <span class="nav-link-inner--text">{{ __('Login') }}</span>
