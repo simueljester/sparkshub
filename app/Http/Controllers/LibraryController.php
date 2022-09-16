@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Module;
 use Illuminate\Http\Request;
 use App\Http\Repositories\BookRepository;
+use App\Http\Repositories\ModuleRepository;
+use App\Http\Repositories\SubjectRepository;
 use App\Http\Repositories\BookCategoryRepository;
 
 class LibraryController extends Controller
@@ -21,9 +24,8 @@ class LibraryController extends Controller
         $keyword = $request->keyword ?? null;
         $category_filter = $request->category_filter ?? null;
         $books = app(BookRepository::class)->query()
-        ->when($keyword, function ($query) use ($keyword,$category_filter) {
-            $query->whereCategoryId($category_filter)
-            ->where('title', 'like', '%' . $keyword . '%')
+        ->when($keyword, function ($query) use ($keyword) {
+            $query->where('title', 'like', '%' . $keyword . '%')
             ->orWhere('isbn', 'like', '%' . $keyword . '%')
             ->orWhere('author', 'like', '%' . $keyword . '%'); 
    
@@ -39,5 +41,30 @@ class LibraryController extends Controller
         $categories = app(BookCategoryRepository::class)->query()->get();
 
         return view('library.index-books',compact('books','keyword','categories','category_filter'));
+    }
+
+    public function indexModules(Request $request){
+        $keyword = $request->keyword ?? null;
+        $subjects = app(SubjectRepository::class)->query()->get();
+        $subject_filter = $request->subject_filter ?? null;
+
+        $modules = app(ModuleRepository::class)->query()
+        ->when($keyword, function ($query) use ($keyword) {
+            $query->where('title', 'like', '%' . $keyword . '%');
+        })
+        ->when($subject_filter, function ($query) use ($subject_filter) {
+            $query->whereSubjectId($subject_filter);
+        })
+        ->with('subject:id,name','user:id,name')
+        ->orderBy('title','ASC')
+        ->whereNull('archived_at')
+        ->get();
+       
+        return view('library.index-modules',compact('keyword','subjects','subject_filter','modules'));
+    }
+
+    public function showModules(Module $module){
+        $module->load('user','subject','files');
+        return view('library.show-module',compact('module'));
     }
 }

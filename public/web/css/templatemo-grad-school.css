@@ -314,7 +314,7 @@ a.menu-link { display: none; }
     background-color: rgba(22,34,57,0.85);
     top: 0;
     left: 0;
-    bottom: 7px;
+    bottom: 1px;
     width: 100%;
 }
 
@@ -323,7 +323,7 @@ a.menu-link { display: none; }
   position: absolute;
   width: 80%;
   left: 50%;
-  top: 50%;
+  top: 70%;
   transform: translate(-50%,-50%);
 }
 

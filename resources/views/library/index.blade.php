@@ -43,7 +43,7 @@
                 </div>
                 <br>
                 <div class="library-btn border-custom">
-                    <a href="#"> Start Browsing </a>
+                    <a href="{{route('library.modules')}}"> Start Browsing </a>
                 </div>
             </div>
         </div>

@@ -67,8 +67,8 @@ https://templatemo.com/tm-557-grad-school
         <li><a href="/">Home</a></li>
         <li class="has-submenu"><a href="#section2">About Us</a>
           <ul class="sub-menu">
-            <li><a href="#section2">Who we are?</a></li>
-            <li><a href="#section3">What we do?</a></li>
+            <li><a href="#mission-vision">Mission</a></li>
+            <li><a href="#mission-vision">Vision</a></li>
           </ul>
         </li>
         <li><a href="#section5">Sparks Hub</a></li>
@@ -89,16 +89,14 @@ https://templatemo.com/tm-557-grad-school
              <br> 
              <h6 class="mt-1">Tanauan City</h6>
               <h2><em>BALELE</em> Integrated High School </h2>
-              <div class="main-button">
-                  <div class="scroll-to-section"><a href="#section2">Discover more</a></div>
-              </div>
+         
           </div>
       </div>
   </section>
   <!-- ***** Main Banner Area End ***** -->
 
 
-  <section class="features">
+  <section class="features" data-section="mission-vision">
     <div class="container">
       <div class="row">
         <div class="col-lg-4 col-12">
@@ -152,7 +150,7 @@ https://templatemo.com/tm-557-grad-school
       <div class="row">
         <div class="col-md-12">
           <div class="section-heading">
-            <h2>Why choose Grad School?</h2>
+            <h2>Balele IHS</h2>
           </div>
         </div>
         <div class="col-md-12">

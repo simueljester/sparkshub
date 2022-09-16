@@ -34,7 +34,7 @@
                 </div>
                 <button class="btn btn-primary border-custom"> Search </button>
                 @if ($keyword || $category_filter != 0 || $category_filter)
-                    <a href="{{route('library.index')}}" class="btn btn-outline-secondary border-custom"> Clear Keyword </a>
+                    <a href="{{route('library.books')}}" class="btn btn-outline-secondary border-custom"> Clear Keyword </a>
                 @endif
             </form>
         </div>
@@ -65,7 +65,7 @@
     <form action="{{route('request-book.request')}}" method="post">
         @csrf
         @method('POST')
-        <div class="modal fade" id="remove-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="view-book-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -129,7 +129,7 @@
             var pattern = /(\d{2})\.(\d{2})\.(\d{4})/;
             var dt = new Date(st.replace(pattern,'$3-$2-$1'));
 
-            $('#remove-modal').modal('show'); 
+            $('#view-book-modal').modal('show'); 
             $('#view_book_id').val(book.id); 
             $('#book-title').html(book.title); 
             $('#book-author').html(book.author); 
