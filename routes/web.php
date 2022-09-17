@@ -58,6 +58,8 @@ Route::group(['prefix'=>'users','as'=>'users.'], function(){
 	Route::post('/update', ['as' => 'update', 'uses' => 'UserController@update']);
 	Route::post('/archive-user', ['as' => 'archive', 'uses' => 'UserController@archive']);
 	Route::get('/active-user/{user}', ['as' => 'set-active', 'uses' => 'UserController@setToActive']);
+	Route::get('/profile/{user}', ['as' => 'profile', 'uses' => 'UserController@profile']);
+	Route::post('/upload-avatar', ['as' => 'upload-avatar', 'uses' => 'UserController@uploadAvatar']);
 });
 
 Route::group(['prefix'=>'library','as'=>'library.'], function(){
@@ -77,6 +79,7 @@ Route::group(['prefix'=>'request-book','as'=>'request-book.'], function(){
 });
 
 Route::group(['prefix'=>'notification','as'=>'notification.'], function(){
+	Route::get('/', ['as' => 'index', 'uses' => 'NotificationController@index']);
 	Route::get('/{notification}', ['as' => 'read', 'uses' => 'NotificationController@read']);
 	Route::post('/send-email-notifications', ['as' => 'send-email', 'uses' => 'NotificationController@sendEmail']);
 });

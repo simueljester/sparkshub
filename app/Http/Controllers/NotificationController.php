@@ -8,7 +8,9 @@ use App\Notification;
 use App\Mail\HelloEmail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use App\Http\Repositories\NotificationRepository;
 use App\Http\Repositories\RequestedBookRepository;
+use Auth;
 
 class NotificationController extends Controller
 {
@@ -17,6 +19,11 @@ class NotificationController extends Controller
         $this->middleware('auth');
     }
     
+    public function index(){
+        $all_notifications = app(NotificationRepository::class)->query()->with('notifiedBy')->whereNotifiableId(Auth::user()->id)->orderBy('created_at','desc')->get();
+        return view('notifications.index',compact('all_notifications'));
+    }
+
     public function read(Notification $notification){
         $notification->read_at = now();
         $notification->save();

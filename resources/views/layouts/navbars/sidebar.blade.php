@@ -85,11 +85,13 @@
                         <i class="fas fa-university text-muted"></i> Library
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('dashboard') }}">
-                        <i class="fas fa-tachometer-alt text-muted"></i> Dashboard {{Auth::user()->archived_at}}
-                    </a>
-                </li>
+                @if (Auth::user()->role == 'admin' || Auth::user()->role == 'librarian')
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('dashboard') }}">
+                            <i class="fas fa-tachometer-alt text-muted"></i> Dashboard {{Auth::user()->archived_at}}
+                        </a>
+                    </li>
+                @endif
                 @if (Auth::user()->role == 'admin' || Auth::user()->role == 'librarian')
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('books.index') }}">

@@ -21,7 +21,7 @@
     <div class="row">
         <div class="col-sm-6 text-center">
             <div class="library slideInLeft">
-                <img class="library-profile-img" src="https://images.pexels.com/photos/9572390/pexels-photo-9572390.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+                <img class="library-profile-img" src="{{ asset('images') }}/305565621_481279760675444_7302566858496115935_n.jpg" alt="">
                 <div class="library-description-bk bg-gradient-primary"></div>
                 <div class="library-description">
                     <strong style="font-size:20px;"> Books Section </strong>

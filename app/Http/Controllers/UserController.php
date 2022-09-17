@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\User;
 use App\Imports\UsersImport;
 use Illuminate\Http\Request;
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Repositories\UserRepository;
 use Illuminate\Support\Facades\Validator;
+use Intervention\Image\Facades\Image;
 
 class UserController extends Controller
 {
@@ -105,14 +107,19 @@ class UserController extends Controller
     }
 
     public function update(Request $request){
-   
         $request->validate([
             'fname'             => 'required',
             'lname'             => 'required',
-            'student_number'    => ['required_if:role,student',Rule::unique('users')->ignore($request->id)],
+        
             'email'             => ['required',Rule::unique('users')->ignore($request->id)],
             'role'              => 'required',
         ]);
+
+        if($request->role == 'student'){
+            $request->validate([
+                    'student_number'=> ['required_if:role,student',Rule::unique('users')->ignore($request->id)],
+            ]);
+        }
         
         $user = User::find($request->id);
         if($user){
@@ -122,7 +129,7 @@ class UserController extends Controller
                 'name'                  => $request->lname .' '. $request->fname,
                 'student_number'        => $request->student_number,
                 'email'                 => $request->email,
-                'role'                  => $request->role,
+                'role'                  => $request->role ?? $user->role,
                 'password'              => $request->password ? Hash::make($request->password) : $user->password
             ];
         
@@ -140,6 +147,28 @@ class UserController extends Controller
     public function setToActive($user){
         app(UserRepository::class)->archiveRemove($user);
         return redirect()->back()->with('success', 'User set to active!');
+    }
+
+    public function profile(User $user){
+        return view('users.profile',compact('user'));
+    }
+
+    public function uploadAvatar(Request $request){
+
+        $image = $request->image;
+        $imageName = time().'.'.$image->getClientOriginalExtension();
+
+        $destinationPath = 'images/';
+        $img = Image::make($image->getRealPath());
+        $img->resize(150, 150, function ($constraint) {
+            $constraint->aspectRatio();
+        })->save($destinationPath.'/'.$imageName);
+
+        $user = app(UserRepository::class)->find(Auth::user()->id);
+        $user->avatar = $imageName;
+        $user->save();
+
+        return redirect()->back()->with('success','Image uploaded successfully.')->with('image',$imageName);
     }
 
 }

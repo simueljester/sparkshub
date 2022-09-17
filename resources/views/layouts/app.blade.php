@@ -17,7 +17,8 @@
         <link href="{{ asset('argon') }}/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
         <!-- Argon CSS -->
         <link type="text/css" href="{{ asset('argon') }}/css/argon.css?v=1.0.0" rel="stylesheet">
-       
+           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.css" integrity="sha256-jKV9n9bkk/CTP8zbtEtnKaKf+ehRovOYeKoyfthwbC8=" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.js" integrity="sha256-CgvH7sz3tHhkiVKh05kSUgG97YtzYNnWt6OXcmYzqHY=" crossorigin="anonymous"></script>
              
         <style>
             .border-custom{
@@ -169,6 +170,43 @@
                 }
             } 
 
+            .pulse {
+                -webkit-animation-name: pulse;
+                animation-name: pulse;
+                -webkit-animation-duration: 1s;
+                animation-duration: 1s;
+                -webkit-animation-fill-mode: both;
+                animation-fill-mode: both;
+                }
+                @-webkit-keyframes pulse {
+                0% {
+                -webkit-transform: scale3d(1, 1, 1);
+                transform: scale3d(1, 1, 1);
+                }
+                50% {
+                -webkit-transform: scale3d(1.05, 1.05, 1.05);
+                transform: scale3d(1.05, 1.05, 1.05);
+                }
+                100% {
+                -webkit-transform: scale3d(1, 1, 1);
+                transform: scale3d(1, 1, 1);
+                }
+                }
+                @keyframes pulse {
+                0% {
+                -webkit-transform: scale3d(1, 1, 1);
+                transform: scale3d(1, 1, 1);
+                }
+                50% {
+                -webkit-transform: scale3d(1.05, 1.05, 1.05);
+                transform: scale3d(1.05, 1.05, 1.05);
+                }
+                100% {
+                -webkit-transform: scale3d(1, 1, 1);
+                transform: scale3d(1, 1, 1);
+                }
+            } 
+
         </style>
     </head>
     <body class="{{ $class ?? '' }}">
@@ -195,7 +233,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="profile-tab" href="#tabs_2_2" role="tab" aria-controls="profile" aria-selected="false">
+                                <a class="nav-link" id="profile-tab" href="{{route('users.profile',Auth::user())}}" role="tab" aria-controls="profile" aria-selected="false">
                                     <span class="nav-link-icon d-block"><i class="fas fa-user"></i> <strong class="text-danger"> </strong></span>
                                 </a>
                             </li>
@@ -258,7 +296,7 @@
                                 <div class="card shadow mt-2 border-custom">
                                     <div class="card-body">
                                         <span class="{{$notification->read_at ? 'text-muted' : 'text-primary'}}">
-                                            <i class="fas fa-user"></i> {{$notification->notifiedBy->name}} {{$notification->description}}
+                                            <img id="output" style="border-radius: 50%;" width="45" height="45" src="{{ $notification->notifiedBy->avatar ? '/images/'.$notification->notifiedBy->avatar : Avatar::create($notification->notifiedBy->name)->toBase64() }}" /> {{$notification->notifiedBy->name}} {{$notification->description}}
                                         </span>
                                     </div>
                                 </div>                                
@@ -268,7 +306,7 @@
                         @endforelse   
                     </div>
                     <div class="modal-footer bg-gradient-warning">
-                        <a href="#" class="text-white"> <strong> All notification </strong> </a>
+                        <a href="{{route('notification.index')}}" class="text-white"> <strong> All notification </strong> </a>
                     </div>
                 </div>
             </div>
