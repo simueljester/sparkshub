@@ -83,7 +83,7 @@ class ModuleController extends Controller
         ];
 
         app(ModuleRepository::class)->update($request->module_id,$data);
-        return redirect()->route('modules.index')->with('success', 'Module updated!');
+        return redirect()->route('modules.manage',$request->module_id)->with('success', 'Module updated!');
     }
 
     public function manage(Module $module){
