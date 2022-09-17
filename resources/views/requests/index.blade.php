@@ -43,6 +43,11 @@
             <strong> <i class="fas fa-clipboard-list"></i> Requests to Borrow Books </strong> - 
             @if ($filter == 'due_dates')
                 Upcoming Due Dates
+                @if ($requests->count() != 0)
+                    <button class="btn btn-warning border-custom float-right" onclick="sendEmailNotifications()">
+                        <i class="fas fa-envelope-open-text"></i> Send email notifications
+                    </button>
+                @endif
             @endif
             @if ($filter == 'unreturned')
                 Unreturned Books
@@ -63,18 +68,25 @@
                 <table class="table align-items-center mt-1">
                     <thead>
                         <tr>
+                            <th scope="col"></th>
                             <th scope="col">User</th>
                             <th scope="col">Book</th>
                             <th scope="col">Start</th>
                             <th scope="col">End</th>
                             <th scope="col">Approval</th>
                             <th scope="col">Returned Status</th>
-                            <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse ($requests as $request)
                             <tr>
+                                <td class="text-center">
+                                    @if (Carbon\Carbon::now()->gt($request->end_date) && $request->returned_at == null && $request->lost_at == null)
+                                        <i class="fas fa-exclamation-circle text-danger"></i> <br> <small class="text-danger"> Overdue </small>
+                                    @elseif($request->returned_at == null && $request->lost_at == null && $request->approved_at)
+                                        <i class="fas fa-check-circle text-success"> </i> <br> <small class="text-success"> Borrowed </small>
+                                    @endif
+                                </td>
                                 <td> <i class="fas fa-user"></i> {{$request->user->name}}  <br> <small class="text-capitalize"> {{$request->user->role}} </small> </td>
                                 <td> <i class="fas fa-book"></i> {{$request->book->title}} <br> <small class="text-capitalize"> {{$request->book->category->name}} </small> </td>
                                 <td> {{$request->start_date->format('Y-m-d')}} </td>
@@ -128,8 +140,46 @@
         </div>
     </div>
 
+        <!-- Modal confirm request -->
+    <form action="{{route('notification.send-email')}}" method="post">
+        @csrf
+        @method('POST')
+        <div class="modal fade" id="email-notification" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"> Send Email Notifications </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <small class="text-muted"> Title (optional) </small>
+                            <input type="text" name="title" id="email-subject" class="form-control border-custom">
+                        </div>
+                        <div class="form-group">
+                            <small class="text-muted"> Body (optional) </small>
+                            <textarea type="text" name="body" id="email-body" rows="8" class="form-control border-custom">  </textarea>
+                        </div>
+                        <small> The following users will be notified via emails. If you put an empty <strong>Subject & Body</strong>, It will send an auto generated message. </small>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary border-custom" data-dismiss="modal"> Close </button>
+                        <button type="submit" class="btn btn-primary border-custom" id="btn-borrow"> Confirm </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    
+
     <script>
-      
+        function sendEmailNotifications(){
+ 
+                $('#email-notification').modal('show');
+        }
     </script>
 @endsection
 

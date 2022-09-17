@@ -5,8 +5,8 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <!-- Brand -->
-        <a class="navbar-brand pt-0" href="{{ route('home') }}">
-            <img src="{{ asset('argon') }}/img/brand/blue.png" class="navbar-brand-img" alt="...">
+        <a class="text-center" href="{{ route('dashboard') }}">
+            <img src="{{ asset('images') }}/274476676_4675508945893908_2973338567599810336_n.png" width="100" height="100" alt="">
         </a>
         <!-- User -->
         <ul class="nav align-items-center d-md-none">
@@ -81,6 +81,11 @@
                     </a>
                 </li> --}}
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ route('library.index') }}">
+                        <i class="fas fa-university text-muted"></i> Library
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{ route('dashboard') }}">
                         <i class="fas fa-tachometer-alt text-muted"></i> Dashboard {{Auth::user()->archived_at}}
                     </a>
@@ -101,11 +106,7 @@
                     </li>
                 @endif
            
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('library.index') }}">
-                        <i class="fas fa-university text-muted"></i> Library
-                    </a>
-                </li>
+      
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('request-book.index')}}">
                         <i class="fas fa-clipboard-list text-muted"></i> Borrowed Books
@@ -120,7 +121,7 @@
                 @endif
                
             </ul>
-            <!-- Divider -->
+            {{-- <!-- Divider -->
             <hr class="my-3">
             <!-- Heading -->
             <h6 class="navbar-heading text-muted">Documentation</h6>
@@ -141,7 +142,7 @@
                         <i class="ni ni-ui-04"></i> Components
                     </a>
                 </li>
-            </ul>
+            </ul> --}}
         </div>
     </div>
 </nav>

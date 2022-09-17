@@ -281,6 +281,10 @@
         <script src="{{ asset('argon') }}/vendor/jquery/dist/jquery.min.js"></script>
         <script src="{{ asset('argon') }}/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <script src="{{ asset('argon') }}/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+        <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
+        <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
         
         @stack('js')
         

@@ -42,7 +42,7 @@ class UserController extends Controller
     }
 
     public function downloadTemplate(){
-        $filepath = public_path('files/users-template.xlsx');
+        $filepath = public_path('files/users-templateMain.xlsx');
         return Response()->download($filepath);
     }
 

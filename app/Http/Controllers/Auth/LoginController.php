@@ -29,7 +29,12 @@ class LoginController extends Controller
         return redirect('/login')->with('error', 'Your account is currently inactive. Please contact your administrator');   
     }
 
-    return redirect('/home');
+    if(Auth::user()->role == 'admin' || Auth::user()->role == 'librarian'){
+        return redirect()->route('dashboard');
+    }else{
+        return redirect()->route('library.index');
+    }
+    
     }
 
     /**

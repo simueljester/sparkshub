@@ -42,7 +42,7 @@ class RequestedBookController extends Controller
         ->when(Auth::user()->role != 'librarian', function ($query) {
             $query->whereUserId(Auth::user()->id);
         })
-        ->orderBy('start_date','DESC')
+        ->orderBy('created_at','DESC')
         ->paginate(10);
         return view('requests.index',compact('requests','filter'));
     }

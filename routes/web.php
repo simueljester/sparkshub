@@ -78,6 +78,7 @@ Route::group(['prefix'=>'request-book','as'=>'request-book.'], function(){
 
 Route::group(['prefix'=>'notification','as'=>'notification.'], function(){
 	Route::get('/{notification}', ['as' => 'read', 'uses' => 'NotificationController@read']);
+	Route::post('/send-email-notifications', ['as' => 'send-email', 'uses' => 'NotificationController@sendEmail']);
 });
 
 Route::group(['prefix'=>'lost-books','as'=>'lost-books.'], function(){
