@@ -7,7 +7,7 @@
 
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>Balele IHS - Tanauan City Spark Hub</title>
+        <title>Sparks Hub Balele IHS - Tanauan City </title>
         <!-- Favicon -->
         <link rel="icon" href="{{ asset('images') }}/274476676_4675508945893908_2973338567599810336_n.png">
         <!-- Fonts -->

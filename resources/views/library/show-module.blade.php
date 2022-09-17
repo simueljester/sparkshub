@@ -18,29 +18,30 @@
         </div>
     </div>
 
-    <div class="row p-2">
-        @forelse($module->files as $file)
-            <div class="col-sm-6">
-                <div class="card shadow border-custom">
-                    <div class="card-body">
-                        <a href="{{route('modules.file.download-content',$file)}}" target="_blank" >
-                            <i class="fas fa-download"></i> {{$file->file}}
-                        </a>
-                        @if (Auth::user()->id == $module->user_id)
-                            <a href="{{route('modules.file.remove-file',$file)}}">
-                                <span class="badge badge-pill badge-danger ml-1"><i class="fas fa-times"></i></span>
+    @if ($module->downloadable == 1)
+        <div class="row p-2">
+            @forelse($module->files as $file)
+                <div class="col-sm-6">
+                    <div class="card shadow border-custom">
+                        <div class="card-body">
+                            <a href="{{route('modules.file.download-content',$file)}}" target="_blank" >
+                                <i class="fas fa-download"></i> {{$file->file}}
                             </a>
-                        @endif
+                            @if (Auth::user()->id == $module->user_id)
+                                <a href="{{route('modules.file.remove-file',$file)}}">
+                                    <span class="badge badge-pill badge-danger ml-1"><i class="fas fa-times"></i></span>
+                                </a>
+                            @endif
+                        </div>
                     </div>
                 </div>
-            </div>
-            @empty
-            <div class="col-sm-12">
-                No uploaded content
-            </div>
-        @endforelse
-    </div>
-
+                @empty
+                <div class="col-sm-12">
+                    No uploaded content
+                </div>
+            @endforelse
+        </div>
+    @endif
 
  
 @endsection

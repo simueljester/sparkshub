@@ -27,9 +27,9 @@
                     </div>
                     <div class="form-group">
                         <small class="text-muted"> Description </small>
-                        <textarea class="form-control border-custom" cols="30" rows="10" readonly> {{$module->description}} </textarea>
+                        <p> {!! $module->description !!} </p>
                     </div>
-                    <div class="row">
+                    <div class="row mt-5">
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <small class="text-muted"> Creator </small>

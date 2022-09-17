@@ -23,7 +23,7 @@
                 </div>
                 <div class="form-group">
                     <small class="text-muted"> Description </small>
-                    <textarea type="text" name="description" id="description" rows="10" class="form-control border-custom" required> {{$module->description}} </textarea>
+                    <textarea type="text" name="description" id="description" rows="10" class="form-control border-custom description" required> {!! $module->description !!} </textarea>
                 </div>
                 <div class="form-group">
                     <small class="text-muted"> Subject </small>
@@ -48,6 +48,23 @@
         </div>
     </form>
   
+      
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+<script>
+        $('.description').each( function () {
+        // var editor =  CKEDITOR.replace( this.id  )
+        var editor = CKEDITOR.replace( this.id, {
+            language: 'en',
+            extraPlugins: 'notification'
+        });
+
+        editor.on( 'required', function( evt ) {
+            editor.showNotification( 'This field is required.', 'warning' );
+        evt.cancel();
+        });
+    });
+</script>
 
 
 @endsection
