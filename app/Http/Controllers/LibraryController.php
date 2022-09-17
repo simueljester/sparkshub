@@ -58,6 +58,7 @@ class LibraryController extends Controller
         ->with('subject:id,name','user:id,name')
         ->orderBy('title','ASC')
         ->whereNull('archived_at')
+        ->whereNotNull('approved_at')
         ->get();
        
         return view('library.index-modules',compact('keyword','subjects','subject_filter','modules'));
