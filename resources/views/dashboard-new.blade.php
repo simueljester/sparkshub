@@ -172,24 +172,32 @@
 
         var ctx = document.getElementById("myLineChart");
         new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['January','February','March','April','May','June','July','August','September','October','November','December'],
-            datasets: [
-                { 
-                    data: [january,february,march,april,may,june,july,august,september,october,november,december],
-                    label: "Approved books per month",
-                    backgroundColor: ['rgba(71, 237, 63, 0.2)'], 
-                    borderColor:['rgb(0, 126, 225)']
+            type: 'bar',
+            data: {
+                labels: ['January','February','March','April','May','June','July','August','September','October','November','December'],
+                datasets: [
+                    { 
+                        data: [january,february,march,april,may,june,july,august,september,october,november,december],
+                        label: "Approved books per month",
+                        backgroundColor: ['rgba(71, 237, 63, 0.2)'], 
+                        borderColor:['rgb(0, 126, 225)']
+                    }
+                ]
+            },
+            options: {
+                title: {
+                display: true,
+                    text: 'No. of Borrowed Books'
+                },
+                scales: {
+                    x: {
+                        grid: {
+                        display: false
+                        }
+                    },
+               
                 }
-            ]
-        },
-        options: {
-            title: {
-            display: true,
-                text: 'No. of Borrowed Books'
             }
-        }
         });
     }
 

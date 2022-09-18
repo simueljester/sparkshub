@@ -193,37 +193,45 @@
 
             var ctx = document.getElementById("myBarChart");
             new Chart(ctx, {
-            type: 'bar',
-            borderWidth: 2,
-            data: {
-                labels: ['January','February','March','April','May','June','July','August','September','October','November','December'],
-                datasets: [
-                    { 
-                        data: [january,february,march,april,may,june,july,august,september,october,november,december],
-                        label: "Total Books Requested Per Month",
-                        backgroundColor: ['rgba(63, 158, 237 , 0.2)'], 
-                        borderColor:['rgb(0, 126, 225)']
+                type: 'bar',
+                borderWidth: 2,
+                data: {
+                    labels: ['January','February','March','April','May','June','July','August','September','October','November','December'],
+                    datasets: [
+                        { 
+                            data: [january,february,march,april,may,june,july,august,september,october,november,december],
+                            label: "Total Books Requested Per Month",
+                            backgroundColor: ['rgba(63, 158, 237 , 0.2)'], 
+                            borderColor:['rgb(0, 126, 225)']
+                        },
+                        { 
+                            data: [january_approved,february_approved,march_approved,april_approved,may_approved,june_approved,july_approved,august_approved,september_approved,october_approved,november_approved,december_approved],
+                            label: "Approved Books Per Month",
+                            backgroundColor: ['rgba(71, 237, 63, 0.2)'], 
+                            borderColor:['rgb(0, 126, 225)']
+                        },
+                        { 
+                            data: [january_lost,february_lost,march_lost,april_lost,may_lost,june_lost,july_lost,august_lost,september_lost,october_lost,november_lost,december_lost],
+                            label: "Lost Books Per Month",
+                            backgroundColor: ["rgba(255, 99, 132, 0.2)"], 
+                            borderColor:["rgb(255, 99, 132)"]
+                        }
+                    ]
+                },
+                options: {
+                    title: {
+                    display: true,
+                        text: 'No. of Borrowed Books'
                     },
-                    { 
-                        data: [january_approved,february_approved,march_approved,april_approved,may_approved,june_approved,july_approved,august_approved,september_approved,october_approved,november_approved,december_approved],
-                        label: "Approved Books Per Month",
-                        backgroundColor: ['rgba(71, 237, 63, 0.2)'], 
-                        borderColor:['rgb(0, 126, 225)']
-                    },
-                    { 
-                        data: [january_lost,february_lost,march_lost,april_lost,may_lost,june_lost,july_lost,august_lost,september_lost,october_lost,november_lost,december_lost],
-                        label: "Lost Books Per Month",
-                        backgroundColor: ["rgba(255, 99, 132, 0.2)"], 
-                        borderColor:["rgb(255, 99, 132)"]
+                    scales: {
+                        x: {
+                            grid: {
+                            display: false
+                            }
+                        },
+                      
                     }
-                ]
-            },
-            options: {
-                title: {
-                display: true,
-                    text: 'No. of Borrowed Books'
                 }
-            }
             });
         }
 
