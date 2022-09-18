@@ -131,6 +131,7 @@ Route::group(['prefix'=>'reports','as'=>'reports.'], function(){
 
 	Route::group(['prefix'=>'module','as'=>'module.'], function(){
 		Route::get('/', ['as' => 'index', 'uses' => 'ReportController@indexModuleReports']);
+		Route::get('/export', ['as' => 'export', 'uses' => 'ReportController@indexModuleReportsExport']);
 	});
 
 	Route::group(['prefix'=>'user','as'=>'user.'], function(){

@@ -33,4 +33,8 @@ class Module extends Model
     public function files(): HasMany {
         return $this->hasMany('App\ModuleFile', 'module_id','id');
     }
+
+    public function approverAccount(){
+        return $this->belongsTo('App\User', 'approver', 'id');
+    }
 }

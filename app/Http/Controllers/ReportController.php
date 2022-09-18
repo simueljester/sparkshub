@@ -6,6 +6,7 @@ use Excel;
 use Carbon\Carbon;
 use App\Exports\BookExport;
 use Illuminate\Http\Request;
+use App\Exports\ModuleExport;
 use App\Http\Repositories\BookRepository;
 use App\Http\Repositories\UserRepository;
 use App\Http\Repositories\ModuleRepository;
@@ -91,8 +92,45 @@ class ReportController extends Controller
         return Excel::download(new BookExport($data), 'BookReports.xlsx');
     }
     
-    public function indexModuleReports(){
-        return view('reports.module-report');
+    public function indexModuleReports(Request $request){
+        $filter_year = $request->filter_year ??  Carbon::now()->format('Y');
+    
+        //get created modules per month
+        $created_modules = app(ModuleRepository::class)->query()->selectRaw('year(created_at) year, month(created_at) month, count(*) data')
+        ->groupBy('year', 'month')
+        ->orderBy('year', 'desc')
+        ->get();
+
+        $created_modules = $created_modules->filter(function ($item) use($filter_year) {
+            return $item->year == $filter_year;
+        })->values()->keyBy('month');
+
+        $arr_created_modules = [];
+        for($month = 1; $month <= 12; $month ++){
+            $arr_created_modules[$month] = $created_modules[$month]->data ?? 0;
+        }
+
+        //get approved modules per month
+        $approved_modules = app(ModuleRepository::class)->query()->selectRaw('year(approved_at) year, month(approved_at) month, count(*) data')
+        ->groupBy('year', 'month')
+        ->orderBy('year', 'desc')
+        ->get();
+
+        $approved_modules = $approved_modules->filter(function ($item) use($filter_year) {
+            return $item->year == $filter_year;
+        })->values()->keyBy('month');
+
+        $arr_approved_modules = [];
+        for($month = 1; $month <= 12; $month ++){
+            $arr_approved_modules[$month] = $approved_modules[$month]->data ?? 0;
+        }
+        return view('reports.module-report',compact('arr_approved_modules','arr_created_modules','filter_year'));
+    }
+
+    public function indexModuleReportsExport(){
+        $data = app(ModuleRepository::class)->query()->with('subject:id,name','user:id,role,name','approverAccount:id,name')
+        ->withCount('files')->get();
+        return Excel::download(new ModuleExport($data), 'ModuleReport.xlsx');
     }
 
     public function indexUserReports(){
