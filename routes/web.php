@@ -121,4 +121,22 @@ Route::group(['prefix'=>'modules','as'=>'modules.'], function(){
 	});
 });
 
+Route::group(['prefix'=>'reports','as'=>'reports.'], function(){
+	Route::get('/', ['as' => 'index', 'uses' => 'ReportController@index']);
+
+	Route::group(['prefix'=>'borrowed-book','as'=>'borrowed-book.'], function(){
+		Route::get('/', ['as' => 'index', 'uses' => 'ReportController@indexRequestedBookReports']);
+		Route::get('/export', ['as' => 'export', 'uses' => 'ReportController@indexRequestedBookReportsExport']);
+	});
+
+	Route::group(['prefix'=>'module','as'=>'module.'], function(){
+		Route::get('/', ['as' => 'index', 'uses' => 'ReportController@indexModuleReports']);
+	});
+
+	Route::group(['prefix'=>'user','as'=>'user.'], function(){
+		Route::get('/', ['as' => 'index', 'uses' => 'ReportController@indexUserReports']);
+	});
+});
+
+
 

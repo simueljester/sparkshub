@@ -120,6 +120,13 @@
                             <i class="fas fa-users text-muted"></i> Users Management
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('reports.index') }}">
+                            <i class="fas fa-chart-pie text-muted"></i> Reports
+                        </a>
+                    </li>
+
+                    
                 @endif
                
             </ul>
