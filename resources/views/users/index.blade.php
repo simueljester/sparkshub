@@ -30,7 +30,27 @@
          
         </div>
         <div class="card-body">
+            <div class="p-1">
+                <form action="">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div class="form-group">
+                                <small class="text-muted"> Search User </small>
+                                <input type="text" name="keyword" id="keyword" class="form-control border-custom" placeholder="search name, student number..." value="{{$keyword}}">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            @if ($keyword)
+                                <a href="{{route('users.index')}}" class="btn btn-secondary border-custom mt-4"> Clear </a>
+                            @endif
+                            <button class="btn btn-primary border-custom mt-4"> <i class="fas fa-search"></i> Search User </button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
             <div class="table-responsive">
+                <small> Showing {{ $users->firstItem() }} to {{ $users->lastItem() }} of {{ $users->total() }} records </small>
                 <table class="table align-items-center">
                     <thead>
                         <tr>
@@ -76,6 +96,7 @@
                         @endforelse
                     </tbody>
                 </table>
+                {{$users->links()}}
             </div>
         </div>
     </div>

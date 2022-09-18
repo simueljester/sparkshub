@@ -19,8 +19,6 @@
             <td width="25" class="text-left"> <strong> Content Uploaded Count </strong> </td>
             <td width="20" class="text-left"> <strong> Approved Date </strong> </td>
             <td width="20" class="text-left"> <strong> Approver </strong> </td>
-
-         
         </tr>
         @foreach ($data as $module)
             <tr>

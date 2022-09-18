@@ -139,5 +139,12 @@ Route::group(['prefix'=>'reports','as'=>'reports.'], function(){
 	});
 });
 
+ Route::get('/get-session-login', function() {
+	  
+   	$test = Session::get('login_session_id');
+   	echo $test;
+});
+
+
 
 

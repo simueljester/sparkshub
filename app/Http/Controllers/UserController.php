@@ -13,6 +13,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Repositories\UserRepository;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
+use Illuminate\Pagination\Paginator;
 
 class UserController extends Controller
 {
@@ -24,7 +25,9 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
+        Paginator::useBootstrap();
         $status = $request->status ?? 'active';
+        $keyword = $request->keyword ?? null;
         $users = app(UserRepository::class)->query()
         ->when($status == 'archive', function ($q) {
                 $q->whereNotNull('archived_at');
@@ -32,10 +35,13 @@ class UserController extends Controller
         ->when($status == 'active', function ($q) {
                 $q->whereNull('archived_at');
         })
+        ->when($keyword, function ($query) use ($keyword) {
+            $query->where('name', 'like', '%' . $keyword . '%')->orWhere('student_number', 'like', '%' . $keyword . '%');
+        })
         ->where('role','!=','admin')
         ->orderBy('name','ASC')
-        ->get();
-        return view('users.index',compact('users','status'));
+        ->paginate(10);
+        return view('users.index',compact('users','status','keyword'));
     }
 
      public function create()

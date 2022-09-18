@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Session;
+use DateTime;
+use Auth;
+use App\UserLog;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Auth;
 
 class LoginController extends Controller
 {
@@ -24,16 +27,32 @@ class LoginController extends Controller
     use AuthenticatesUsers;
 
     protected function authenticated(Request $request, $user){
-    if ($user->archived_at) {// do your magic here
-        Auth::logout();
-        return redirect('/login')->with('error', 'Your account is currently inactive. Please contact your administrator');   
-    }
 
-    if(Auth::user()->role == 'admin' || Auth::user()->role == 'librarian'){
-        return redirect()->route('dashboard');
-    }else{
-        return redirect()->route('library.index');
-    }
+        if ($user->archived_at) {// do your magic here
+            Auth::logout();
+            return redirect('/login')->with('error', 'Your account is currently inactive. Please contact your administrator');   
+        }
+
+        $dt = new DateTime();
+        $server = \Request::server();
+        $useragent = $server['HTTP_USER_AGENT'];
+        $ip_address = \Request::ip();
+        
+        $log = new UserLog;
+        $log->user_id = Auth::user()->id;
+        $log->ip_address = $ip_address;
+        $log->user_agent = $useragent;
+        $log->last_activity = now();
+        $log->save();
+        Session::put('login_session_id', $log->id);
+
+        if(Auth::user()->role == 'admin' || Auth::user()->role == 'librarian'){
+            return redirect()->route('dashboard');
+        }else{
+            return redirect()->route('library.index');
+        }
+
+   
     
     }
 

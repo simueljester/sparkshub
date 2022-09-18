@@ -7,9 +7,11 @@ use Carbon\Carbon;
 use App\Exports\BookExport;
 use Illuminate\Http\Request;
 use App\Exports\ModuleExport;
+use Illuminate\Pagination\Paginator;
 use App\Http\Repositories\BookRepository;
 use App\Http\Repositories\UserRepository;
 use App\Http\Repositories\ModuleRepository;
+use App\Http\Repositories\UserLogRepository;
 use App\Http\Repositories\LostBookRepository;
 use App\Http\Repositories\RequestedBookRepository;
 
@@ -133,8 +135,35 @@ class ReportController extends Controller
         return Excel::download(new ModuleExport($data), 'ModuleReport.xlsx');
     }
 
-    public function indexUserReports(){
-        return view('reports.user-report');
+    public function indexUserReports(Request $request){
+        Paginator::useBootstrap();
+        //get user role counts
+        $users = app(UserRepository::class)->query()->whereNull('archived_at')->get()->toArray();
+        $librarians = count(array_filter($users, function ($var) {
+            return ($var['role'] == 'librarian');
+        }));
+        $students = count(array_filter($users, function ($var) {
+            return ($var['role'] == 'student');
+        }));
+        $teachers = count(array_filter($users, function ($var) {
+            return ($var['role'] == 'teacher');
+        }));
+        $role_counts = (object)[
+            'librarians' => $librarians,
+            'students' => $students,
+            'teachers' => $teachers
+        ];
+        //logs
+        $start_date = $request->start_date ? Carbon::parse($request->start_date)->format('Y-m-d')." 00:00:00" : null;
+        $end_date = $request->end_date ? Carbon::parse($request->end_date)->format('Y-m-d')." 23:59:59" : null;
+   
+        $logs = app(UserLogRepository::class)->query()->with('user:id,name,student_number,role,avatar')
+        ->when($start_date && $end_date, function ($query) use($start_date,$end_date){
+            $query->whereBetween('created_at', [$start_date, $end_date]);
+        })
+        ->orderby('created_at','DESC')
+        ->paginate(50);
+        return view('reports.user-report',compact('logs','role_counts','start_date','end_date'));
     }
 
 }
