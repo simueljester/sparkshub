@@ -9,49 +9,56 @@
         </ol>
     </nav>
 
-   
+    <div class="card border-custom">
+        <div class="card-body bg-white border-custom">
+            <div class="row">
+                <div class="col-sm-4 text-center">
+                    <strong class="text-warning"> System Reports </strong>
+                    <img src="{{ asset('images') }}/1311213_313.jpg" width="400px;" alt="">
+                </div>
+                <div class="col-sm-8">
+                    <div class="card bg-secondary shadow mt-2 border-custom">
+                        <div class="card-body bg-gradient-info border-custom">
+                            <a href="{{route('reports.borrowed-book.index')}}" class="text-secondary">
+                                <strong style="font-size:25px;"> {{$counts->books_requested_count}} </strong>
+                                Total Books Requested
+                                <i class="fas fa-book fa-2x float-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card bg-secondary shadow mt-2 border-custom">
+                        <div class="card-body border-custom bg-gradient-primary ">
+                            <a href="{{route('reports.module.index')}}" class="text-white">
+                                <strong style="font-size:25px;"> {{$counts->modules}} </strong>
+                                Total Modules
+                                <i class="far fa-file-alt fa-2x float-right"></i> 
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card bg-secondary shadow mt-2 border-custom">
+                        <div class="card-body border-custom bg-gradient-warning">
+                            <a href="{{route('reports.user.index')}}" class="text-white">
+                                <strong style="font-size:25px;"> {{$counts->users}} </strong>
+                                Total Users
+                                <i class="fas fa-users fa-2x float-right"></i> 
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+     
     <div class="row">
         <div class="col-sm-4">
-            <div class="card bg-secondary shadow mt-1">
-                <div class="card-header bg-white border-0">
-                    <strong> Book Reports </strong>
-                </div>
-                <div class="card-body text-center">
-                    <a href="{{route('reports.borrowed-book.index')}}">
-                        <strong style="font-size:25px;"> {{$counts->books_requested_count}} </strong>
-                        <br>
-                        <i class="fas fa-book"></i> Borrowed Books Report
-                    </a>
-                </div>
-            </div>
+          
         </div>
         <div class="col-sm-4">
-            <div class="card bg-secondary shadow mt-1">
-                <div class="card-header bg-white border-0">
-                    <strong> Module Reports </strong>
-                </div>
-                <div class="card-body text-center">
-                    <a href="{{route('reports.module.index')}}">
-                        <strong style="font-size:25px;"> {{$counts->modules}} </strong>
-                        <br>
-                        <i class="far fa-file-alt"></i> Total Modules
-                    </a>
-                </div>
-            </div>
+
         </div>
         <div class="col-sm-4">
-            <div class="card bg-secondary shadow mt-1">
-                <div class="card-header bg-white border-0">
-                    <strong> User Reports </strong>
-                </div>
-                <div class="card-body text-center">
-                    <a href="{{route('reports.user.index')}}">
-                        <strong style="font-size:25px;"> {{$counts->users}} </strong>
-                        <br>
-                        <i class="fas fa-users"></i> Total Users
-                    </a>
-                </div>
-            </div>
+       
         </div>
     </div>
     

@@ -200,7 +200,7 @@
                 datasets: [
                     { 
                         data: [january,february,march,april,may,june,july,august,september,october,november,december],
-                        label: "Approved Books Per Month",
+                        label: "Total Books Requested Per Month",
                         backgroundColor: ['rgba(63, 158, 237 , 0.2)'], 
                         borderColor:['rgb(0, 126, 225)']
                     },

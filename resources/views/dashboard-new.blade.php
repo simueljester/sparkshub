@@ -11,7 +11,7 @@
 
         <div class="col-sm-4">
             <a href="{{route('books.index')}}">
-                <div class="card border-custom shadow-sm text-center text-white mt-3 bg-gradient-primary">
+                <div class="card border-custom shadow-sm text-center text-white mt-3 bg-gradient-info">
                     <div class="card-body">
                         <strong style="font-size:25px;"> {{$counts->books}} </strong>
                         <br>
@@ -34,7 +34,7 @@
         </div>
         <div class="col-sm-4">
             <a href="{{route('users.index')}}">
-                <div class="card border-custom shadow-sm text-center text-white mt-3 bg-gradient-primary">
+                <div class="card border-custom shadow-sm text-center text-white mt-3 bg-gradient-warning">
                     <div class="card-body">
                         <strong style="font-size:25px;"> {{$counts->users}} </strong>
                         <br>
@@ -52,7 +52,9 @@
                     <center>
                         <strong class="text-muted"> For the Year of {{$filter_year}} </strong> 
                         <i class="fas fa-cog text-warning" style="cursor: pointer;" onclick="showYearFilterModal()"></i>
-                        <canvas id="myLineChart" width="350""></canvas> 
+                        <br>
+                        <a href="{{route('reports.borrowed-book.index')}}"> <small class="text-primary"> View full reports here </small> </a>
+                        <canvas id="myLineChart" class="bg-secondary mt-3 border border-custom p-2"></canvas> 
                     </center>
                 </div>
             </div>
@@ -121,7 +123,7 @@
 
 <script>
     callDonutChart()
-    callLineChart()
+    callBarChart()
 
     function callDonutChart(){
         var librarians = document.getElementById('librarian_count').value;
@@ -154,7 +156,7 @@
         });
     }
 
-    function callLineChart(){
+    function callBarChart(){
         var january     = JSON.parse(document.getElementById('jan').value).data ?? 0;
         var february    = JSON.parse(document.getElementById('feb').value).data ?? 0;
         var march       = JSON.parse(document.getElementById('mar').value).data ?? 0;
@@ -176,9 +178,9 @@
             datasets: [
                 { 
                     data: [january,february,march,april,may,june,july,august,september,october,november,december],
-                    label: "Books borrowed per month",
-                    borderColor: "#3e95cd",
-                    fill: false
+                    label: "Approved books per month",
+                    backgroundColor: ['rgba(71, 237, 63, 0.2)'], 
+                    borderColor:['rgb(0, 126, 225)']
                 }
             ]
         },
