@@ -117,6 +117,9 @@
                                                 {
                                                     $bname = 'Netscape';
                                                     $ub = "Netscape";
+                                                }else{
+                                                    $bname = 'Other Browser';
+                                                    $ub = "Other Browser";
                                                 }
                                             ?>
                                             <i class="fas fa-desktop"></i> {{$platform}} / <i class="fas fa-globe"></i> {{$bname}} 

@@ -17,7 +17,7 @@ class CreateUserLogs extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->string('ip_address')->nullable();
-            $table->string('user_agent')->nullable();
+            $table->text('user_agent')->nullable();
             $table->timestamp('last_activity')->nullable();
             $table->timestamps();
 
