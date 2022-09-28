@@ -170,9 +170,9 @@
                 datasets: [{
                     data: [librarians,students,teachers],
                     backgroundColor: [
-                        'rgb(254, 160, 23)',
-                        'rgb(254, 201, 110)',
-                        'rgb(212, 126, 3 )'
+                        'rgb(36, 126, 240)',
+                        'rgb(36, 240, 175)',
+                        'rgb(36, 240, 79 )'
                     ],
                     borderWidth: 1
                 }]

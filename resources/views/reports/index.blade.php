@@ -27,7 +27,7 @@
                         </div>
                     </div>
                     <div class="card bg-secondary shadow mt-2 border-custom">
-                        <div class="card-body border-custom bg-gradient-primary ">
+                        <div class="card-body border-custom bg-gradient-info ">
                             <a href="{{route('reports.module.index')}}" class="text-white">
                                 <strong style="font-size:25px;"> {{$counts->modules}} </strong>
                                 Total Modules
@@ -36,7 +36,7 @@
                         </div>
                     </div>
                     <div class="card bg-secondary shadow mt-2 border-custom">
-                        <div class="card-body border-custom bg-gradient-warning">
+                        <div class="card-body border-custom bg-gradient-info">
                             <a href="{{route('reports.user.index')}}" class="text-white">
                                 <strong style="font-size:25px;"> {{$counts->users}} </strong>
                                 Total Users

@@ -23,7 +23,7 @@
         </div>
         <div class="col-sm-4">
             <a href="{{route('modules.index')}}">
-                <div class="card border-custom shadow-sm text-center text-white mt-3 bg-gradient-primary">
+                <div class="card border-custom shadow-sm text-center text-white mt-3 bg-gradient-info">
                     <div class="card-body">
                         <strong style="font-size:25px;"> {{$counts->modules}} </strong>
                         <br>
@@ -34,7 +34,7 @@
         </div>
         <div class="col-sm-4">
             <a href="{{route('users.index')}}">
-                <div class="card border-custom shadow-sm text-center text-white mt-3 bg-gradient-warning">
+                <div class="card border-custom shadow-sm text-center text-white mt-3 bg-gradient-info">
                     <div class="card-body">
                         <strong style="font-size:25px;"> {{$counts->users}} </strong>
                         <br>
@@ -51,7 +51,7 @@
                 <div class="card-body">
                     <center>
                         <strong class="text-muted"> For the Year of {{$filter_year}} </strong> 
-                        <i class="fas fa-cog text-warning" style="cursor: pointer;" onclick="showYearFilterModal()"></i>
+                        <i class="fas fa-cog text-primary" style="cursor: pointer;" onclick="showYearFilterModal()"></i>
                         <br>
                         <a href="{{route('reports.borrowed-book.index')}}"> <small class="text-primary"> View full reports here </small> </a>
                         <canvas id="myLineChart" class="bg-secondary mt-3 border border-custom p-2"></canvas> 
@@ -137,9 +137,9 @@
                 datasets: [{
                     data: [librarians,students,teachers],
                     backgroundColor: [
-                        'rgb(254, 160, 23)',
-                        'rgb(254, 201, 110)',
-                        'rgb(212, 126, 3 )'
+                        'rgb(36, 126, 240)',
+                        'rgb(36, 240, 175)',
+                        'rgb(36, 240, 79 )'
                     ],
                     borderWidth: 1
                 }]

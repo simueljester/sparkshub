@@ -53,7 +53,7 @@
                             <strong class="text-capitalize"> {{$module->title}}</strong> <br>
                             <small class="text-muted"> {{$module->user ? $module->user->name : 'No uploader indicated'}} </small>
                             <br>
-                            <span class="badge badge-pill badge-warning">{{$module->subject->name}}</span>
+                            <span class="badge badge-pill badge-success">{{$module->subject->name}}</span>
                         </div>
                     </div>
                 </a>

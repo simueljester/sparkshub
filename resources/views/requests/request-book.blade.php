@@ -17,9 +17,9 @@
                     <strong> <i class="fas fa-book"></i> Book Information </strong>
                 </div>
                 <div class="card-body text-center">
-                    <div> <i class="fas fa-book fa-5x text-warning"></i> </div>
+                    <div> <i class="fas fa-book fa-5x text-primary"></i> </div>
                     <br>
-                    <div class="mt-2"> <strong class="text-warning text-capitalize" style="font-size:22px;" id="book-title"> {{$book->title}} </strong> </div>
+                    <div class="mt-2"> <strong class="text-primary text-capitalize" style="font-size:22px;" id="book-title"> {{$book->title}} </strong> </div>
                     <div class="mt-1 text-muted"> By <span class="text-muted" id="book-author"> {{$book->author}} </span> </div>
                     <br>
                     <small> Additional Information </small>

@@ -29,9 +29,9 @@
                     </div>
                     <div class="col-sm-3">
                         @if ($filter)
-                             <a href="{{route('request-book.index')}}" class="btn btn-secondary mt-4"> Clear </a>
+                             <a href="{{route('request-book.index')}}" class="btn border-custom btn-secondary mt-4"> Clear </a>
                         @endif
-                        <button class="btn btn-primary mt-4"> Apply Filter </button>
+                        <button class="btn btn-info border-custom mt-4"> Apply Filter </button>
                     </div>
                 </div>
             </form>
@@ -44,7 +44,7 @@
             @if ($filter == 'due_dates')
                 Upcoming Due Dates
                 @if ($requests->count() != 0)
-                    <button class="btn btn-warning border-custom float-right" onclick="sendEmailNotifications()">
+                    <button class="btn btn-info border-custom float-right" onclick="sendEmailNotifications()">
                         <i class="fas fa-envelope-open-text"></i> Send email notifications
                     </button>
                 @endif

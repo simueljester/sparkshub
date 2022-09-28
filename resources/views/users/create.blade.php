@@ -10,7 +10,7 @@
         </ol>
     </nav>
     <div class="p-2">
-        <a href="{{route('users.download-template')}}" class="btn btn-warning border-custom"> <i class="fas fa-download"></i> Download Template </a>
+        <a href="{{route('users.download-template')}}" class="btn btn-info border-custom"> <i class="fas fa-download"></i> Download Template </a>
     </div>
     <div class="card bg-secondary shadow mt-1">
         <div class="card-header bg-white border-0">

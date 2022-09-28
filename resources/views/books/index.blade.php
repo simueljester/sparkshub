@@ -10,8 +10,8 @@
     </nav>
     
     <div class="row p-3">
-        <a href="{{route('books.create')}}" class="btn btn-warning border-custom"> <i class="fas fa-plus-circle"></i> Add Book </a>
-        <a href="{{route('books.categories.index')}}" class="btn btn-primary border-custom"> <i class="fas fa-cog"></i> Manage Category </a>
+        <a href="{{route('books.create')}}" class="btn btn-info border-custom"> <i class="fas fa-plus-circle"></i> Add Book </a>
+        <a href="{{route('books.categories.index')}}" class="btn btn-success border-custom"> <i class="fas fa-cog"></i> Manage Category </a>
        
         <form action="">
             @if ($status == 'active')
@@ -48,7 +48,7 @@
                         @forelse ($books as $book)
                             <tr>
                                 <td>
-                                    <strong style="font-size:15px;" class="text-uppercase"> <i class="fas fa-book fa-lg text-warning"></i> {{$book->title}} </strong> <br>
+                                    <strong style="font-size:15px;" class="text-uppercase"> <i class="fas fa-book fa-lg text-primary"></i> {{$book->title}} </strong> <br>
                                     <small> ISBN #: {{$book->isbn}} </small>
                                 </td>
                                 <td>

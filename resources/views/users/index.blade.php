@@ -10,7 +10,7 @@
     </nav>
 
     <div class="row p-3">
-        <a href="{{route('users.create')}}" class="btn btn-warning border-custom"> <i class="fas fa-user-plus"></i> Add Users </a>
+        <a href="{{route('users.create')}}" class="btn btn-info border-custom"> <i class="fas fa-user-plus"></i> Add Users </a>
         <form action="">
             @if ($status == 'active')
                 <button class="btn btn-outline-danger border-custom" name="status" value="archive"> <i class="fas fa-archive"></i> Archived Users </button>
@@ -43,7 +43,7 @@
                             @if ($keyword)
                                 <a href="{{route('users.index')}}" class="btn btn-secondary border-custom mt-4"> Clear </a>
                             @endif
-                            <button class="btn btn-primary border-custom mt-4"> <i class="fas fa-search"></i> Search User </button>
+                            <button class="btn btn-info border-custom mt-4"> <i class="fas fa-search"></i> Search User </button>
                         </div>
                     </div>
                 </form>

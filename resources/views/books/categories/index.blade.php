@@ -9,7 +9,7 @@
         </ol>
     </nav>
     
-    <a href="{{route('books.categories.create')}}" class="btn btn-warning border-custom"> <i class="fas fa-plus-circle"></i> Add Category </a>
+    <a href="{{route('books.categories.create')}}" class="btn btn-info border-custom"> <i class="fas fa-plus-circle"></i> Add Category </a>
     <div class="card bg-secondary shadow mt-2">
         <div class="card-header bg-white border-0">
             <strong> Category List </strong>

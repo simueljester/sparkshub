@@ -9,7 +9,7 @@
             <li class="breadcrumb-item active" aria-current="page"> Borrowed Books Report </li>
         </ol>
     </nav>
-    <a href="{{route('reports.borrowed-book.export')}}" class="btn btn-warning border-custom"> <i class="fas fa-download"></i> Export Excel </a>
+    <a href="{{route('reports.borrowed-book.export')}}" class="btn btn-info border-custom"> <i class="fas fa-download"></i> Export Excel </a>
     <div class="card shadow-sm border-custom mt-3">
         <div class="card-header">
             <strong> <i class="fas fa-chart-bar"></i> Bar Chart View </strong>
@@ -17,7 +17,7 @@
         <div class="card-body bg-secondary">
             <center>
                 <strong class="text-muted"> For the Year of {{$filter_year}} </strong> 
-                <i class="fas fa-cog text-warning" style="cursor: pointer;" onclick="showYearFilterModal()"></i>
+                <i class="fas fa-cog text-primary" style="cursor: pointer;" onclick="showYearFilterModal()"></i>
                 <canvas id="myBarChart" class="bg-white mt-1 border border-custom p-2" width="350" height="100"></canvas> 
             </center>
         </div>

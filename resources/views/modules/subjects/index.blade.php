@@ -9,7 +9,7 @@
         </ol>
     </nav>
            
-    <a href="{{route('modules.subjects.create')}}" class="btn btn-warning border-custom ml-2"> <i class="fas fa-plus"></i> Add Subject </a>
+    <a href="{{route('modules.subjects.create')}}" class="btn btn-info border-custom ml-2"> <i class="fas fa-plus"></i> Add Subject </a>
     <div class="card bg-secondary shadow mt-2">
         <div class="card-header bg-white border-0">
             <strong> Subject List </strong>

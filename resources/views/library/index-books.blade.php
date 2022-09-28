@@ -45,13 +45,13 @@
             <div class="col-sm-3">
                 <div class="card text-center bg-secondary shadow border-custom mt-3 book-library" onclick="viewBook({{$book}})">
                     <div class="card-body">
-                        <i class="fas fa-book fa-5x text-warning"></i>
+                        <i class="fas fa-book fa-5x text-primary"></i>
                     </div>
                     <div class="card-footer">
                           <strong class="text-capitalize"> {{$book->title}}</strong> <br>
                           <small class="text-muted"> {{$book->author ?? 'No author indicated'}} </small>
                           <br>
-                          <span class="badge badge-pill badge-primary">{{$book->category->name}}</span>
+                          <span class="badge badge-pill badge-success">{{$book->category->name}}</span>
                     </div>
                 </div>
             </div>
@@ -75,9 +75,9 @@
                         </button>
                     </div>
                     <div class="modal-body text-center">
-                        <div> <i class="fas fa-book fa-5x text-warning"></i> </div>
+                        <div> <i class="fas fa-book fa-5x text-primary"></i> </div>
                         <br>
-                        <div class="mt-2"> <strong class="text-warning text-capitalize" style="font-size:22px;" id="book-title"></strong> </div>
+                        <div class="mt-2"> <strong class="text-primary text-capitalize" style="font-size:22px;" id="book-title"></strong> </div>
                         <div class="mt-1 text-muted"> By <span class="text-muted" id="book-author"></span> </div>
                         <br>
                         <small> Additional Information </small>

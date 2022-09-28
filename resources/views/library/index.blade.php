@@ -22,7 +22,7 @@
         <div class="col-sm-6 text-center">
             <div class="library slideInLeft">
                 <img class="library-profile-img" src="{{ asset('images') }}/305565621_481279760675444_7302566858496115935_n.jpg" alt="">
-                <div class="library-description-bk bg-gradient-primary"></div>
+                <div class="library-description-bk bg-gradient-info"></div>
                 <div class="library-description">
                     <strong style="font-size:20px;"> Books Section </strong>
                     <p> Borrowing books made easy in SPARKS HUB. </p>
@@ -36,7 +36,7 @@
         <div class="col-sm-6 text-center">
             <div class="second library slideInRight">
                 <img class="library-profile-img" src="https://images.pexels.com/photos/159497/school-notebook-binders-notepad-159497.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
-                <div class="library-description-bk bg-gradient-warning"></div>
+                <div class="library-description-bk bg-gradient-success"></div>
                 <div class="library-description">
                     <strong style="font-size:20px;"> Modules Section </strong>
                     <p> Browse modules uploaded by our own teachers! </p>

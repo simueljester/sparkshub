@@ -18,7 +18,7 @@
                                 <center>
                                     <a href="/"> <img src="{{ asset('images') }}/274476676_4675508945893908_2973338567599810336_n.png" width="50" alt=""></a>
                                     <br>
-                                    <strong class="text-warning"> Login </strong>
+                                    <strong class="text-primary"> Login </strong>
                                 </center>
                                 <hr>
                                 <form role="form" method="POST" action="{{ route('login') }}">
@@ -41,7 +41,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                                             </div>
-                                            <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="{{ __('Password') }}" type="password" value="secret" required>
+                                            <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="{{ __('Password') }}" type="password" value="" required>
                                         </div>
                                         @if ($errors->has('password'))
                                             <span class="invalid-feedback" style="display: block;" role="alert">

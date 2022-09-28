@@ -9,8 +9,8 @@
     </nav>
            
     <div class="row p-3">
-        <a href="{{route('modules.create')}}" class="btn btn-warning border-custom ml-2"> <i class="fas fa-plus"></i> Add module </a>
-        <a href="{{route('modules.subjects.index')}}" class="btn btn-primary border-custom "> <i class="fas fa-cog"></i> Manage Subjects </a>
+        <a href="{{route('modules.create')}}" class="btn btn-info border-custom ml-2"> <i class="fas fa-plus"></i> Add module </a>
+        <a href="{{route('modules.subjects.index')}}" class="btn btn-success border-custom "> <i class="fas fa-cog"></i> Manage Subjects </a>
         <form action="">
             @if ($status == 'active')
                 <button class="btn btn-outline-danger border-custom" name="status" value="archive"> <i class="fas fa-archive"></i> Archived Modules </button>

@@ -34,7 +34,7 @@
                 -ms-transform: scale(1.5); /* IE 9 */
                 -webkit-transform: scale(1.5); /* Safari 3-8 */
                 transform: scale(1.0); 
-                color: rgb(227, 123, 53);
+                color: rgb(43, 201, 249);
                 cursor:pointer;
             }
 
@@ -219,13 +219,13 @@
         
 
         <div class="main-content">
-            <div class="card m-2 shadow bg-gradient-warning text-right text-white">
+            <div class="card m-2 shadow bg-gradient-info text-right text-white">
                 <div class="card-body">
                     @auth
                         <ul class="nav nav-pills nav-pills-circle float-right" id="tabs_2" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link rounded-circle" id="home-tab" onclick="openNotification()" href="#" role="tab" aria-controls="home" aria-selected="true">
-                                    <span class="nav-link-icon d-block"><i class="fas fa-bell"></i> 
+                                    <span class="nav-link-icon d-block"><i class="fas fa-bell text-success"></i> 
                                         @if ($notifications->count() != 0)
                                             <strong class="text-danger"> {{$notifications->count()}} </strong> 
                                         @endif 
@@ -234,14 +234,14 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="profile-tab" href="{{route('users.profile',Auth::user())}}" role="tab" aria-controls="profile" aria-selected="false">
-                                    <span class="nav-link-icon d-block"><i class="fas fa-user"></i> <strong class="text-danger"> </strong></span>
+                                    <span class="nav-link-icon d-block"><i class="fas fa-user text-success"></i> <strong class="text-danger"> </strong></span>
                                 </a>
                             </li>
                             <li class="nav-item">
                                
                                 <a class="nav-link" id="contact-tab" href="{{ route('logout') }}" onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
-                                    <span class="nav-link-icon d-block"><i class="fas fa-sign-out-alt"></i></span>
+                                    <span class="nav-link-icon d-block"><i class="fas fa-sign-out-alt text-success"></i></span>
                                 </a>
                             </li>
                         </ul>
@@ -305,7 +305,7 @@
                             No unread notification
                         @endforelse   
                     </div>
-                    <div class="modal-footer bg-gradient-warning">
+                    <div class="modal-footer bg-gradient-info">
                         <a href="{{route('notification.index')}}" class="text-white"> <strong> All notification </strong> </a>
                     </div>
                 </div>
