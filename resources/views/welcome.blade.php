@@ -291,7 +291,7 @@ https://templatemo.com/tm-557-grad-school
     </div>
   </section>
   
-    {{-- <!-- Messenger Chat Plugin Code -->
+  <!-- Messenger Chat Plugin Code -->
     <div id="fb-root"></div>
 
     <!-- Your Chat Plugin code -->
@@ -300,7 +300,7 @@ https://templatemo.com/tm-557-grad-school
 
     <script>
       var chatbox = document.getElementById('fb-customer-chat');
-      chatbox.setAttribute("page_id", "105460712321155");
+      chatbox.setAttribute("page_id", "105694865647257");
       chatbox.setAttribute("attribution", "biz_inbox");
     </script>
 
@@ -320,7 +320,7 @@ https://templatemo.com/tm-557-grad-school
         js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));
-    </script> --}}
+    </script>
 
 
   <footer>
