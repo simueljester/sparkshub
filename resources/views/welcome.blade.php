@@ -106,9 +106,8 @@ https://templatemo.com/tm-557-grad-school
                 <h4><i class="fa fa-pencil"></i> About Balele </h4>
               </div>
               <div class="content-hide">
-                <p>Curabitur id eros vehicula, tincidunt libero eu, lobortis mi. In mollis eros a posuere imperdiet. Donec maximus elementum ex. Cras convallis ex rhoncus, laoreet libero eu, vehicula libero.</p>
+                <p>SPARKS HUB (Seamless, Progressive, Academic-Research Knowledge Hub), the first of its kind in the public school systems aims to provides services that promote the pursuit of knowledge and intellectual activity; to provide various bibliographies and library pathfinders for simple access and retrieval of information. Moreover SPARKSHUB foster an environment in which students and educators may enjoy the learning experience through accessible and relevant academic resources.</p>
                 <p class="hidden-sm">Curabitur id eros vehicula, tincidunt libero eu, lobortis mi. In mollis eros a posuere imperdiet.</p>
-                <div class="scroll-to-section"><a href="#section2">More Info.</a></div>
             </div>
             </div>
           </div>
@@ -120,9 +119,8 @@ https://templatemo.com/tm-557-grad-school
                 <h4><i class="fa fa-graduation-cap"></i>Mission</h4>
               </div>
               <div class="content-hide">
-                <p>Curabitur id eros vehicula, tincidunt libero eu, lobortis mi. In mollis eros a posuere imperdiet. Donec maximus elementum ex. Cras convallis ex rhoncus, laoreet libero eu, vehicula libero.</p>
+                <p>Transforming Communities Through Literacy</p>
                 <p class="hidden-sm">Curabitur id eros vehicula, tincidunt libero eu, lobortis mi. In mollis eros a posuere imperdiet.</p>
-                <div class="scroll-to-section"><a href="#section3">Details</a></div>
             </div>
             </div>
           </div>
@@ -134,9 +132,8 @@ https://templatemo.com/tm-557-grad-school
                 <h4><i class="fa fa-book"></i>Vision</h4>
               </div>
               <div class="content-hide">
-                <p>Curabitur id eros vehicula, tincidunt libero eu, lobortis mi. In mollis eros a posuere imperdiet. Donec maximus elementum ex. Cras convallis ex rhoncus, laoreet libero eu, vehicula libero.</p>
+                <p>Luceat Lux Vestra</p>
                 <p class="hidden-sm">Curabitur id eros vehicula, tincidunt libero eu, lobortis mi. In mollis eros a posuere imperdiet.</p>
-                <div class="scroll-to-section"><a href="#section4">Read More</a></div>
             </div>
             </div>
           </div>
