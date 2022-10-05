@@ -100,7 +100,7 @@ class BookController extends Controller
 
     public function delete(Request $request){
         app(BookRepository::class)->delete($request->book_id);
-         return redirect()->back()->with('success', 'Book successfully!');
+         return redirect()->back()->with('success', 'Book successfully deleted!');
     }
 
 }

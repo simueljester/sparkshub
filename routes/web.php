@@ -106,6 +106,7 @@ Route::group(['prefix'=>'modules','as'=>'modules.'], function(){
 	Route::post('/archive-module', ['as' => 'archive', 'uses' => 'ModuleController@archive']);
 	Route::get('/active-module/{module}', ['as' => 'set-active', 'uses' => 'ModuleController@setToActive']);
 	Route::get('/approve/{module}', ['as' => 'approve', 'uses' => 'ModuleController@approve']);
+	Route::post('/delete-module', ['as' => 'delete', 'uses' => 'ModuleController@delete']);
 
 	Route::group(['prefix'=>'file','as'=>'file.'], function(){
 		Route::post('/add-file', ['as' => 'add-file', 'uses' => 'ModuleFileController@addFile']);

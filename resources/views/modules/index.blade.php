@@ -75,6 +75,7 @@
                                     <a href="{{route('modules.edit',$module)}}" class="text-primary ml-3"> <i class="fas fa-edit"></i> Edit </a>
                                     @if ($module->archived_at)
                                         <a href="{{route('modules.set-active',$module)}}" class="text-success ml-3"> <i class="fas fa-check-circle"></i> Set to active module </a>
+                                        <a style="cursor: pointer;" onclick="showDeleteConfirmation({{$module}})" class="text-danger ml-2"> <i class="fas fa-times"></i> Delete this module </a>
                                     @else
                                         <a style="cursor: pointer;" onclick="showRemoveConfirmation({{$module}})" class="text-danger ml-3"> <i class="fas fa-archive"></i> Archive </a>
                                     @endif  
@@ -121,11 +122,43 @@
         </div>
     </form>
 
+    <!-- Modal delete book -->
+    <form action="{{route('modules.delete')}}" method="post">
+        @method('POST')
+        @csrf
+        <div class="modal fade" id="remove-modal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Delete Module</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <i class="fas fa-exclamation-triangle"></i> <br>
+                        <span> Warning! This action <strong id="remove-title2"> </strong> will delete this module permanently. In addition, current uploaded in this module will be deleted. Are you sure you want to delete this module? </span>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" name="module_id" id="delete_module_id2">
+                        <button type="button" class="btn btn-secondary border-custom" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary border-custom"> Proceed </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
     <script>
         function showRemoveConfirmation(module){
             $('#archive-modal').modal('show'); 
             $('#archive_module_id').val(module.id); 
             $('#archive-title').html(module.title)
+        }
+        function showDeleteConfirmation(book){
+            $('#remove-modal2').modal('show'); 
+            $('#delete_module_id2').val(book.id); 
+            $('#remove-title2').html(book.title)
         }
     </script>
 

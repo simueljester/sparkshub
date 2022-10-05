@@ -9,8 +9,10 @@ use Carbon\Carbon;
 use App\ModuleFile;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\File; 
 use App\Http\Repositories\ModuleRepository;
 use App\Http\Repositories\SubjectRepository;
+use App\Http\Repositories\ModuleFileRepository;
 use App\Http\Repositories\NotificationRepository;
 
 class ModuleController extends Controller
@@ -119,5 +121,16 @@ class ModuleController extends Controller
     public function setToActive($module_id){
         app(ModuleRepository::class)->archiveRemove($module_id);
         return redirect()->route('modules.index',['status'=>'active'])->with('success', 'Module set to active!');
+    }
+
+    public function delete(Request $request){
+        $files = app(ModuleFileRepository::class)->query()->whereModuleId($request->module_id)->pluck('file');
+        if(!empty($files)){
+            foreach($files as $file){
+                 File::delete(public_path('files/'.$file));
+            }
+        }
+        app(ModuleRepository::class)->delete($request->module_id);
+        return redirect()->back()->with('success', 'Module successfully deleted!');
     }
 }

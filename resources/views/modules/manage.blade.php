@@ -77,7 +77,7 @@
                     <div class="row">
                         @forelse($module->files as $file)
                             <div class="col-sm-6">
-                                <div class="card shadow border-custom">
+                                <div class="card shadow border-custom mt-2">
                                     <div class="card-body">
                                         <a href="{{route('modules.file.download-content',$file)}}" target="_blank" >
                                             <i class="fas fa-download"></i> {{$file->file}}
