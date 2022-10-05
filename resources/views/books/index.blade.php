@@ -66,6 +66,7 @@
                                     
                                     @if ($book->archived_at)
                                         <a href="{{route('books.set-active',$book)}}" class="text-success ml-3"> <i class="fas fa-check-circle"></i> Set to active books </a>
+                                        <a style="cursor: pointer;" onclick="showDeleteConfirmation({{$book}})" class="text-danger ml-2"> <i class="fas fa-times"></i> Delete this book </a>
                                     @else
                                         <a style="cursor: pointer;" onclick="showRemoveConfirmation({{$book}})" class="text-danger ml-3"> <i class="fas fa-minus-circle"></i> Remove </a>
                                     @endif  
@@ -84,7 +85,7 @@
         </div>
     </div>
 
-    <!-- Modal remove book -->
+    <!-- Modal remove / archive book -->
     <form action="{{route('books.remove')}}" method="post">
         @method('POST')
         @csrf
@@ -99,10 +100,37 @@
                     </div>
                     <div class="modal-body text-center">
                         <i class="fas fa-exclamation-triangle"></i> <br>
-                        <span> Warning! Removing <strong id="remove-title"> </strong> will make it inaccessible to users. Are you sure you want to remove this book? </span>
+                        <span> Warning! Removing <strong id="remove-title"> </strong> will make it inaccessible to users. In addition, current borrowed in this books will be deleted. Are you sure you want to remove this book? </span>
                     </div>
                     <div class="modal-footer">
                         <input type="hidden" name="book_id" id="delete_book_id">
+                        <button type="button" class="btn btn-secondary border-custom" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary border-custom"> Proceed </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- Modal delete book -->
+    <form action="{{route('books.delete')}}" method="post">
+        @method('POST')
+        @csrf
+        <div class="modal fade" id="remove-modal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Delete Book</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <i class="fas fa-exclamation-triangle"></i> <br>
+                        <span> Warning! This action <strong id="remove-title2"> </strong> will delete this book permanently. In addition, current borrowed in this books will be deleted. Are you sure you want to delete this book? </span>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" name="book_id" id="delete_book_id2">
                         <button type="button" class="btn btn-secondary border-custom" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary border-custom"> Proceed </button>
                     </div>
@@ -117,6 +145,14 @@
             $('#delete_book_id').val(book.id); 
             $('#remove-title').html(book.title)
         }
+
+        function showDeleteConfirmation(book){
+            $('#remove-modal2').modal('show'); 
+            $('#delete_book_id2').val(book.id); 
+            $('#remove-title2').html(book.title)
+        }
+
+        
     </script>
 @endsection
 

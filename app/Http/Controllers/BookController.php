@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Book;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
 use App\Http\Repositories\BookRepository;
 use App\Http\Repositories\BookCategoryRepository;
-use Illuminate\Pagination\Paginator;
+use App\Http\Repositories\RequestedBookRepository;
 
 class BookController extends Controller
 {
@@ -88,12 +89,18 @@ class BookController extends Controller
 
     public function remove(Request $request){
         app(BookRepository::class)->archive($request->book_id);
+        app(RequestedBookRepository::class)->query()->whereBookId($request->book_id)->delete();
         return redirect()->route('books.index')->with('success', 'Book archived!');
     }
 
     public function setToActive($book_id){
         app(BookRepository::class)->archiveRemove($book_id);
         return redirect()->back()->with('success', 'Book set to active!');
+    }
+
+    public function delete(Request $request){
+        app(BookRepository::class)->delete($request->book_id);
+         return redirect()->back()->with('success', 'Book successfully!');
     }
 
 }

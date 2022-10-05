@@ -37,6 +37,7 @@ Route::group(['prefix'=>'books','as'=>'books.'], function(){
 	Route::post('/update-book', ['as' => 'update', 'uses' => 'BookController@update']);
 	Route::post('/remove-book', ['as' => 'remove', 'uses' => 'BookController@remove']);
 	Route::get('/active-book/{book_id}', ['as' => 'set-active', 'uses' => 'BookController@setToActive']);
+	Route::post('/delete-book', ['as' => 'delete', 'uses' => 'BookController@delete']);
 
 	Route::group(['prefix'=>'categories','as'=>'categories.'], function(){
     	Route::get('/', ['as' => 'index', 'uses' => 'BookCategoryController@index']);
