@@ -54,6 +54,34 @@ class UserController extends Controller
         return Response()->download($filepath);
     }
 
+    public function saveManual(Request $request){
+      
+        $request->validate([
+            'email'=> 'required|unique:users,email'
+        ]);
+
+        if($request->role == 'student'){
+            $existing_student_number = User::whereStudentNumber($request->student_no)->first() ?? null;
+            if($existing_student_number){
+                return redirect()->route('users.create')->with('error', 'Student No. already exist');
+            }
+        }
+
+        $data = [
+            'fname'                 => $request->fname,
+            'lname'                 => $request->lname,
+            'name'                  => $request->lname.' '.$request->fname,
+            'student_number'        => $request->student_no,
+            'email'                 => $request->email,
+            'role'                  => $request->role,
+            'password'              => Hash::make($request->password)
+        ];
+
+        app(UserRepository::class)->save($data);
+
+        return redirect()->route('users.index')->with('success', 'User successfully added');
+    }
+
     public function upload(Request $request){
     
         $request->validate([

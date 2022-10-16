@@ -55,6 +55,7 @@ Route::group(['prefix'=>'users','as'=>'users.'], function(){
 	Route::get('/download-template', ['as' => 'download-template', 'uses' => 'UserController@downloadTemplate']);
 	Route::post('/upload', ['as' => 'upload', 'uses' => 'UserController@upload']);
 	Route::post('/save-upload', ['as' => 'save-upload', 'uses' => 'UserController@saveUpload']);
+	Route::post('/save-manual', ['as' => 'save-manual', 'uses' => 'UserController@saveManual']);
 	Route::get('/edit/{user}', ['as' => 'edit', 'uses' => 'UserController@edit']);
 	Route::post('/update', ['as' => 'update', 'uses' => 'UserController@update']);
 	Route::post('/archive-user', ['as' => 'archive', 'uses' => 'UserController@archive']);
