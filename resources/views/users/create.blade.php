@@ -61,7 +61,8 @@
                 </div>
                 <div class="form-group">
                     <small class="text-muted"> Password </small>
-                    <input type="password" name="password" id="password" class="form-control border-custom" required>
+                    <input type="password" onkeyup="checkPasswordStrength(this.value)" name="password" id="password" class="form-control border-custom" required>
+                    <small id="pass_strength"></small>
                 </div>
 
                 <div class="form-group">
@@ -80,8 +81,34 @@
     </form>
 
 
-    <script>
-    
+ <script>
+        function checkPasswordStrength(pwString) {
+            var level = 0;
+            var input = pwString;//user input goes here
+            var msg = $('#pass_strength'); 
+            switch(true){
+                case /^(?:([A-Z])*){8,12}$/.test(input):
+                level = 1;
+                msg.html('Very Weak').attr("class","text-danger");
+                break;
+
+                case /^(?:([A-Z])*([a-z])*){8,12}$/.test(input):
+                level = 2;
+                msg.html('Weak').attr("class","text-warning");
+                break;
+
+                case /^(?:([A-Z])*([a-z])*(\d)*){8,12}$/.test(input):
+                level = 3;
+                msg.html('Acceptable').attr("class","text-primary");
+                break;
+
+                case /^(?:([A-Z])*([a-z])*(\d)*(\W)*){8,12}$/.test(input):
+                level = 4;
+                msg.html('Strong').attr("class","text-success");
+                break;
+            }
+            
+        }
     </script>
 @endsection
 
