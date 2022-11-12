@@ -29,7 +29,7 @@ class HelloEmail extends Mailable
      */
     public function build()
     {
-         return $this->subject('Sparks Hub Balele IHS')
+         return $this->subject('BOOT NHS')
                     ->view('mail');
     }
 }
