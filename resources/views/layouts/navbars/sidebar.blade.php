@@ -6,7 +6,7 @@
         </button>
         <!-- Brand -->
         <a class="text-center" href="{{ route('dashboard') }}">
-            <img src="{{ asset('images') }}/274476676_4675508945893908_2973338567599810336_n.png" width="100" height="100" alt="">
+            <img src="{{ asset('images') }}/bootnhslogo.png" width="100" height="100" alt="">
         </a>
         <!-- User -->
         <ul class="nav align-items-center d-md-none">

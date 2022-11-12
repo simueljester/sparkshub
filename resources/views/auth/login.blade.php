@@ -10,13 +10,13 @@
                     <div class="card-body px-lg-5 py-lg-5">
                         <div class="row">
                             <div class="col-sm-8 text-center">
-                                <strong class="text-muted" style="font-size:20px"> Sparks Hub </strong>
+                                <strong class="text-muted" style="font-size:20px"> PAROLA </strong>
                                 <img src="{{ asset('images') }}/na_feb_36.jpg" style="width:100%;" alt="">
                                 <small><a href="https://www.freepik.com/free-vector/education-learning-concept-love-reading-people-reading-students-studying-preparing-examination-library-book-lovers-readers-modern-literature-flat-cartoon-vector-illustration_25273862.htm#page=3&query=education%20study%20learning&position=1&from_view=search">Image by jcomp</a> on Freepik</small>
                             </div>
                             <div class="col-sm-4">
                                 <center>
-                                    <a href="/"> <img src="{{ asset('images') }}/274476676_4675508945893908_2973338567599810336_n.png" width="50" alt=""></a>
+                                    <a href="/"> <img src="{{ asset('images') }}/bootnhslogo.png" width="50" alt=""></a>
                                     <br>
                                     <strong class="text-primary"> Login </strong>
                                 </center>

@@ -12,16 +12,16 @@
     <center>
         <i class="fas fa-university fa-5x"></i>
         <br>
-        <span class="text-warning" style="font-size: 22px; font-weight:bold"> Sparks Hub </span>
+        <span class="text-primary" style="font-size: 22px; font-weight:bold"> PAROLA </span>
         <br>
-        <span class="text-muted text-capitalize"> Web-Based Library Management System of Balele Integrated High School </span>
+        <span class="text-muted text-capitalize"> Web-Based Library Management System of Boot National High School </span>
     </center>
     <br>
       <br>
     <div class="row">
         <div class="col-sm-6 text-center">
             <div class="library slideInLeft">
-                <img class="library-profile-img" src="{{ asset('images') }}/305565621_481279760675444_7302566858496115935_n.jpg" alt="">
+                <img class="library-profile-img" src="{{ asset('images') }}/paul-melki-bByhWydZLW0-unsplash.jpg" alt="">
                 <div class="library-description-bk bg-gradient-info"></div>
                 <div class="library-description">
                     <strong style="font-size:20px;"> Books Section </strong>
@@ -36,8 +36,9 @@
         <div class="col-sm-6 text-center">
             <div class="second library slideInRight">
                 <img class="library-profile-img" src="https://images.pexels.com/photos/159497/school-notebook-binders-notepad-159497.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
-                <div class="library-description-bk bg-gradient-success"></div>
-                <div class="library-description">
+                <div class="library-description-bk" style="background: rgb(214,210,78);
+background: linear-gradient(277deg, rgba(214,210,78,0.9220063025210083) 19%, rgba(254,247,34,0.9220063025210083) 35%);"></div>
+                <div class="library-description text-muted">
                     <strong style="font-size:20px;"> Modules Section </strong>
                     <p> Browse modules uploaded by our own teachers! </p>
                 </div>

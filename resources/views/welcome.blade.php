@@ -33,8 +33,8 @@
     <meta name="author" content="">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900" rel="stylesheet">
 
-    <title>Balele IHS - Tanauan City</title>
-    <link rel="icon" href="{{ asset('images') }}/274476676_4675508945893908_2973338567599810336_n.png">
+    <title>BOOT NHS</title>
+    <link rel="icon" href="{{ asset('images') }}/bootnhslogo.png">
   
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('vendor') }}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -59,7 +59,7 @@ https://templatemo.com/tm-557-grad-school
   <!--header-->
   <header class="main-header clearfix" role="header">
     <div class="logo">
-      <a href="/"> <img src="{{ asset('images') }}/274476676_4675508945893908_2973338567599810336_n.png" width="50" alt=""> <em>BALELE</em> IHS</a>
+      <a href="/"> <img src="{{ asset('images') }}/bootnhslogo.png" width="50" alt=""> <em>BOOT</em> National High School</a>
     </div>
     <a href="#menu" class="menu-link"><i class="fa fa-bars"></i></a>
     <nav id="menu" class="main-nav" role="navigation">
@@ -71,7 +71,7 @@ https://templatemo.com/tm-557-grad-school
             <li><a href="#mission-vision">Vision</a></li>
           </ul>
         </li>
-        <li><a href="#section5">Sparks Hub</a></li>
+        <li><a href="#section5">Parola</a></li>
         <li><a href="/login" class="external">Login</a></li>
       </ul>
     </nav>
@@ -85,10 +85,10 @@ https://templatemo.com/tm-557-grad-school
 
       <div class="video-overlay header-text">
           <div class="caption">
-             <a href="/"> <img src="{{ asset('images') }}/274476676_4675508945893908_2973338567599810336_n.png" width="100" alt=""></a>
+             <a href="/"> <img src="{{ asset('images') }}/bootnhslogo.png" width="100" alt=""></a>
              <br> 
              <h6 class="mt-1">Tanauan City</h6>
-              <h2><em>BALELE</em> Integrated High School </h2>
+              <h2><em>BOOT</em> National High School  </h2>
          
           </div>
       </div>
@@ -103,10 +103,10 @@ https://templatemo.com/tm-557-grad-school
           <div class="features-post">
             <div class="features-content">
               <div class="content-show">
-                <h4><i class="fa fa-pencil"></i> About Balele </h4>
+                <h4><i class="fa fa-pencil"></i> About Boot </h4>
               </div>
               <div class="content-hide">
-                <p>SPARKS HUB (Seamless, Progressive, Academic-Research Knowledge Hub), the first of its kind in the public school systems aims to provides services that promote the pursuit of knowledge and intellectual activity; to provide various bibliographies and library pathfinders for simple access and retrieval of information. Moreover SPARKSHUB foster an environment in which students and educators may enjoy the learning experience through accessible and relevant academic resources.</p>
+                <p> Boot NHS is located at Purok 5, Boot, Tanauan City, Tanauan, Philippines, 4232 </p>
                 <p class="hidden-sm">Curabitur id eros vehicula, tincidunt libero eu, lobortis mi. In mollis eros a posuere imperdiet.</p>
             </div>
             </div>
@@ -147,29 +147,29 @@ https://templatemo.com/tm-557-grad-school
       <div class="row">
         <div class="col-md-12">
           <div class="section-heading">
-            <h2>Balele IHS</h2>
+            <h2>BOOT NHS</h2>
           </div>
         </div>
         <div class="col-md-12">
           <div id='tabs'>
             <ul>
               <li><a href='#tabs-1'>Best Education</a></li>
-              <li><a href='#tabs-2'>Top Management</a></li>
-              <li><a href='#tabs-3'>Quality Meeting</a></li>
+              {{-- <li><a href='#tabs-2'>Top Management</a></li>
+              <li><a href='#tabs-3'>Quality Meeting</a></li> --}}
             </ul>
             <section class='tabs-content'>
               <article id='tabs-1'>
                 <div class="row">
                   <div class="col-md-6">
-                    <img src="{{ asset('images') }}/304184621_5456800597740261_6517738824375084705_n.jpg" alt="">
+                    <img src="{{ asset('images') }}/293067293_5335093776556293_8162669428780072474_n.jpg" alt="">
                   </div>
                   <div class="col-md-6">
-                    <h4>Best Education</h4>
-                    <p>Grad School is free educational HTML template with Bootstrap 4.5.2 CSS layout. Feel free to use it for educational or commercial purposes. You may want to make <a href="https://paypal.me/templatemo" target="_parent" rel="sponsored">a little donation</a> to TemplateMo. Please tell your friends about us. Thank you.</p>
+                    <h4>BOOT Family</h4>
+                    {{-- <p>Grad School is free educational HTML template with Bootstrap 4.5.2 CSS layout. Feel free to use it for educational or commercial purposes. You may want to make <a href="https://paypal.me/templatemo" target="_parent" rel="sponsored">a little donation</a> to TemplateMo. Please tell your friends about us. Thank you.</p> --}}
                   </div>
                 </div>
               </article>
-              <article id='tabs-2'>
+              {{-- <article id='tabs-2'>
                 <div class="row">
                   <div class="col-md-6">
                     <img src="{{ asset('images') }}/305110480_436520905210789_7379937744488947692_n.jpg" alt="">
@@ -191,7 +191,7 @@ https://templatemo.com/tm-557-grad-school
                     <p>You are NOT allowed to redistribute this template ZIP file on any template collection website. However, you can use this template to convert into a specific theme for any kind of CMS platform such as WordPress. For more information, you shall <a rel="nofollow" href="https://templatemo.com/contact" target="_parent">contact TemplateMo</a> now.</p>
                   </div>
                 </div>
-              </article>
+              </article> --}}
             </section>
           </div>
         </div>
@@ -205,15 +205,15 @@ https://templatemo.com/tm-557-grad-school
             <div class="col-md-6 align-self-center">
             <div class="left-content">
                 <span> School innovation </span>
-                <h4> Our new online library platform <em> SPARKS HUB </em></h4>
-                <p>Sparks hub is a virtual library for Balele IHS students. Books and Modules management console provides easy access for borrowing, tracking and monitoring of borrowed books inside the library of Balele IHS.
+                <h4> Our new online library platform <em> PAROLA </em></h4>
+                <p>Parola is a virtual library for Boot NHS students. Books and Modules management console provides easy access for borrowing, tracking and monitoring of borrowed books inside the library of Boot NHS.
                 <br><br>It also aims to provide our teachers and librarians to easily upload contents accessible by students </p>
                 <div class="main-button"><a rel="nofollow" href="/login" target="_parent">Start your experience</a></div>
             </div>
             </div>
             <div class="col-md-6">
             <article class="video-item">
-                <a href="/login"><img class="ml-5" src="{{ asset('images') }}/299597394_465472012256219_7350261229131616474_n.jpg" width="400"></a>
+                <a href="/login"><img class="ml-5" src="{{ asset('images') }}/315248603_427590252915084_6505475989415432111_n.jpg" width="400"></a>
             </article>
             </div>
         </div>
@@ -225,65 +225,60 @@ https://templatemo.com/tm-557-grad-school
       <div class="row">
         <div class="col-md-12">
           <div class="section-heading">
-            <h2>SPARKS HUB, its conception to execution. </h2>
+            <h2> PAROLA </h2>
           </div>
         </div>
         <div class="owl-carousel owl-theme">
+       
           <div class="item">
-            <img src="{{ asset('images') }}/299597394_465472012256219_7350261229131616474_n.jpg" alt="Course #1">
+            <img src="{{ asset('images') }}/315248603_427590252915084_6505475989415432111_n.jpg" alt="Course #2">
             <div class="down-content">
-              <h4>SPARKS HUB</h4>
-              <p>You can get free images and videos for your websites by visiting Unsplash, Pixabay, and Pexels.</p>
-         
-            </div>
-          </div>
-          <div class="item">
-            <img src="{{ asset('images') }}/299683400_465472115589542_1404411560205968186_n.jpg" alt="Course #2">
-            <div class="down-content">
-              <h4>THE HEART OF INNOVATION</h4>
-              <p>Quisque cursus augue ut velit dictum, quis volutpat enim blandit. Maecenas a lectus ac ipsum porta.</p>
+              <h4>Librarian</h4>
+              <p>Teressa B. Oña</p>
           
             </div>
           </div>
           <div class="item">
-            <img src="{{ asset('images') }}/299684031_465472058922881_1767289535148568264_n.jpg" alt="Course #3">
+            <img src="{{ asset('images') }}/314346940_626280582622843_3116226670530069108_n.jpg" alt="Course #2">
             <div class="down-content">
-              <h4>THE COFFEE CONNECT BAR</h4>
-              <p>Pellentesque ultricies diam magna, auctor cursus lectus pretium nec. Maecenas finibus lobortis enim.</p>
-         
+              <h4>Earthquake Drill</h4>
+              <p>Sabay-sabay na nag-DUCK, COVER and HOLD ang mga guro at mag-aaral ng Boot High bilang pakikiisa sa isinigawang Fourth Quarter Nationwide Simultaneous Earthquake Drill (NSED) ngayong araw, ika-10 ng Nobyembre 2022, sa ganap na ika-9 ng umaga. Ito ay para sa  patuloy na pagpapaigting ng kahandaan ng bawat isa sa oras ng kalamidad at sakuna.</p>
+          
             </div>
           </div>
           <div class="item">
-            <img src="{{ asset('images') }}/299699339_465472122256208_8446490197902200109_n.jpg" alt="Course #4">
+            <img src="{{ asset('images') }}/314604222_625344846049750_2207003804842982810_n.jpg" alt="Course #2">
             <div class="down-content">
-              <h4>STUDENT CENTERED</h4>
-              <p>Download free images and videos for your websites by visiting Unsplash, Pixabay, and Pexels.</p>
-            
+              <h4>School Governance Council</h4>
+              <p>
+                Isinagawa ang School Governance Council validation sa pangunguna nina  Gng. Gerlie Lopez, EPS-SGOD, at G. Maximo Custodio, SGOD Chief.
+              </p>
+          
             </div>
           </div>
           <div class="item">
-            <img src="{{ asset('images') }}/299705932_465472055589548_1070346545644039642_n.jpg" alt="Course #5">
+            <img src="{{ asset('images') }}/311024046_609595340958034_524152786424996844_n.jpg" alt="Course #2">
             <div class="down-content">
-              <h4>THE COMMUNAL STUDY SPACE</h4>
-              <p>Pellentesque ultricies diam magna, auctor cursus lectus pretium nec. Maecenas finibus lobortis enim.</p>
+              <h4>Global Hand Washing Day </h4>
+              <p>
+                Bilang pakikiisa ng Boot National High School sa GLOBAL HANDWASHING DAY 2022 na may temang “Unite for Universal Hand Hygiene” sa pangunguna ng SSG Officers at Yes-O Club Officers kasama ang ilan pang mga guro, tinalakay at isinagawa ang tamang proseso ng paghuhugas ng kamay upang ang bawat isa ay manatiling ligtas at malayo sa anumang karamdaman. 
+              </p>
+          
             </div>
           </div>
+
           <div class="item">
-            <img src="{{ asset('images') }}/299973477_465472148922872_3577177968882640236_n.jpg" alt="Course #6">
+            <img src="{{ asset('images') }}/309506605_593055665945335_7638720675112248542_n.jpg" alt="Course #2">
             <div class="down-content">
-              <h4>ROBOTICS AND AUTOMATION</h4>
-              <p>Quisque cursus augue ut velit dictum, quis volutpat enim blandit. Maecenas a lectus ac ipsum porta.</p>
-         
-            </div>
-          </div>
-          <div class="item">
-            <img src="{{ asset('images') }}/300387148_465472022256218_2303637721217240224_n.jpg" alt="Course #6">
-            <div class="down-content">
-              <h4>BE OUR PARTNER</h4>
-              <p>Pellentesque ultricies diam magna, auctor cursus lectus pretium nec. Maecenas finibus lobortis enim.</p>
+              <h4>Agrifarm </h4>
+              <p>
+                Patuloy ang pagsuporta ng Pamahalaang Lungsod ng Tanauan sa pagpapalawig ng mga programa sa ilalim ng Gulayan sa Paaralan (GPP) gaya ng Project AGRI-Kultura, Organic Garden Model (OGM) at AGRI-Farm.
+              </p>
+          
             </div>
           </div>
        
+     
    
   
         </div>
@@ -327,7 +322,7 @@ https://templatemo.com/tm-557-grad-school
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <p><i class="fa fa-copyright"></i> Copyright 2022 by Balele Intergrated High School
+          <p><i class="fa fa-copyright"></i> Copyright 2022 by Boot NHS High School
           
            | Design: <a href="https://templatemo.com" rel="sponsored" target="_parent">TemplateMo</a></p>
         </div>
