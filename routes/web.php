@@ -135,6 +135,7 @@ Route::group(['prefix'=>'reports','as'=>'reports.'], function(){
 
 	Route::group(['prefix'=>'module','as'=>'module.'], function(){
 		Route::get('/', ['as' => 'index', 'uses' => 'ReportController@indexModuleReports']);
+		Route::get('/monthly/{month}/{year}', ['as' => 'index.monthly', 'uses' => 'ReportController@indexModuleReportsMonthly']);
 		Route::get('/export', ['as' => 'export', 'uses' => 'ReportController@indexModuleReportsExport']);
 	});
 

@@ -40,6 +40,9 @@ class ReportController extends Controller
     public function indexRequestedBookReports(Request $request){
         $filter_year = $request->filter_year ??  Carbon::now()->format('Y');
 
+        if($request->filter_month != 0){
+            return redirect()->route('reports.borrowed-book.index.monthly',[$request->filter_month,$request->filter_year]);
+        }
         //get requested books per month
         $requested_books = app(RequestedBookRepository::class)->query()->selectRaw('year(created_at) year, month(created_at) month, count(*) data')
         ->groupBy('year', 'month')
@@ -92,9 +95,6 @@ class ReportController extends Controller
 
     public function indexRequestedBookReportsMonthly($month,$year){
 
-   
-
-
         //daily
         $month_year = Carbon::parse($year.'-'.$month)->format('F-Y');
         $parsed_month_year_start = Carbon::parse($year.'-'.$month)->startOfMonth()->format('Y-m-d');
@@ -116,7 +116,6 @@ class ReportController extends Controller
                 'pending_count' => $requested->whereNull('approved_at')->whereNull('lost_at')->count()
             ];
         }
-        // dd($daily);
         $daily = json_encode($daily);
         return view('reports.book-report-monthly',compact('month_year','daily'));
     }
@@ -129,6 +128,10 @@ class ReportController extends Controller
     public function indexModuleReports(Request $request){
         $filter_year = $request->filter_year ??  Carbon::now()->format('Y');
     
+        if($request->filter_month != 0){
+            return redirect()->route('reports.module.index.monthly',[$request->filter_month,$request->filter_year]);
+        }
+
         //get created modules per month
         $created_modules = app(ModuleRepository::class)->query()->selectRaw('year(created_at) year, month(created_at) month, count(*) data')
         ->groupBy('year', 'month')
@@ -159,6 +162,33 @@ class ReportController extends Controller
             $arr_approved_modules[$month] = $approved_modules[$month]->data ?? 0;
         }
         return view('reports.module-report',compact('arr_approved_modules','arr_created_modules','filter_year'));
+    }
+
+     public function indexModuleReportsMonthly($month,$year){
+
+        //daily
+        $month_year = Carbon::parse($year.'-'.$month)->format('F-Y');
+        $parsed_month_year_start = Carbon::parse($year.'-'.$month)->startOfMonth()->format('Y-m-d');
+        $parsed_month_year_end = Carbon::parse($year.'-'.$month)->endOfMonth()->format('Y-m-d');
+        $period = CarbonPeriod::create($parsed_month_year_start, $parsed_month_year_end);
+        $daily = [];
+        foreach ($period as $date) {
+            $d = $date->format('Y-m-d');
+            $requested = app(ModuleRepository::class)->query()
+            ->with('user:id,name','approverAccount:id,name','subject:id,name')
+            ->whereDate('created_at','=',$d)
+            ->get();
+            $daily[] = [
+                'date' => $d,
+                'data' => $requested,
+                'total_count' => $requested->count(),
+                'approved_count' => $requested->whereNotNull('approved_at')->count(),
+                'pending_count' => $requested->whereNull('approved_at')->count()
+            ];
+        }
+        // dd($daily);
+        $daily = json_encode($daily);
+        return view('reports.module-report-monthly',compact('month_year','daily'));
     }
 
     public function indexModuleReportsExport(){

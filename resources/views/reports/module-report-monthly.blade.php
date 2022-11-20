@@ -4,8 +4,8 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{route('reports.index')}}"> Reports </a></li>
-            <li class="breadcrumb-item"><a href="{{route('reports.borrowed-book.index')}}"> Borrowed Books Report </a></li>
-            <li class="breadcrumb-item active" aria-current="page"> Borrowed Books Report Monthly </li>
+            <li class="breadcrumb-item"><a href="{{route('reports.module.index')}}"> Module Reports </a></li>
+            <li class="breadcrumb-item active" aria-current="page"> Module Reports Monthly </li>
         </ol>
     </nav>
 
@@ -35,50 +35,38 @@
                                 <table class="table table-sm mt-3 align-items-center bg-white border-custom">
                                    <thead>
                                         <tr>
-                                            <th scope="col"> Book </th>
-                                            <th scope="col"> Borrower </th>
+                                            <th scope="col"> Module </th>
+                                            <th scope="col"> Subject </th>
                                             <th scope="col"> Status </th>
-                                            <th scope="col"> Verified By / Approver </th>
-                                            <th scope="col"> Start - End </th>
+                                            <th scope="col"> Verified by / Approver </th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($data->data as $request_book)
+                                        @foreach ($data->data as $request_module)
                                            <tr>
                                                 <td> 
-                                                    <i class="fas fa-book"></i> {{$request_book->book->title}} 
-                                                    <br>
-                                                    ISBN# {{$request_book->book->isbn}}
+                                                    {{$request_module->title}}
                                                 </td>
-                                                <td> <i class="fas fa-user"></i> {{$request_book->user->name}} </td>
+                                                <td> {{$request_module->subject->name}} </td>
                                                 <td>  
-                                                    @if ($request_book->approved_at)
+                                                    @if ($request_module->approved_at)
                                                         <span class="text-success"> Approved </span>
-                                                        -
-                                                        @if (Carbon\Carbon::now()->gt(Carbon\Carbon::parse($request_book->end_date)) && $request_book->returned_at == null && $request_book->lost_at == null)
-                                                            <span class="text-danger"> Overdue </span>
-                                                        @elseif($request_book->returned_at == null && $request_book->lost_at == null && $request_book->approved_at)
-                                                            <span class="text-info"> Borrowed </span>
-                                                        @elseif($request_book->returned_at && $request_book->approved_at)
-                                                            <span class="text-primary"> Returned </span>
-                                                        @elseif($request_book->lost_at && $request_book->approved_at )
-                                                            <span class="text-danger"> Lost </span>
-                                                        @endif
+                                                    
                                                     @else
                                                         <span class="text-muted"> Pending </span>
                                                     @endif
                                                 
                                                 </td>
                                                 <td>
-                                                    @if ($request_book->approver_account)
-                                                        {{$request_book->approver_account ? $request_book->approver_account->name : 'n/a'}}
-                                                        <br> {{ Carbon\Carbon::parse($request_book->approved_at)->format('Y-m-d') }}
+                                                    @if ($request_module->approver_account)
+                                                        {{$request_module->approver_account ? $request_module->approver_account->name : 'n/a'}}
+                                                        <br> {{ Carbon\Carbon::parse($request_module->approved_at)->format('Y-m-d') }}
                                                     @else
                                                         --
                                                     @endif
                                         
                                                 </td>
-                                                <td> {{ Carbon\Carbon::parse($request_book->start_date)->format('Y-m-d') }} <strong class="ml-3 mr-3"> <i class="fas fa-caret-right"></i> </strong> {{ Carbon\Carbon::parse($request_book->end_date)->format('Y-m-d') }}</td>
+                                               
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -108,19 +96,12 @@
         var date = []
         var total = []
         var approved = []
-        var lost = []
 
         daily.forEach((data) => {
             date.push(data.date)
             total.push(data.total_count)
             approved.push(data.approved_count)
-            lost.push(data.lost_count)
         });
-
-        console.log(date);
-        console.log(total);
-        console.log(approved);
-        console.log(lost);
 
 
         callChart()
@@ -134,21 +115,15 @@
                     datasets: [
                         { 
                             data: total,
-                            label: "Total Books Requested Per Day",
+                            label: "Total Modules Created Per Day",
                             backgroundColor: ['rgba(63, 158, 237 , 0.2)'], 
                             borderColor:['rgb(0, 126, 225)']
                         },
                         { 
                             data: approved,
-                            label: "Approved Books Per Day",
+                            label: "Approved Modules Per Day",
                             backgroundColor: ['rgba(80, 174, 19)'], 
                             borderColor:['rgb(80, 174, 19)']
-                        },
-                        { 
-                            data: lost,
-                            label: "Lost Books Per Day",
-                            backgroundColor: ["rgba(255, 99, 132, 0.2)"], 
-                            borderColor:["rgb(255, 99, 132)"]
                         }
                     ]
                 },

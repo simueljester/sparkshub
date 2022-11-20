@@ -32,23 +32,23 @@
                 <thead>
                     <tr>
                         <th scope="col"></th>
-                        <th scope="col">Jan</th>
-                        <th scope="col">Feb</th>
-                        <th scope="col">Mar</th>
-                        <th scope="col">Apr</th>
-                        <th scope="col">May</th>
-                        <th scope="col">Jun</th>
-                        <th scope="col">Jul</th>
-                        <th scope="col">Aug</th>
-                        <th scope="col">Sep</th>
-                        <th scope="col">Oc</th>
-                        <th scope="col">Nov</th>
-                        <th scope="col">Dec</th>
+                         <th scope="col"> <a href="{{route('reports.module.index.monthly',[1,$filter_year])}}"> Jan </a>  </th>
+                        <th scope="col"> <a href="{{route('reports.module.index.monthly',[2,$filter_year])}}"> Feb </a>  </th>
+                        <th scope="col"> <a href="{{route('reports.module.index.monthly',[3,$filter_year])}}"> Mar </a>  </th>
+                        <th scope="col"> <a href="{{route('reports.module.index.monthly',[4,$filter_year])}}"> Apr </a>  </th>
+                        <th scope="col"> <a href="{{route('reports.module.index.monthly',[5,$filter_year])}}"> May </a>  </th>
+                        <th scope="col"> <a href="{{route('reports.module.index.monthly',[6,$filter_year])}}"> Jun </a>  </th>
+                        <th scope="col"> <a href="{{route('reports.module.index.monthly',[7,$filter_year])}}"> Jul </a>  </th>
+                        <th scope="col"> <a href="{{route('reports.module.index.monthly',[8,$filter_year])}}"> Aug </a>  </th>
+                        <th scope="col"> <a href="{{route('reports.module.index.monthly',[9,$filter_year])}}"> Sep </a> </th>
+                        <th scope="col"> <a href="{{route('reports.module.index.monthly',[10,$filter_year])}}"> Oct </a>  </th>
+                        <th scope="col"> <a href="{{route('reports.module.index.monthly',[11,$filter_year])}}"> Nov </a>  </th>
+                        <th scope="col"> <a href="{{route('reports.module.index.monthly',[12,$filter_year])}}"> Dec </a> </th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td><strong class="text-primary"> All Created Modules </strong></td>
+                        <td><strong class="text-primary"  style="text-decoration: underline;"> All Created Modules </strong></td>
                         @foreach ($arr_created_modules as $module )
                             <td> {{$module}} </td>
                         @endforeach
@@ -84,6 +84,23 @@
                                 @for ($i = $now; $i >= $last; $i--)
                                     <option value="{{ $i }}" {{$filter_year == $i ? 'selected' : null}}>{{ $i }}</option>
                                 @endfor
+                            </select>
+                            <br>
+                            <small class="text-muted"> Select Month </small>
+                            <select name="filter_month" id="filter_month" class="form-control">
+                                <option value="0"> Month </option>
+                               <option value="1"> January </option>
+                               <option value="2"> February </option>
+                               <option value="3"> March </option>
+                               <option value="4"> April </option>
+                               <option value="5"> May </option>
+                               <option value="6"> June </option>
+                               <option value="7"> July </option>
+                               <option value="8"> August </option>
+                               <option value="9"> September </option>
+                               <option value="10"> October </option>
+                               <option value="11"> November </option>
+                               <option value="12"> December </option>
                             </select>
                         </div>
                     </div>
