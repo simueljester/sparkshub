@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Excel;
 use Carbon\Carbon;
+use Carbon\CarbonPeriod;
 use App\Exports\BookExport;
 use Illuminate\Http\Request;
 use App\Exports\ModuleExport;
@@ -87,6 +88,37 @@ class ReportController extends Controller
         }
 
         return view('reports.book-report',compact('filter_year','arr_requested_books','arr_approved','arr_lost'));
+    }
+
+    public function indexRequestedBookReportsMonthly($month,$year){
+
+   
+
+
+        //daily
+        $month_year = Carbon::parse($year.'-'.$month)->format('F-Y');
+        $parsed_month_year_start = Carbon::parse($year.'-'.$month)->startOfMonth()->format('Y-m-d');
+        $parsed_month_year_end = Carbon::parse($year.'-'.$month)->endOfMonth()->format('Y-m-d');
+        $period = CarbonPeriod::create($parsed_month_year_start, $parsed_month_year_end);
+        $daily = [];
+        foreach ($period as $date) {
+            $d = $date->format('Y-m-d');
+            $requested = app(RequestedBookRepository::class)->query()
+            ->with('user:id,name','approverAccount:id,name','book:id,title,isbn')
+            ->whereDate('created_at','=',$d)
+            ->get();
+            $daily[] = [
+                'date' => $d,
+                'data' => $requested,
+                'total_count' => $requested->count(),
+                'approved_count' => $requested->whereNotNull('approved_at')->count(),
+                'lost_count' => $requested->whereNotNull('lost_at')->count(),
+                'pending_count' => $requested->whereNull('approved_at')->whereNull('lost_at')->count()
+            ];
+        }
+        // dd($daily);
+        $daily = json_encode($daily);
+        return view('reports.book-report-monthly',compact('month_year','daily'));
     }
 
     public function indexRequestedBookReportsExport(){

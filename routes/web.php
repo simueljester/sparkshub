@@ -129,6 +129,7 @@ Route::group(['prefix'=>'reports','as'=>'reports.'], function(){
 
 	Route::group(['prefix'=>'borrowed-book','as'=>'borrowed-book.'], function(){
 		Route::get('/', ['as' => 'index', 'uses' => 'ReportController@indexRequestedBookReports']);
+		Route::get('/monthly/{month}/{year}', ['as' => 'index.monthly', 'uses' => 'ReportController@indexRequestedBookReportsMonthly']);
 		Route::get('/export', ['as' => 'export', 'uses' => 'ReportController@indexRequestedBookReportsExport']);
 	});
 
