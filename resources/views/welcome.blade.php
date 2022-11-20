@@ -51,6 +51,25 @@ TemplateMo 557 Grad School
 https://templatemo.com/tm-557-grad-school
 
 -->
+<style>
+  .collapsible-custom {
+
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+.content-collapse {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+
+</style>
   </head>
 
 <body>
@@ -80,7 +99,7 @@ https://templatemo.com/tm-557-grad-school
   <!-- ***** Main Banner Area Start ***** -->
   <section class="section main-banner" id="top" data-section="section1">
       <video autoplay muted loop id="bg-video">
-          <source src="{{ asset('web') }}/images/course-video.mp4" type="video/mp4" />
+          <source src="{{ asset('web') }}/images/20221117_1453421.mp4" type="video/mp4" />
       </video>
 
       <div class="video-overlay header-text">
@@ -230,51 +249,57 @@ https://templatemo.com/tm-557-grad-school
         </div>
         <div class="owl-carousel owl-theme">
        
-          <div class="item">
-            <img src="{{ asset('images') }}/315248603_427590252915084_6505475989415432111_n.jpg" alt="Course #2">
+          <div class="item" >
+            <img style="height: 250px;" src="{{ asset('images') }}/315248603_427590252915084_6505475989415432111_n.jpg" alt="Course #2">
             <div class="down-content">
-              <h4>Librarian</h4>
-              <p>Teressa B. Oña</p>
-          
+              <h4 class="collapsible-custom">Librarian  </h4>
+              <div class="content-collapse p-3">
+                  <p>Teressa B. Oña</p>
+              </div>
             </div>
           </div>
           <div class="item">
-            <img src="{{ asset('images') }}/314346940_626280582622843_3116226670530069108_n.jpg" alt="Course #2">
+            
+            <img style="height: 250px;" src="{{ asset('images') }}/314346940_626280582622843_3116226670530069108_n.jpg" alt="Course #2">
             <div class="down-content">
-              <h4>Earthquake Drill</h4>
-              <p>Sabay-sabay na nag-DUCK, COVER and HOLD ang mga guro at mag-aaral ng Boot High bilang pakikiisa sa isinigawang Fourth Quarter Nationwide Simultaneous Earthquake Drill (NSED) ngayong araw, ika-10 ng Nobyembre 2022, sa ganap na ika-9 ng umaga. Ito ay para sa  patuloy na pagpapaigting ng kahandaan ng bawat isa sa oras ng kalamidad at sakuna.</p>
-          
+              <h4 class="collapsible-custom">Earthquake Drill</h4>
+              <div class="content-collapse p-3"> 
+                <p>Sabay-sabay na nag-DUCK, COVER and HOLD ang mga guro at mag-aaral ng Boot High bilang pakikiisa sa isinigawang Fourth Quarter Nationwide Simultaneous Earthquake Drill (NSED) ngayong araw, ika-10 ng Nobyembre 2022, sa ganap na ika-9 ng umaga. Ito ay para sa  patuloy na pagpapaigting ng kahandaan ng bawat isa sa oras ng kalamidad at sakuna.</p>
+              </div>
             </div>
           </div>
           <div class="item">
-            <img src="{{ asset('images') }}/314604222_625344846049750_2207003804842982810_n.jpg" alt="Course #2">
+            <img style="height: 250px;" src="{{ asset('images') }}/314604222_625344846049750_2207003804842982810_n.jpg" alt="Course #2">
             <div class="down-content">
-              <h4>School Governance Council</h4>
-              <p>
-                Isinagawa ang School Governance Council validation sa pangunguna nina  Gng. Gerlie Lopez, EPS-SGOD, at G. Maximo Custodio, SGOD Chief.
-              </p>
-          
+              <h4 class="collapsible-custom">School Governance Council</h4>
+              <div class="content-collapse p-3"> 
+                <p>
+                  Isinagawa ang School Governance Council validation sa pangunguna nina  Gng. Gerlie Lopez, EPS-SGOD, at G. Maximo Custodio, SGOD Chief.
+                </p>
+              </div>
             </div>
           </div>
           <div class="item">
-            <img src="{{ asset('images') }}/311024046_609595340958034_524152786424996844_n.jpg" alt="Course #2">
+            <img style="height: 250px;" src="{{ asset('images') }}/311024046_609595340958034_524152786424996844_n.jpg" alt="Course #2">
             <div class="down-content">
-              <h4>Global Hand Washing Day </h4>
-              <p>
-                Bilang pakikiisa ng Boot National High School sa GLOBAL HANDWASHING DAY 2022 na may temang “Unite for Universal Hand Hygiene” sa pangunguna ng SSG Officers at Yes-O Club Officers kasama ang ilan pang mga guro, tinalakay at isinagawa ang tamang proseso ng paghuhugas ng kamay upang ang bawat isa ay manatiling ligtas at malayo sa anumang karamdaman. 
-              </p>
-          
+              <h4 class="collapsible-custom">Global Hand Washing Day </h4>
+              <div class="content-collapse p-3"> 
+                <p>
+                  Bilang pakikiisa ng Boot National High School sa GLOBAL HANDWASHING DAY 2022 na may temang “Unite for Universal Hand Hygiene” sa pangunguna ng SSG Officers at Yes-O Club Officers kasama ang ilan pang mga guro, tinalakay at isinagawa ang tamang proseso ng paghuhugas ng kamay upang ang bawat isa ay manatiling ligtas at malayo sa anumang karamdaman. 
+                </p>
+              </div>
             </div>
           </div>
 
           <div class="item">
-            <img src="{{ asset('images') }}/309506605_593055665945335_7638720675112248542_n.jpg" alt="Course #2">
+            <img style="height: 250px;" src="{{ asset('images') }}/309506605_593055665945335_7638720675112248542_n.jpg" alt="Course #2">
             <div class="down-content">
-              <h4>Agrifarm </h4>
-              <p>
-                Patuloy ang pagsuporta ng Pamahalaang Lungsod ng Tanauan sa pagpapalawig ng mga programa sa ilalim ng Gulayan sa Paaralan (GPP) gaya ng Project AGRI-Kultura, Organic Garden Model (OGM) at AGRI-Farm.
-              </p>
-          
+              <h4 class="collapsible-custom">Agrifarm </h4>
+              <div class="content-collapse p-3"> 
+                <p>
+                  Patuloy ang pagsuporta ng Pamahalaang Lungsod ng Tanauan sa pagpapalawig ng mga programa sa ilalim ng Gulayan sa Paaralan (GPP) gaya ng Project AGRI-Kultura, Organic Garden Model (OGM) at AGRI-Farm.
+                </p>
+              </div>
             </div>
           </div>
        
@@ -293,6 +318,23 @@ https://templatemo.com/tm-557-grad-school
     <div id="fb-customer-chat" class="fb-customerchat">
     </div>
 
+    <script>
+    var coll = document.getElementsByClassName("collapsible-custom");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+          content.style.display = "none";
+        } else {
+          content.style.display = "block";
+        }
+      });
+    }
+</script>
+    
     <script>
       var chatbox = document.getElementById('fb-customer-chat');
       chatbox.setAttribute("page_id", "105694865647257");
