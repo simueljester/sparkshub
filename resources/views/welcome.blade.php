@@ -69,6 +69,10 @@ https://templatemo.com/tm-557-grad-school
   background-color: #f1f1f1;
 }
 
+.customfont {
+  font-family: "Lucida Handwriting", "Cursive", monospace;
+  font-size: 15px;
+}
 </style>
   </head>
 
@@ -78,7 +82,11 @@ https://templatemo.com/tm-557-grad-school
   <!--header-->
   <header class="main-header clearfix" role="header">
     <div class="logo">
-      <a href="/"> <img src="{{ asset('images') }}/bootnhslogo.png" width="50" alt=""> <em>BOOT</em> National High School</a>
+      <a href="/"> 
+        <img src="{{ asset('images') }}/bootnhslogo.png" width="50" alt=""> 
+        <em>BOOT</em> National High School  <span class="small customfont text-capitalize">Boot High Learn for Life! </span> 
+      </a>
+  
     </div>
     <a href="#menu" class="menu-link"><i class="fa fa-bars"></i></a>
     <nav id="menu" class="main-nav" role="navigation">
@@ -104,9 +112,12 @@ https://templatemo.com/tm-557-grad-school
 
       <div class="video-overlay header-text">
           <div class="caption">
-             <a href="/"> <img src="{{ asset('images') }}/bootnhslogo.png" width="100" alt=""></a>
+              <a href="/"> <img src="{{ asset('images') }}/deped.png" width="100" alt=""></a>
+              <a href="/"> <img src="{{ asset('images') }}/bootnhslogo.png" width="150" alt=""></a>
+              <a href="/"> <img src="{{ asset('images') }}/deped logo small3_PNG.webp" width="100" alt=""></a>
              <br> 
              <h6 class="mt-1">Tanauan City</h6>
+             <img src="{{ asset('images') }}/amsterdam.png" width="500" alt="">
               <h2><em>BOOT</em> National High School  </h2>
          
           </div>
