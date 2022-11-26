@@ -62,7 +62,8 @@
                 <div class="form-group">
                     <small class="text-muted"> Password </small>
                     <input type="password" onkeyup="checkPasswordStrength(this.value)" name="password" id="password" class="form-control border-custom" required>
-                    <small id="pass_strength"></small>
+                    <input type="checkbox" onclick="showPass()"> <small class="ml-1"> Show Password </small> 
+                    <small class="ml-3" id="pass_strength"></small>
                 </div>
 
                 <div class="form-group">
@@ -74,7 +75,7 @@
                     </select>
                 </div>
 
-                <button class="btn btn-success border-custom"> Save User </button>
+                <button class="btn btn-success border-custom" id="btn-create-save"> Save User </button>
 
             </div>
         </div>
@@ -89,25 +90,43 @@
             switch(true){
                 case /^(?:([A-Z])*){8,12}$/.test(input):
                 level = 1;
-                msg.html('Very Weak').attr("class","text-danger");
+                msg.html('').attr("class","text-danger");
+            
+                document.getElementById("btn-create-save").disabled = false;
+                document.getElementById('btn-create-save').innerHTML = 'Save User';
                 break;
 
                 case /^(?:([A-Z])*([a-z])*){8,12}$/.test(input):
                 level = 2;
                 msg.html('Weak').attr("class","text-warning");
+                document.getElementById("btn-create-save").disabled = true;
+                document.getElementById('btn-create-save').innerHTML = 'Weak Password';
                 break;
 
                 case /^(?:([A-Z])*([a-z])*(\d)*){8,12}$/.test(input):
                 level = 3;
                 msg.html('Acceptable').attr("class","text-primary");
+                document.getElementById("btn-create-save").disabled = false;
+                document.getElementById('btn-create-save').innerHTML = 'Save User';
                 break;
 
                 case /^(?:([A-Z])*([a-z])*(\d)*(\W)*){8,12}$/.test(input):
                 level = 4;
                 msg.html('Strong').attr("class","text-success");
+                document.getElementById("btn-create-save").disabled = false;
+                document.getElementById('btn-create-save').innerHTML = 'Save User';
                 break;
             }
             
+        }
+
+        function showPass(){
+            var x = document.getElementById("password");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
         }
     </script>
 @endsection
