@@ -371,7 +371,7 @@ https://templatemo.com/tm-557-grad-school
     </script>
 
 
-  <footer>
+  {{-- <footer>
     <div class="container">
       <div class="row">
         <div class="col-md-12">
@@ -381,7 +381,7 @@ https://templatemo.com/tm-557-grad-school
         </div>
       </div>
     </div>
-  </footer>
+  </footer> --}}
 
   <!-- Scripts -->
   <!-- Bootstrap core JavaScript -->
