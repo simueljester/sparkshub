@@ -41,7 +41,8 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                                             </div>
-                                            <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="{{ __('Password') }}" type="password" value="" required>
+                                            <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" id="password" placeholder="{{ __('Password') }}" type="password" value="" required>
+                                    
                                         </div>
                                         @if ($errors->has('password'))
                                             <span class="invalid-feedback" style="display: block;" role="alert">
@@ -49,12 +50,14 @@
                                             </span>
                                         @endif
                                     </div>
-                                    <div class="custom-control custom-control-alternative custom-checkbox">
+                                           
+                                            <input type="checkbox" onclick="showPass()"> Show Password
+                                    {{-- <div class="custom-control custom-control-alternative custom-checkbox">
                                         <input class="custom-control-input" name="remember" id="customCheckLogin" type="checkbox" {{ old('remember') ? 'checked' : '' }}>
                                         <label class="custom-control-label" for="customCheckLogin">
                                             <span class="text-muted">{{ __('Remember me') }}</span>
                                         </label>
-                                    </div>
+                                    </div> --}}
                                     <div class="text-center">
                                         <button type="submit" class="btn btn-primary my-4">{{ __('Sign in') }}</button>
                                     </div>
@@ -81,4 +84,16 @@
             </div>
         </div>
     </div>
+
+    <script>
+        
+        function showPass(){
+            var x = document.getElementById("password");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+    </script>
 @endsection
