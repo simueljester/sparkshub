@@ -57,6 +57,7 @@ class RequestedBookController extends Controller
 
     public function save(Request $request){
        
+        //custom validations
         $start_date = Carbon::now()->startOfDay();
         $end_date = Carbon::parse($request->end_date)->endOfDay();
         $diff = $end_date->diffInDays($start_date);
@@ -65,9 +66,19 @@ class RequestedBookController extends Controller
         }
         $book = app(BookRepository::class)->find($request->book_id);
         if($book->copies == 0){
-            return redirect()->back()->with('error', 'There are no copies available for this book');
+            return redirect()->route('library.books')->with('error', 'There are no copies available for this book');
         }
 
+        $has_borrowed_same_book = app(RequestedBookRepository::class)->query()
+        ->whereBookId($request->book_id)
+        ->whereUserId($request->user_id)
+        ->whereDate('created_at', Carbon::today())->get();
+
+        if($has_borrowed_same_book->count() >= 2){
+            return redirect()->route('library.books')->with('error', 'You have reached the maximum 2 request per day at the same book.');
+        }
+
+        //queries
         DB::beginTransaction();
         try {
             $data = [
