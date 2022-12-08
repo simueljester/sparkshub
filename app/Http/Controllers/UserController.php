@@ -182,8 +182,14 @@ class UserController extends Controller
                 'password'              => $request->password ? Hash::make($request->password) : $user->password
             ];
         
-            app(UserRepository::class)->update($request->id,$data);
-            return redirect()->back()->with('success', 'User updated!');
+            try{
+                app(UserRepository::class)->update($request->id,$data);
+                return redirect()->back()->with('success', 'User updated!');
+            }
+            catch(\Exception $e) {
+                return redirect()->route('users.create')->with('error', 'The data you are trying to input is invalid. Please make sure the ff: 1.) Student No. must not contain special characters. 2.) Email Address must have "@" to be considered as email ');
+            }
+
         }else{
             return redirect()->route('users.index')->with('error', 'User not found!');
         }

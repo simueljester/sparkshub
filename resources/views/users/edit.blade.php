@@ -27,9 +27,9 @@
                         <div class="form-group">
                             <small class="text-muted"> Student Number </small>
                             @if ($user->role == 'student')
-                                <input type="text" name="student_number" id="student_number" class="form-control border-custom" value="{{$user->student_number}}">
+                                <input type="number" name="student_number" id="student_number" class="form-control border-custom" value="{{$user->student_number}}">
                             @else
-                                <input type="text" name="student_number" id="student_number" class="form-control border-custom" value="N/a" disabled>
+                                <input type="number" name="student_number" id="student_number" class="form-control border-custom" value="N/a" disabled>
                             @endif
                             
                         </div>

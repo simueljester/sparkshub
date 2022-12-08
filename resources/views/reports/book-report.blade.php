@@ -76,32 +76,7 @@
         </div>
         <div class="card-body bg-secondary">
             <div class="row p-5">
-                <div class="col-sm-4">
-                    <div class="mb-3"> <strong class="text-muted small"> Most Borrowed Books </strong> </div> 
-                    <table class="table align-items-center bg-white border-custom">
-                        <thead>
-                            <tr>
-                                <th scope="col"> Book Name </th>
-                                <th scope="col"> Borrowed Qty </th>
-                                <th scope="col"> Year </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($books as $book)
-                                <tr>
-                                    <td> <i class="fas fa-book"></i> {{$book->title}} </td>
-                                    <td> <strong> {{$book->borrowed_qty}} </strong>  </td>
-                                    <td> {{$filter_year}}  </td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="3"> No records found </td>
-                                </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
-                </div>
-                <div class="col-sm-4">
+                <div class="col-sm-6">
                     <div class="mb-3"> <strong class="text-muted small"> Most Borrower By Grade Level</strong> </div> 
                     <table class="table align-items-center bg-white border-custom">
                         <thead>
@@ -129,9 +104,7 @@
                             @endforelse
                         </tbody>
                     </table>
-                </div>
-                <div class="col-sm-4">
-                    <div class="mb-3"> <strong class="text-muted small"> Most Borrower By User </strong> </div> 
+                    <div class="mb-3 mt-5"> <strong class="text-muted small"> Most Borrower By User </strong> </div> 
                     <table class="table align-items-center bg-white border-custom">
                         <thead>
                             <tr>
@@ -145,7 +118,13 @@
                             @forelse ($users as $user)
                                 <tr>
                                     <td class="text-capitalize"> <i class="fas fa-user"></i> {{$user->name}} </td>
-                                    <td> <strong> {{$user->borrowed_qty}} </strong> </td>
+                                    <td> 
+                                        @if ($user->borrowed_qty == 0)
+                                            <span class="text-danger"> 0 </span>
+                                        @else
+                                            <strong> {{$user->borrowed_qty}} </strong> 
+                                        @endif
+                                    </td>
                                     <td> 
                                         @if ($user->grade_level == 0)
                                             n/a
@@ -158,6 +137,39 @@
                             @empty
                                 <tr>
                                     <td colspan="4"> No records found </td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+    
+                <div class="col-sm-6">
+               
+                    <div class="mb-3"> <strong class="text-muted small"> Most Borrowed Books </strong> </div> 
+                    <table class="table align-items-center bg-white border-custom">
+                        <thead>
+                            <tr>
+                                <th scope="col"> Book Name </th>
+                                <th scope="col"> Borrowed Qty </th>
+                                <th scope="col"> Year </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($books as $book)
+                                <tr>
+                                    <td> <i class="fas fa-book"></i> {{$book->title}} </td>
+                                    <td> 
+                                        @if ($book->borrowed_qty == 0)
+                                            <span class="text-danger"> 0 </span>
+                                        @else
+                                            <strong> {{$book->borrowed_qty}} </strong> 
+                                        @endif      
+                                    </td>
+                                    <td> {{$filter_year}}  </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="3"> No records found </td>
                                 </tr>
                             @endforelse
                         </tbody>
