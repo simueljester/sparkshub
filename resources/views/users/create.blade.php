@@ -53,7 +53,7 @@
             </div>
                 <div class="form-group">
                     <small class="text-muted"> Student No. (required if student account) </small>
-                    <input type="text" name="student_no" id="student_no" class="form-control border-custom">
+                    <input type="number" name="student_no" id="student_no" class="form-control border-custom">
                 </div>
                 <div class="form-group">
                     <small class="text-muted"> Email </small>
