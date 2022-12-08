@@ -56,8 +56,13 @@ class RequestedBookController extends Controller
     }
 
     public function save(Request $request){
+       
         $start_date = Carbon::now()->startOfDay();
         $end_date = Carbon::parse($request->end_date)->endOfDay();
+        $diff = $end_date->diffInDays($start_date);
+        if($diff > 5){
+            return redirect()->route('library.books')->with('error', 'Maximum of 5 days to borrow this book');
+        }
         $book = app(BookRepository::class)->find($request->book_id);
         if($book->copies == 0){
             return redirect()->back()->with('error', 'There are no copies available for this book');
