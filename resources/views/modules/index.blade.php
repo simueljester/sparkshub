@@ -35,6 +35,7 @@
                     <thead>
                         <tr>
                             <th scope="col">Title</th>
+                            <th scope="col">Grade Level</th>
                             <th scope="col">Creator</th>
                             <th scope="col">Downloadable</th>
                             <th scope="col">Uploaded Content</th>
@@ -48,6 +49,9 @@
                                 <td>
                                     <strong style="font-size:15px;" class="text-uppercase"> <i class="far fa-newspaper text-warning"></i> {{$module->title}} </strong> <br>
                                     <small> {{$module->subject->name}} </small>
+                                </td>
+                                <td>
+                                    {{$module->grade_level}}
                                 </td>
                                 <td>
                                     {{$module->user->name}} <br>

@@ -16,6 +16,7 @@ class Module extends Model
         'description',
         'user_id',
         'subject_id',
+        'grade_level',
         'downloadable',
         'approved_at',
         'approver',

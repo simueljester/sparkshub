@@ -17,6 +17,8 @@ class BookController extends Controller
     }
 
     public function index(Request $request){
+        $keyword = $request->keyword ?? null;
+        $category_filter = $request->category_filter ?? null;
         Paginator::useBootstrap();
         $status = $request->status ?? 'active';
         $books = app(BookRepository::class)->query()
@@ -26,10 +28,21 @@ class BookController extends Controller
         ->when($status == 'active', function ($q, $search) {
                 $q->whereNull('archived_at');
         })
+        ->when($keyword, function ($query) use ($keyword) {
+            $query->where('title', 'like', '%' . $keyword . '%')
+            ->orWhere('isbn', 'like', '%' . $keyword . '%')
+            ->orWhere('author', 'like', '%' . $keyword . '%'); 
+   
+        })
+        ->when($category_filter, function ($query) use ($category_filter) {
+            $query->whereCategoryId($category_filter);
+        })
         ->with('category:id,name')
         ->orderBy('title','ASC')
         ->paginate(10);
-        return view('books.index',compact('books','status'));
+
+        $categories = app(BookCategoryRepository::class)->query()->orderBy('name','ASC')->get();
+        return view('books.index',compact('books','status','categories','keyword','category_filter'));
     }
 
     public function create(){
@@ -42,6 +55,7 @@ class BookController extends Controller
             'title'             => 'required',
             'isbn'              => 'required|unique:books,isbn',
             'publication_date'  => 'required|date',
+            'grade_level'       => 'required|integer',
             'category'          => 'required',
             'copies'            => 'required|integer',
             'author'            => 'required'
@@ -52,6 +66,7 @@ class BookController extends Controller
             'title'             => $request->title,
             'publication_date'  => $request->publication_date,
             'category_id'       => $request->category,
+            'grade_level'       => $request->grade_level,
             'copies'            => $request->copies,
             'author'            => $request->author
         ];
@@ -69,6 +84,7 @@ class BookController extends Controller
         $request->validate([
             'title'             => 'required',
             'publication_date'  => 'required|date',
+            'grade_level'       => 'required|integer',
             'category'          => 'required',
             'copies'            =>'required|integer',
             'author'            => 'required'
@@ -79,6 +95,7 @@ class BookController extends Controller
             'title'             => $request->title,
             'publication_date'  => $request->publication_date,
             'category_id'       => $request->category,
+            'grade_level'       => $request->grade_level,
             'copies'            => $request->copies,
             'author'            => $request->author
         ];

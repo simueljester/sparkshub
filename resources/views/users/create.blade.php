@@ -65,6 +65,18 @@
                     <input type="checkbox" onclick="showPass()"> <small class="ml-1"> Show Password </small> 
                     <small class="ml-3" id="pass_strength"></small>
                 </div>
+                <div class="form-group">
+                    <small class="text-muted"> Grade Level (required if student account)</small>
+                    <select name="grade_level" id="grade_level" class="form-control border-custom" required>
+                        <option value="0"> Select </option>
+                        <option value="7"> Grade 7 </option>
+                        <option value="8"> Grade 8 </option>
+                        <option value="9"> Grade 9 </option>
+                        <option value="10"> Grade 10 </option>
+                        <option value="11"> Grade 11 </option>
+                        <option value="12"> Grade 12 </option>
+                    </select>
+                </div>
 
                 <div class="form-group">
                     <small class="text-muted"> Role </small>

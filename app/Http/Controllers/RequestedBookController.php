@@ -21,6 +21,7 @@ class RequestedBookController extends Controller
     }
 
     public function index(Request $request){
+        
         Paginator::useBootstrap();
         $three_days = Carbon::now()->addDays(3);
         $filter = $request->filter ?? null;

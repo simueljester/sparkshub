@@ -22,6 +22,7 @@
                     <th> Last Name </th>
                     <th> Email Address </th>
                     <th> Role </th>
+                    <th> Grade Level </th>
                     <th> Remarks </th>
                 </thead>
                 <tbody>
@@ -32,6 +33,7 @@
                             <td> {{$user['last_name']}} </td>
                             <td> {{$user['email']}} </td>
                             <td> {{$user['role']}} </td>
+                            <td> {{$user['grade_level']}} </td>
                             <td>
                                 @if(in_array($user['email'], $existing_emails))
                                     &nbsp&nbsp<span class="text-danger"> <i class="fas fa-times-circle"></i> Existing Email </span>

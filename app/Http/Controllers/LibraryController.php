@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Module;
 use Illuminate\Http\Request;
 use App\Http\Repositories\BookRepository;
@@ -24,11 +25,13 @@ class LibraryController extends Controller
         $keyword = $request->keyword ?? null;
         $category_filter = $request->category_filter ?? null;
         $books = app(BookRepository::class)->query()
+        ->when(Auth::user()->role == 'student', function ($query) {
+            $query->whereGradeLevel(Auth::user()->grade_level); 
+        })
         ->when($keyword, function ($query) use ($keyword) {
             $query->where('title', 'like', '%' . $keyword . '%')
             ->orWhere('isbn', 'like', '%' . $keyword . '%')
             ->orWhere('author', 'like', '%' . $keyword . '%'); 
-   
         })
         ->when($category_filter, function ($query) use ($category_filter) {
             $query->whereCategoryId($category_filter);
@@ -49,6 +52,9 @@ class LibraryController extends Controller
         $subject_filter = $request->subject_filter ?? null;
 
         $modules = app(ModuleRepository::class)->query()
+        ->when(Auth::user()->role == 'student', function ($query) {
+            $query->whereGradeLevel(Auth::user()->grade_level); 
+        })
         ->when($keyword, function ($query) use ($keyword) {
             $query->where('title', 'like', '%' . $keyword . '%');
         })

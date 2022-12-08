@@ -31,6 +31,17 @@
                             <small class="text-muted"> Publication Date </small>
                             <input value="{{ Carbon\Carbon::parse($book->publication_date)->format('Y-m-d')}}" type="date" name="publication_date" id="publication_date" class="form-control border-custom" required>
                         </div>
+                        <div class="form-group">
+                            <small class="text-muted"> Grade Level </small>
+                            <select name="grade_level" id="grade_level" class="form-control border-custom" required>
+                                <option value="7" {{$book->grade_level == 7 ? 'Selected' : null}}> Grade 7 </option>
+                                <option value="8" {{$book->grade_level == 8 ? 'Selected' : null}}> Grade 8 </option>
+                                <option value="9" {{$book->grade_level == 9 ? 'Selected' : null}}> Grade 9 </option>
+                                <option value="10" {{$book->grade_level == 10 ? 'Selected' : null}}> Grade 10 </option>
+                                <option value="11" {{$book->grade_level == 11 ? 'Selected' : null}}> Grade 11 </option>
+                                <option value="12" {{$book->grade_level == 12 ? 'Selected' : null}}> Grade 12 </option>
+                            </select>
+                        </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">

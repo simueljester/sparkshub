@@ -48,7 +48,8 @@ class ModuleController extends Controller
         $request->validate([
             'title'         => 'required',
             'description'   => 'required',
-            'subject_id'    => 'required'
+            'subject_id'    => 'required',
+            'grade_level'   => 'required|integer',
         ]);
         
         $data = [
@@ -56,6 +57,7 @@ class ModuleController extends Controller
             'description'   => $request->description,
             'user_id'       => Auth::user()->id,
             'subject_id'    => $request->subject_id,
+            'grade_level'   => $request->grade_level,
             'downloadable'  => $request->downloadable ?? 0
         ];
 
@@ -73,7 +75,8 @@ class ModuleController extends Controller
         $request->validate([
             'title'         => 'required',
             'description'   => 'required',
-            'subject_id'    => 'required'
+            'subject_id'    => 'required',
+            'grade_level'   => 'required|integer',
         ]);
         
         $data = [
@@ -81,6 +84,7 @@ class ModuleController extends Controller
             'description'   => $request->description,
             'user_id'       => Auth::user()->id,
             'subject_id'    => $request->subject_id,
+            'grade_level'   => $request->grade_level,
             'downloadable'  => $request->downloadable ?? 0
         ];
 

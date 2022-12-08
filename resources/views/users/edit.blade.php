@@ -26,8 +26,27 @@
                         </div>
                         <div class="form-group">
                             <small class="text-muted"> Student Number </small>
-                            <input type="text" name="student_number" id="student_number" class="form-control border-custom" value="{{$user->student_number}}">
+                            @if ($user->role == 'student')
+                                <input type="text" name="student_number" id="student_number" class="form-control border-custom" value="{{$user->student_number}}">
+                            @else
+                                <input type="text" name="student_number" id="student_number" class="form-control border-custom" value="N/a" disabled>
+                            @endif
+                            
                         </div>
+                            @if ($user->role == 'student')
+                                <div class="form-group">
+                                    <small class="text-muted"> Grade Level </small>
+                                    <select name="grade_level" id="grade_level" class="form-control border-custom" required>
+                                        <option value="7" {{$user->grade_level == 7 ? 'Selected' : null}}> Grade 7 </option>
+                                        <option value="8" {{$user->grade_level == 8 ? 'Selected' : null}}> Grade 8 </option>
+                                        <option value="9" {{$user->grade_level == 9 ? 'Selected' : null}}> Grade 9 </option>
+                                        <option value="10" {{$user->grade_level == 10 ? 'Selected' : null}}> Grade 10 </option>
+                                        <option value="11" {{$user->grade_level == 11 ? 'Selected' : null}}> Grade 11 </option>
+                                        <option value="12" {{$user->grade_level == 12 ? 'Selected' : null}}> Grade 12 </option>
+                                    </select>
+                                </div>
+                            @endif
+                        
                         <div class="form-group">
                             <small class="text-muted"> Email Address </small>
                             <input type="email" name="email" id="email" class="form-control border-custom" value="{{$user->email}}">

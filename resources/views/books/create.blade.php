@@ -31,6 +31,17 @@
                             <small class="text-muted"> Publication Date </small>
                             <input type="date" name="publication_date" id="publication_date" class="form-control border-custom" required>
                         </div>
+                        <div class="form-group">
+                            <small class="text-muted"> Grade Level </small>
+                            <select name="grade_level" id="grade_level" class="form-control border-custom" required>
+                                <option value="7"> Grade 7 </option>
+                                <option value="8"> Grade 8 </option>
+                                <option value="9"> Grade 9 </option>
+                                <option value="10"> Grade 10 </option>
+                                <option value="11"> Grade 11 </option>
+                                <option value="12"> Grade 12 </option>
+                            </select>
+                        </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">

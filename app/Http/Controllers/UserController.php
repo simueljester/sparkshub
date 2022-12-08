@@ -57,7 +57,7 @@ class UserController extends Controller
     public function saveManual(Request $request){
       
         $request->validate([
-            'email'=> 'required|unique:users,email'
+            'email'         => 'required|unique:users,email',
         ]);
 
         if($request->role == 'student'){
@@ -65,6 +65,10 @@ class UserController extends Controller
             if($existing_student_number){
                 return redirect()->route('users.create')->with('error', 'Student No. already exist');
             }
+            if($request->grade_level == 0){
+                return redirect()->route('users.create')->with('error', 'Grade Level required');
+            }
+           
         }
 
         $data = [
@@ -74,6 +78,7 @@ class UserController extends Controller
             'student_number'        => $request->student_no,
             'email'                 => $request->email,
             'role'                  => $request->role,
+            'grade_level'           => $request->role == 'student' ? $request->grade_level : 0,
             'password'              => Hash::make($request->password)
         ];
 
@@ -106,7 +111,8 @@ class UserController extends Controller
             '*.first_name'   => 'required',
             '*.last_name'    => 'required',
             '*.email'        => 'required',
-            '*.role'         => 'required|in:student,teacher,librarian'
+            '*.role'         => 'required|in:student,teacher,librarian',
+            '*.grade_level'  => 'required',
         ])->validate();
 
         return view('users.create-check-upload',compact('uploaded_users','existing_emails','existing_student_number'));
@@ -127,6 +133,7 @@ class UserController extends Controller
                 'student_number'        => $student_number,
                 'email'                 => $user->email,
                 'role'                  => $user->role,
+                'grade_level'           => $user->role == 'student' ? $user->grade_level : 0,
                 'password'              => Hash::make('user1234')
             ];
 
@@ -144,14 +151,13 @@ class UserController extends Controller
         $request->validate([
             'fname'             => 'required',
             'lname'             => 'required',
-        
             'email'             => ['required',Rule::unique('users')->ignore($request->id)],
-            'role'              => 'required',
+            'role'              => 'required'
         ]);
 
         if($request->role == 'student'){
             $request->validate([
-                    'student_number'=> ['required_if:role,student',Rule::unique('users')->ignore($request->id)],
+                'student_number'=> ['required_if:role,student',Rule::unique('users')->ignore($request->id)],
             ]);
         }
         
@@ -164,6 +170,7 @@ class UserController extends Controller
                 'student_number'        => $request->student_number,
                 'email'                 => $request->email,
                 'role'                  => $request->role ?? $user->role,
+                'grade_level'           => $request->role == 'student' ? $request->grade_level : 0,
                 'password'              => $request->password ? Hash::make($request->password) : $user->password
             ];
         

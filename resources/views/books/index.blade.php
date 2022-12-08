@@ -22,6 +22,36 @@
         </form>
     </div>
    
+    <div class="card bg-secondary shadow mb-3">
+        <div class="card-body">
+            <form action="">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="form-group">
+                            <small class="text-muted">  Title / ISBN / Author </small>
+                            <input type="text" name="keyword" id="keyword" class="form-control border-custom" value="{{$keyword}}" placeholder="keyword...">
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <small class="text-muted"> Category</small>
+                            <select name="category_filter" id="category_filter" class="form-control border-custom">
+                                <option value="0"> All Category </option>
+                                @foreach ($categories as $category)
+                                    <option value="{{$category->id}}" {{$category_filter == $category->id ? 'selected' : null}}> {{$category->name}} </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-primary border-custom"> Search </button>
+                @if ($keyword || $category_filter != 0 || $category_filter)
+                    <a href="{{route('books.index')}}" class="btn btn-outline-secondary border-custom"> Clear Keyword </a>
+                @endif
+            </form>
+        </div>
+    </div>
+
     <div class="card bg-secondary shadow mt-1">
         <div class="card-header bg-white border-0">
             <strong> Book Master List </strong>
@@ -40,6 +70,7 @@
                         <tr>
                             <th scope="col">Title</th>
                             <th scope="col">Category</th>
+                            <th scope="col">Grade Level</th>
                             <th scope="col">Copies</th>
                             <th scope="col">Action</th>
                         </tr>
@@ -53,6 +84,9 @@
                                 </td>
                                 <td>
                                     {{$book->category->name}}
+                                </td>
+                                <td>
+                                    {{$book->grade_level}}
                                 </td>
                                 <td>
                                     @if ($book->copies == 0)

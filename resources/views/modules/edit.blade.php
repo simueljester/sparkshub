@@ -35,6 +35,17 @@
                         @endforelse
                     </select>
                 </div>
+                 <div class="form-group">
+                    <small class="text-muted"> Grade Level </small>
+                    <select name="grade_level" id="grade_level" class="form-control border-custom" required>
+                        <option value="7" {{$module->grade_level == 7 ? 'Selected' : null}}> Grade 7 </option>
+                        <option value="8" {{$module->grade_level == 8 ? 'Selected' : null}}> Grade 8 </option>
+                        <option value="9" {{$module->grade_level == 9 ? 'Selected' : null}}> Grade 9 </option>
+                        <option value="10" {{$module->grade_level == 10 ? 'Selected' : null}}> Grade 10 </option>
+                        <option value="11" {{$module->grade_level == 11 ? 'Selected' : null}}> Grade 11 </option>
+                        <option value="12" {{$module->grade_level == 12 ? 'Selected' : null}}> Grade 12 </option>
+                    </select>
+                </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="1" name="downloadable" id="flexCheckDefault" {{$module->downloadable == 1 ? 'checked' : null }}>
                     <label class="form-check-label" for="flexCheckDefault">

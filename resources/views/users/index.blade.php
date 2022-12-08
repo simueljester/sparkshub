@@ -56,6 +56,7 @@
                         <tr>
                             <th scope="col">Name</th>
                             <th scope="col">Student No</th>
+                            <th scope="col"> Grade Level </th>
                             <th scope="col">Role</th>
                             <th scope="col">Email</th>
                             <th scope="col">Action</th>
@@ -66,6 +67,7 @@
                             <tr>
                                 <td> <i class="fas fa-user"></i> {{$user->name}} </td>
                                 <td> {{$user->student_number ?? '--'}} </td>
+                                <td> {{$user->grade_level == 0 ? 'n/a' : $user->grade_level }} </td>
                                 <td>
                                     @if ($user->role == 'student')
                                         <span class="badge badge-pill badge-warning">Student</span>
