@@ -30,7 +30,8 @@ class LoginController extends Controller
 
         if ($user->archived_at) {// do your magic here
             Auth::logout();
-            return redirect('/login')->with('error', 'Your account is currently inactive. Please contact your administrator');   
+            $message = $user->archived_reason ?? 'Your account is currently inactive. Please contact your administrator';
+            return redirect('/login')->with('error', $message);   
         }
 
         $dt = new DateTime();

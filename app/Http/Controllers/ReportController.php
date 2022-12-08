@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use Excel;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
@@ -65,6 +66,7 @@ class ReportController extends Controller
         ->orderBy('year', 'desc')
         ->get();
 
+    
         $approved_books = $approved_books->filter(function ($item) use($filter_year) {
             return $item->year == $filter_year;
         })->values()->keyBy('month');
@@ -90,7 +92,51 @@ class ReportController extends Controller
             $arr_lost[$month] = $lost_books[$month]->data ?? 0;
         }
 
-        return view('reports.book-report',compact('filter_year','arr_requested_books','arr_approved','arr_lost'));
+        //get most requested books
+        $books = app(BookRepository::class)->query()->get()->keyBy('id');
+        $borrowed_qty = app(RequestedBookRepository::class)->query()->whereNotNull('approved_at')
+        ->whereYear('approved_at',$filter_year)
+        ->groupBy('book_id')
+        ->selectRaw('count(*) as total, book_id')
+        ->get()
+        ->keyBy('book_id');
+        
+        $books = $books->map(function($item, $key) use($borrowed_qty) {
+            $item['borrowed_qty'] = $borrowed_qty[$key]->total ??  0;
+            return $item;
+        });
+       
+        $books = $books->sortByDesc('borrowed_qty');
+
+        //get most borrower books by user
+        $users = app(UserRepository::class)->query()->select('id','name','grade_level')->get()->keyBy('id');
+        $borrowed_qty_user = app(RequestedBookRepository::class)->query()->whereNotNull('approved_at')
+        ->whereYear('approved_at',$filter_year)
+        ->groupBy('user_id')
+        ->selectRaw('count(*) as total, user_id')
+        ->get()
+        ->keyBy('user_id');
+
+        $users = $users->map(function($item, $key) use($borrowed_qty_user) {
+            $item['borrowed_qty'] = $borrowed_qty_user[$key]->total ??  0;
+            return $item;
+        });
+        $users = $users->sortByDesc('borrowed_qty');
+    
+
+        //get most borrower by grade level
+        $users_by_g_level = $users->groupBy('grade_level');
+        $total_per_g_level = 0;
+        // dd($users_by_g_level);
+        foreach($users_by_g_level as $key => $val){
+            foreach($val as $user){
+                $total_per_g_level += $user->borrowed_qty;
+            }
+            $grade_levels[$key] = $total_per_g_level;
+            $total_per_g_level = 0;
+        }
+
+        return view('reports.book-report',compact('filter_year','arr_requested_books','arr_approved','arr_lost','books','users','grade_levels'));
     }
 
     public function indexRequestedBookReportsMonthly($month,$year){
@@ -161,6 +207,10 @@ class ReportController extends Controller
         for($month = 1; $month <= 12; $month ++){
             $arr_approved_modules[$month] = $approved_modules[$month]->data ?? 0;
         }
+
+
+
+
         return view('reports.module-report',compact('arr_approved_modules','arr_created_modules','filter_year'));
     }
 

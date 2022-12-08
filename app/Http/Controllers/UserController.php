@@ -191,10 +191,12 @@ class UserController extends Controller
 
     public function archive(Request $request){
         app(UserRepository::class)->archive($request->user_id);
+        User::find($request->user_id)->update(['archived_reason' => $request->archived_reason ?? 'Your account is currently inactive. Please contact your administrator']);
         return redirect()->route('users.index')->with('success', 'User archived!');
     }
     public function setToActive($user){
         app(UserRepository::class)->archiveRemove($user);
+        User::find($user)->update(['archived_reason' => null]);
         return redirect()->back()->with('success', 'User set to active!');
     }
 

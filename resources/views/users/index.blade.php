@@ -119,6 +119,10 @@
                     <div class="modal-body text-center">
                         <i class="fas fa-user-times"></i> <br>
                         <span> Are you sure you want to archive <strong id="remove-title"> </strong> ? This user will not be able to login </span>
+                        <div class="mb-3 mt-3 form-group">
+                            <small class="text-muted"> Reason to archive / Message to user </small>
+                            <textarea class="form-control border-custom text-left" name="archived_reason" id="archived_reason" cols="30" rows="10">This user already lost multiple books and has temporary deactivated account. Please contact your administrator</textarea>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <input type="hidden" name="user_id" id="archive_user_id">
